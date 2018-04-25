@@ -2,8 +2,13 @@
  * External Dependencies
  */
 /*import { filter, pick } from 'lodash';*/
-import filter from 'lodash/filter';
-import pick from 'lodash/pick';
+/*import filter from 'lodash/filter';
+import pick from 'lodash/pick';*/
+
+const {
+    filter,
+    pick
+} = lodash;
 
 /**
  * WordPress dependencies

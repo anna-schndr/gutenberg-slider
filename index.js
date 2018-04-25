@@ -2,8 +2,13 @@
  * External dependencies
  */
 /*import { filter, every } from 'lodash';*/
-import filter from 'lodash/filter';
-import every from 'lodash/every';
+/*import filter from 'lodash/filter';
+import every from 'lodash/every';*/
+
+const {
+    filter,
+    every
+} = lodash;
 
 /**
  * WordPress dependencies
