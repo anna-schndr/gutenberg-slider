@@ -85,7 +85,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * External Dependencies
  */
-/*import { filter, pick } from 'lodash';*/
 /*import filter from 'lodash/filter';
 import pick from 'lodash/pick';*/
 
@@ -661,7 +660,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /**
  * External dependencies
  */
-/*import { filter, every } from 'lodash';*/
 /*import filter from 'lodash/filter';
 import every from 'lodash/every';*/
 
