@@ -26,7 +26,7 @@ const {
 	registerBlockType,
 	createBlock} = wp.blocks;
 
-import { default as GalleryBlock } from './block';
+import { default as SliderBlock } from './block';
 
 const blockAttributes = {
 	images: {
@@ -160,7 +160,7 @@ export const settings = {
 		}
 	},*/
 
-	edit: GalleryBlock,
+	edit: SliderBlock,
 
 	save( { attributes } ) {
 		const { images, imageCrop, linkTo } = attributes;

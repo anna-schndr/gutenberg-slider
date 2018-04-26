@@ -25,7 +25,7 @@ const { RichText } = wp.blocks;
  */
 const { BACKSPACE, DELETE } = keycodes;
 
-class GalleryImage extends Component {
+class SliderImage extends Component {
 	constructor() {
 		super( ...arguments );
 
@@ -158,4 +158,4 @@ export default withSelect( ( select, ownProps ) => {
 	return {
 		image: id ? getMedia( id ) : null,
 	};
-} )( GalleryImage );
+} )( SliderImage );

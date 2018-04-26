@@ -40,7 +40,7 @@ const {
     BlockControls
 } = wp.blocks;
 
-import GalleryImage from './gallery-image';
+import SliderImage from './slider-image';
 
 const linkOptions = [
 	{ value: 'attachment', label: __( 'Attachment Page' ) },
@@ -48,7 +48,7 @@ const linkOptions = [
 	{ value: 'none', label: __( 'None' ) },
 ];
 
-class GalleryBlock extends Component {
+class SliderBlock extends Component {
 	constructor() {
 		super( ...arguments );
 
@@ -221,7 +221,7 @@ class GalleryBlock extends Component {
 					{ dropZone }
 					{ images.map( ( img, index ) => (
 						<li className="blocks-gallery-item" key={ img.id || img.url }>
-							<GalleryImage
+							<SliderImage
 								url={ img.url }
 								alt={ img.alt }
 								id={ img.id }
@@ -253,4 +253,4 @@ class GalleryBlock extends Component {
 	}
 }
 
-export default GalleryBlock;
+export default SliderBlock;
