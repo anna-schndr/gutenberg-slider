@@ -106,8 +106,9 @@ class Gutenberg_Slider {
     function register_block() {
         wp_register_style(
             'gutenberg-slider',
-            plugins_url( 'editor.css', __FILE__ ),
-            array( 'wp-edit-blocks' )
+            plugins_url( 'css/editor.css', __FILE__ ),
+            array( 'wp-edit-blocks' ),
+            filemtime( plugin_dir_path( __FILE__ ) . 'css/editor.css' )
         );
         wp_register_style(
             'slick',
@@ -117,9 +118,9 @@ class Gutenberg_Slider {
         );
         wp_register_style(
             'gutenberg-slider-frontend',
-            plugins_url( 'style.css', __FILE__ ),
+            plugins_url( 'css/style.css', __FILE__ ),
             array( 'wp-blocks', 'slick' ),
-            filemtime( plugin_dir_path( __FILE__ ) . 'style.css' )
+            filemtime( plugin_dir_path( __FILE__ ) . 'css/style.css' )
         );
         wp_register_script(
             'slick',
@@ -140,14 +141,7 @@ class Gutenberg_Slider {
             plugins_url( 'block.build.js', __FILE__ ),
             array( 'wp-blocks', 'wp-components', 'wp-element', 'wp-utils', 'wp-i18n', 'lodash' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'block.build.js' ),
-            true
-        );
-
-        $locale_data = gutenberg_get_jed_locale_data( 'gutenberg-slider' );
-        wp_add_inline_script(
-            'gutenberg-slider',
-            'wp.i18n.setLocaleData( ' . json_encode( $locale_data ) . ' );',
-            'before'
+            false // can't be loaded on footer at the moment
         );
 
         register_block_type( 'occ/slider', array(

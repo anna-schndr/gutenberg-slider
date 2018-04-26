@@ -24,7 +24,10 @@ import './style.scss';*/
 
 const {
 	registerBlockType,
-	createBlock} = wp.blocks;
+	createBlock,
+    getBlockType,
+    getBlockTypes
+} = wp.blocks;
 
 import { default as SliderBlock } from './block';
 
@@ -33,7 +36,7 @@ const blockAttributes = {
 		type: 'array',
 		default: [],
 		source: 'query',
-		selector: 'ul.wp-block-gallery .blocks-gallery-item',
+		selector: 'ul.wp-block-occ-slider .blocks-gallery-item',
 		query: {
 			url: {
 				source: 'attribute',
@@ -192,46 +195,6 @@ export const settings = {
 			</ul>
 		);
 	},
-
-	deprecated: [
-		{
-			attributes: {
-				...blockAttributes,
-				images: {
-					...blockAttributes.images,
-					selector: 'div.wp-block-gallery figure.blocks-gallery-image img',
-				},
-			},
-
-			save( { attributes } ) {
-				const { images, imageCrop, linkTo } = attributes;
-				return (
-					<div className={ `${ imageCrop ? 'is-cropped' : '' }` } >
-						{ images.map( ( image ) => {
-							let href;
-
-							switch ( linkTo ) {
-								case 'media':
-									href = image.url;
-									break;
-								case 'attachment':
-									href = image.link;
-									break;
-							}
-
-							const img = <img src={ image.url } alt={ image.alt } data-id={ image.id } />;
-
-							return (
-								<figure key={ image.id || image.url } className="blocks-gallery-image">
-									{ href ? <a href={ href }>{ img }</a> : img }
-								</figure>
-							);
-						} ) }
-					</div>
-				);
-			},
-		},
-	],
 };
 
 registerBlockType( name, settings );

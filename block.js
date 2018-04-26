@@ -33,7 +33,6 @@ const {
  * Internal dependencies
  */
 const {
-    registerBlockType,
     MediaUpload,
     ImagePlaceholder,
     InspectorControls,

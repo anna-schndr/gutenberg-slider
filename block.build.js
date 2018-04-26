@@ -1,6 +1,888 @@
-!function(e){function t(r){if(n[r])return n[r].exports;var a=n[r]={i:r,l:!1,exports:{}};return e[r].call(a.exports,a,a.exports,t),a.l=!0,a.exports}var n={};t.m=e,t.c=n,t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=0)}([function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),n.d(t,"name",function(){return g}),n.d(t,"settings",function(){return f});var r=n(1),a=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},i=lodash,o=i.filter,l=i.every,c=wp.i18n.__,s=wp.utils.mediaUpload,u=wp.blocks,p=u.registerBlockType,m=u.createBlock,d={images:{type:"array",default:[],source:"query",selector:"ul.wp-block-gallery .blocks-gallery-item",query:{url:{source:"attribute",selector:"img",attribute:"src"},link:{source:"attribute",selector:"img",attribute:"data-link"},alt:{source:"attribute",selector:"img",attribute:"alt",default:""},id:{source:"attribute",selector:"img",attribute:"data-id"},caption:{type:"array",source:"children",selector:"figcaption"}}},imageCrop:{type:"boolean",default:!0},linkTo:{type:"string",default:"none"}},g="occ/slider",f={title:c("Slider","gutenberg-slider"),description:c("Image silders are a great way to share groups of pictures on your site.","gutenberg-slider"),icon:"format-gallery",category:"common",keywords:[c("images"),c("photos")],attributes:d,transforms:{from:[{type:"block",isMultiBlock:!0,blocks:["occ/slider"],transform:function(e){var t=o(e,function(e){var t=e.id,n=e.url;return t&&n});return t.length>0?m("occ/slider",{images:t.map(function(e){return{id:e.id,url:e.url,alt:e.alt,caption:e.caption}})}):m("occ/slider")}},{type:"shortcode",tag:"gallery",attributes:{images:{type:"array",shortcode:function(e){var t=e.named.ids;return t?t.split(",").map(function(e){return{id:parseInt(e,10)}}):[]}},linkTo:{type:"string",shortcode:function(e){var t=e.named.link,n=void 0===t?"attachment":t;return"file"===n?"media":n}}}},{type:"files",isMatch:function(e){return 1!==e.length&&l(e,function(e){return 0===e.type.indexOf("image/")})},transform:function(e,t){var n=m("occ/slider");return s(e,function(e){return t(n.uid,{images:e})},"image"),n}}],to:[{type:"block",blocks:["core/image"],transform:function(e){var t=e.images;return t.length>0?t.map(function(e){var t=e.id,n=e.url,r=e.alt,a=e.caption;return m("core/image",{id:t,url:n,alt:r,caption:a})}):m("core/image")}}]},edit:r.a,save:function(e){var t=e.attributes,n=t.images,r=t.imageCrop,a=t.linkTo;return wp.element.createElement("ul",{className:r?"is-cropped":""},n.map(function(e){var t=void 0;switch(a){case"media":t=e.url;break;case"attachment":t=e.link}var n=wp.element.createElement("img",{src:e.url,alt:e.alt,"data-id":e.id,"data-link":e.link});return wp.element.createElement("li",{key:e.id||e.url,className:"blocks-gallery-item"},wp.element.createElement("figure",null,t?wp.element.createElement("a",{href:t},n):n,e.caption&&e.caption.length>0&&wp.element.createElement("figcaption",null,e.caption)))}))},deprecated:[{attributes:a({},d,{images:a({},d.images,{selector:"div.wp-block-gallery figure.blocks-gallery-image img"})}),save:function(e){var t=e.attributes,n=t.images,r=t.imageCrop,a=t.linkTo;return wp.element.createElement("div",{className:r?"is-cropped":""},n.map(function(e){var t=void 0;switch(a){case"media":t=e.url;break;case"attachment":t=e.link}var n=wp.element.createElement("img",{src:e.url,alt:e.alt,"data-id":e.id});return wp.element.createElement("figure",{key:e.id||e.url,className:"blocks-gallery-image"},t?wp.element.createElement("a",{href:t},n):n)}))}}]};p(g,f)},function(e,t,n){"use strict";function r(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function i(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var l=n(2),c=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e},s=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),u=lodash,p=u.filter,m=u.pick,d=wp.element,g=d.Component,f=d.Fragment,b=wp.i18n.__,h=wp.utils.mediaUpload,y=wp.components,v=y.IconButton,w=y.DropZone,k=y.FormFileUpload,S=y.PanelBody,E=(y.RangeControl,y.SelectControl),C=y.ToggleControl,I=y.Toolbar,_=wp.blocks,O=(_.registerBlockType,_.MediaUpload),T=_.ImagePlaceholder,A=_.InspectorControls,j=_.BlockControls,P=[{value:"attachment",label:b("Attachment Page")},{value:"media",label:b("Media File")},{value:"none",label:b("None")}],F=function(e){function t(){a(this,t);var e=i(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments));return e.onSelectImage=e.onSelectImage.bind(e),e.onSelectImages=e.onSelectImages.bind(e),e.setLinkTo=e.setLinkTo.bind(e),e.toggleImageCrop=e.toggleImageCrop.bind(e),e.onRemoveImage=e.onRemoveImage.bind(e),e.setImageAttributes=e.setImageAttributes.bind(e),e.addFiles=e.addFiles.bind(e),e.uploadFromFiles=e.uploadFromFiles.bind(e),e.state={selectedImage:null},e}return o(t,e),s(t,[{key:"onSelectImage",value:function(e){var t=this;return function(){t.state.selectedImage!==e&&t.setState({selectedImage:e})}}},{key:"onRemoveImage",value:function(e){var t=this;return function(){var n=p(t.props.attributes.images,function(t,n){return e!==n});t.setState({selectedImage:null}),t.props.setAttributes({images:n})}}},{key:"onSelectImages",value:function(e){this.props.setAttributes({images:e.map(function(e){return m(e,["alt","caption","id","url"])})})}},{key:"setLinkTo",value:function(e){this.props.setAttributes({linkTo:e})}},{key:"toggleImageCrop",value:function(){this.props.setAttributes({imageCrop:!this.props.attributes.imageCrop})}},{key:"getImageCropHelp",value:function(e){return b(e?"Thumbnails are cropped to align.":"Thumbnails are not cropped.")}},{key:"setImageAttributes",value:function(e,t){var n=this.props,a=n.attributes.images,i=n.setAttributes;a[e]&&i({images:[].concat(r(a.slice(0,e)),[c({},a[e],t)],r(a.slice(e+1)))})}},{key:"uploadFromFiles",value:function(e){this.addFiles(e.target.files)}},{key:"addFiles",value:function(e){var t=this.props.attributes.images||[],n=this.props.setAttributes;h(e,function(e){n({images:t.concat(e)})},"image")}},{key:"componentWillReceiveProps",value:function(e){!e.isSelected&&this.props.isSelected&&this.setState({selectedImage:null,captionSelected:!1})}},{key:"render",value:function(){var e=this,t=this.props,n=t.attributes,r=t.isSelected,a=t.className,i=n.images,o=n.imageCrop,c=n.linkTo,s=wp.element.createElement(w,{onFilesDrop:this.addFiles}),u=wp.element.createElement(j,null,!!i.length&&wp.element.createElement(I,null,wp.element.createElement(O,{onSelect:this.onSelectImages,type:"image",multiple:!0,gallery:!0,value:i.map(function(e){return e.id}),render:function(e){var t=e.open;return wp.element.createElement(v,{className:"components-toolbar__control",label:b("Edit Slider","gutenberg-slider"),icon:"edit",onClick:t})}})));return 0===i.length?wp.element.createElement(f,null,u,wp.element.createElement(T,{className:a,icon:"format-gallery",label:b("Slider","gutenberg-slider"),onSelectImage:this.onSelectImages,multiple:!0})):wp.element.createElement(f,null,u,wp.element.createElement(A,null,wp.element.createElement(S,{title:b("Slider Settings","gutenberg-slider")},wp.element.createElement(C,{label:b("Crop Images"),checked:!!o,onChange:this.toggleImageCrop,help:this.getImageCropHelp}),wp.element.createElement(E,{label:b("Link to"),value:c,onChange:this.setLinkTo,options:P}))),wp.element.createElement("ul",{className:a+" "+(o?"is-cropped":"")},s,i.map(function(t,n){return wp.element.createElement("li",{className:"blocks-gallery-item",key:t.id||t.url},wp.element.createElement(l.a,{url:t.url,alt:t.alt,id:t.id,isSelected:r&&e.state.selectedImage===n,onRemove:e.onRemoveImage(n),onSelect:e.onSelectImage(n),setAttributes:function(t){return e.setImageAttributes(n,t)},caption:t.caption}))}),r&&wp.element.createElement("li",{className:"blocks-gallery-item"},wp.element.createElement(k,{multiple:!0,isLarge:!0,className:"blocks-gallery-add-item-button",onChange:this.uploadFromFiles,accept:"image/*",icon:"insert"},b("Upload an image")))))}}]),t}(g);t.a=F},function(e,t,n){"use strict";function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function i(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var o=n(3),l=n.n(o),c=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),s=wp.element.Component,u=wp.components,p=u.IconButton,m=u.Spinner,d=wp.i18n.__,g=wp.utils.keycodes,f=wp.data.withSelect,b=wp.blocks.RichText,h=g.BACKSPACE,y=g.DELETE,v=function(e){function t(){r(this,t);var e=a(this,(t.__proto__||Object.getPrototypeOf(t)).apply(this,arguments));return e.onImageClick=e.onImageClick.bind(e),e.onSelectCaption=e.onSelectCaption.bind(e),e.onKeyDown=e.onKeyDown.bind(e),e.bindContainer=e.bindContainer.bind(e),e.state={captionSelected:!1},e}return i(t,e),c(t,[{key:"bindContainer",value:function(e){this.container=e}},{key:"onSelectCaption",value:function(){this.state.captionSelected||this.setState({captionSelected:!0}),this.props.isSelected||this.props.onSelect()}},{key:"onImageClick",value:function(){this.props.isSelected||this.props.onSelect(),this.state.captionSelected&&this.setState({captionSelected:!1})}},{key:"onKeyDown",value:function(e){this.container===document.activeElement&&this.props.isSelected&&-1!==[h,y].indexOf(e.keyCode)&&(e.stopPropagation(),e.preventDefault(),this.props.onRemove())}},{key:"componentWillReceiveProps",value:function(e){var t=e.isSelected,n=e.image,r=e.url;n&&!r&&this.props.setAttributes({url:n.source_url,alt:n.alt_text}),this.state.captionSelected&&!t&&this.props.isSelected&&this.setState({captionSelected:!1})}},{key:"render",value:function(){var e=this.props,t=e.url,n=e.alt,r=e.id,a=e.linkTo,i=e.link,o=e.isSelected,c=e.caption,s=e.onRemove,u=e.setAttributes,g=void 0;switch(a){case"media":g=t;break;case"attachment":g=i}var f=t?wp.element.createElement("img",{src:t,alt:n,"data-id":r,onClick:this.onImageClick}):wp.element.createElement(m,null),h=l()({"is-selected":o,"is-transient":t&&0===t.indexOf("blob:")});return wp.element.createElement("figure",{className:h,tabIndex:"-1",onKeyDown:this.onKeyDown,ref:this.bindContainer},o&&wp.element.createElement("div",{className:"blocks-gallery-item__inline-menu"},wp.element.createElement(p,{icon:"no-alt",onClick:s,className:"blocks-gallery-item__remove",label:d("Remove Image")})),g?wp.element.createElement("a",{href:g},f):f,c&&c.length>0||o?wp.element.createElement(b,{tagName:"figcaption",placeholder:d("Write caption…"),value:c,isSelected:this.state.captionSelected,onChange:function(e){return u({caption:e})},onFocus:this.onSelectCaption,inlineToolbar:!0}):null)}}]),t}(s);t.a=f(function(e,t){var n=e("core"),r=n.getMedia,a=t.id;return{image:a?r(a):null}})(v)},function(e,t,n){var r,a;/*!
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__block__ = __webpack_require__(1);
+/**
+ * External dependencies
+ */
+/*import filter from 'lodash/filter';
+import every from 'lodash/every';*/
+
+var _lodash = lodash,
+    filter = _lodash.filter,
+    every = _lodash.every;
+
+/**
+ * WordPress dependencies
+ */
+
+var __ = wp.i18n.__;
+var mediaUpload = wp.utils.mediaUpload;
+
+/**
+ * Internal dependencies
+ */
+/*import './editor.scss';
+import './style.scss';*/
+/*import { createBlock } from '../../api';*/
+
+var _wp$blocks = wp.blocks,
+    registerBlockType = _wp$blocks.registerBlockType,
+    createBlock = _wp$blocks.createBlock,
+    getBlockType = _wp$blocks.getBlockType,
+    getBlockTypes = _wp$blocks.getBlockTypes;
+
+
+
+
+var blockAttributes = {
+	images: {
+		type: 'array',
+		default: [],
+		source: 'query',
+		selector: 'ul.wp-block-occ-slider .blocks-gallery-item',
+		query: {
+			url: {
+				source: 'attribute',
+				selector: 'img',
+				attribute: 'src'
+			},
+			link: {
+				source: 'attribute',
+				selector: 'img',
+				attribute: 'data-link'
+			},
+			alt: {
+				source: 'attribute',
+				selector: 'img',
+				attribute: 'alt',
+				default: ''
+			},
+			id: {
+				source: 'attribute',
+				selector: 'img',
+				attribute: 'data-id'
+			},
+			caption: {
+				type: 'array',
+				source: 'children',
+				selector: 'figcaption'
+			}
+		}
+	},
+	imageCrop: {
+		type: 'boolean',
+		default: true
+	},
+	linkTo: {
+		type: 'string',
+		default: 'none'
+	}
+};
+
+var name = 'occ/slider';
+
+var settings = {
+	title: __('Slider', 'gutenberg-slider'),
+	description: __('Image silders are a great way to share groups of pictures on your site.', 'gutenberg-slider'),
+	icon: 'format-gallery',
+	category: 'common',
+	keywords: [__('images'), __('photos')],
+	attributes: blockAttributes,
+
+	transforms: {
+		from: [{
+			type: 'block',
+			isMultiBlock: true,
+			blocks: ['occ/slider'],
+			transform: function transform(attributes) {
+				var validImages = filter(attributes, function (_ref) {
+					var id = _ref.id,
+					    url = _ref.url;
+					return id && url;
+				});
+				if (validImages.length > 0) {
+					return createBlock('occ/slider', {
+						images: validImages.map(function (_ref2) {
+							var id = _ref2.id,
+							    url = _ref2.url,
+							    alt = _ref2.alt,
+							    caption = _ref2.caption;
+							return { id: id, url: url, alt: alt, caption: caption };
+						})
+					});
+				}
+				return createBlock('occ/slider');
+			}
+		}, {
+			type: 'shortcode',
+			tag: 'gallery',
+			attributes: {
+				images: {
+					type: 'array',
+					shortcode: function shortcode(_ref3) {
+						var ids = _ref3.named.ids;
+
+						if (!ids) {
+							return [];
+						}
+
+						return ids.split(',').map(function (id) {
+							return {
+								id: parseInt(id, 10)
+							};
+						});
+					}
+				},
+				linkTo: {
+					type: 'string',
+					shortcode: function shortcode(_ref4) {
+						var _ref4$named$link = _ref4.named.link,
+						    link = _ref4$named$link === undefined ? 'attachment' : _ref4$named$link;
+
+						return link === 'file' ? 'media' : link;
+					}
+				}
+			}
+		}, {
+			type: 'files',
+			isMatch: function isMatch(files) {
+				return files.length !== 1 && every(files, function (file) {
+					return file.type.indexOf('image/') === 0;
+				});
+			},
+			transform: function transform(files, onChange) {
+				var block = createBlock('occ/slider');
+				mediaUpload(files, function (images) {
+					return onChange(block.uid, { images: images });
+				}, 'image');
+				return block;
+			}
+		}],
+		to: [{
+			type: 'block',
+			blocks: ['core/image'],
+			transform: function transform(_ref5) {
+				var images = _ref5.images;
+
+				if (images.length > 0) {
+					return images.map(function (_ref6) {
+						var id = _ref6.id,
+						    url = _ref6.url,
+						    alt = _ref6.alt,
+						    caption = _ref6.caption;
+						return createBlock('core/image', { id: id, url: url, alt: alt, caption: caption });
+					});
+				}
+				return createBlock('core/image');
+			}
+		}]
+	},
+
+	/*getEditWrapperProps( attributes ) {
+ 	const { align } = attributes;
+ 	if ( 'left' === align || 'right' === align || 'wide' === align || 'full' === align ) {
+ 		return { 'data-align': align };
+ 	}
+ },*/
+
+	edit: __WEBPACK_IMPORTED_MODULE_0__block__["a" /* default */],
+
+	save: function save(_ref7) {
+		var attributes = _ref7.attributes;
+		var images = attributes.images,
+		    imageCrop = attributes.imageCrop,
+		    linkTo = attributes.linkTo;
+
+		return wp.element.createElement(
+			'ul',
+			{ className: '' + (imageCrop ? 'is-cropped' : '') },
+			images.map(function (image) {
+				var href = void 0;
+
+				switch (linkTo) {
+					case 'media':
+						href = image.url;
+						break;
+					case 'attachment':
+						href = image.link;
+						break;
+				}
+
+				var img = wp.element.createElement('img', { src: image.url, alt: image.alt, 'data-id': image.id, 'data-link': image.link });
+
+				return wp.element.createElement(
+					'li',
+					{ key: image.id || image.url, className: 'blocks-gallery-item' },
+					wp.element.createElement(
+						'figure',
+						null,
+						href ? wp.element.createElement(
+							'a',
+							{ href: href },
+							img
+						) : img,
+						image.caption && image.caption.length > 0 && wp.element.createElement(
+							'figcaption',
+							null,
+							image.caption
+						)
+					)
+				);
+			})
+		);
+	}
+};
+
+registerBlockType(name, settings);
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__slider_image__ = __webpack_require__(2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * External Dependencies
+ */
+/*import filter from 'lodash/filter';
+import pick from 'lodash/pick';*/
+
+var _lodash = lodash,
+    filter = _lodash.filter,
+    pick = _lodash.pick;
+
+/**
+ * WordPress dependencies
+ */
+
+var _wp$element = wp.element,
+    Component = _wp$element.Component,
+    Fragment = _wp$element.Fragment;
+var __ = wp.i18n.__;
+var mediaUpload = wp.utils.mediaUpload;
+var _wp$components = wp.components,
+    IconButton = _wp$components.IconButton,
+    DropZone = _wp$components.DropZone,
+    FormFileUpload = _wp$components.FormFileUpload,
+    PanelBody = _wp$components.PanelBody,
+    RangeControl = _wp$components.RangeControl,
+    SelectControl = _wp$components.SelectControl,
+    ToggleControl = _wp$components.ToggleControl,
+    Toolbar = _wp$components.Toolbar;
+
+/**
+ * Internal dependencies
+ */
+
+var _wp$blocks = wp.blocks,
+    MediaUpload = _wp$blocks.MediaUpload,
+    ImagePlaceholder = _wp$blocks.ImagePlaceholder,
+    InspectorControls = _wp$blocks.InspectorControls,
+    BlockControls = _wp$blocks.BlockControls;
+
+
+
+
+var linkOptions = [{ value: 'attachment', label: __('Attachment Page') }, { value: 'media', label: __('Media File') }, { value: 'none', label: __('None') }];
+
+var SliderBlock = function (_Component) {
+	_inherits(SliderBlock, _Component);
+
+	function SliderBlock() {
+		_classCallCheck(this, SliderBlock);
+
+		var _this = _possibleConstructorReturn(this, (SliderBlock.__proto__ || Object.getPrototypeOf(SliderBlock)).apply(this, arguments));
+
+		_this.onSelectImage = _this.onSelectImage.bind(_this);
+		_this.onSelectImages = _this.onSelectImages.bind(_this);
+		_this.setLinkTo = _this.setLinkTo.bind(_this);
+		_this.toggleImageCrop = _this.toggleImageCrop.bind(_this);
+		_this.onRemoveImage = _this.onRemoveImage.bind(_this);
+		_this.setImageAttributes = _this.setImageAttributes.bind(_this);
+		_this.addFiles = _this.addFiles.bind(_this);
+		_this.uploadFromFiles = _this.uploadFromFiles.bind(_this);
+
+		_this.state = {
+			selectedImage: null
+		};
+		return _this;
+	}
+
+	_createClass(SliderBlock, [{
+		key: 'onSelectImage',
+		value: function onSelectImage(index) {
+			var _this2 = this;
+
+			return function () {
+				if (_this2.state.selectedImage !== index) {
+					_this2.setState({
+						selectedImage: index
+					});
+				}
+			};
+		}
+	}, {
+		key: 'onRemoveImage',
+		value: function onRemoveImage(index) {
+			var _this3 = this;
+
+			return function () {
+				var images = filter(_this3.props.attributes.images, function (img, i) {
+					return index !== i;
+				});
+				_this3.setState({ selectedImage: null });
+				_this3.props.setAttributes({
+					images: images
+				});
+			};
+		}
+	}, {
+		key: 'onSelectImages',
+		value: function onSelectImages(images) {
+			this.props.setAttributes({
+				images: images.map(function (image) {
+					return pick(image, ['alt', 'caption', 'id', 'url']);
+				})
+			});
+		}
+	}, {
+		key: 'setLinkTo',
+		value: function setLinkTo(value) {
+			this.props.setAttributes({ linkTo: value });
+		}
+	}, {
+		key: 'toggleImageCrop',
+		value: function toggleImageCrop() {
+			this.props.setAttributes({ imageCrop: !this.props.attributes.imageCrop });
+		}
+	}, {
+		key: 'getImageCropHelp',
+		value: function getImageCropHelp(checked) {
+			return checked ? __('Thumbnails are cropped to align.') : __('Thumbnails are not cropped.');
+		}
+	}, {
+		key: 'setImageAttributes',
+		value: function setImageAttributes(index, attributes) {
+			var _props = this.props,
+			    images = _props.attributes.images,
+			    setAttributes = _props.setAttributes;
+
+			if (!images[index]) {
+				return;
+			}
+			setAttributes({
+				images: [].concat(_toConsumableArray(images.slice(0, index)), [_extends({}, images[index], attributes)], _toConsumableArray(images.slice(index + 1)))
+			});
+		}
+	}, {
+		key: 'uploadFromFiles',
+		value: function uploadFromFiles(event) {
+			this.addFiles(event.target.files);
+		}
+	}, {
+		key: 'addFiles',
+		value: function addFiles(files) {
+			var currentImages = this.props.attributes.images || [];
+			var setAttributes = this.props.setAttributes;
+
+			mediaUpload(files, function (images) {
+				setAttributes({
+					images: currentImages.concat(images)
+				});
+			}, 'image');
+		}
+	}, {
+		key: 'componentWillReceiveProps',
+		value: function componentWillReceiveProps(nextProps) {
+			// Deselect images when deselecting the block
+			if (!nextProps.isSelected && this.props.isSelected) {
+				this.setState({
+					selectedImage: null,
+					captionSelected: false
+				});
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _this4 = this;
+
+			var _props2 = this.props,
+			    attributes = _props2.attributes,
+			    isSelected = _props2.isSelected,
+			    className = _props2.className;
+			var images = attributes.images,
+			    imageCrop = attributes.imageCrop,
+			    linkTo = attributes.linkTo;
+
+
+			var dropZone = wp.element.createElement(DropZone, {
+				onFilesDrop: this.addFiles
+			});
+
+			var controls = wp.element.createElement(
+				BlockControls,
+				null,
+				!!images.length && wp.element.createElement(
+					Toolbar,
+					null,
+					wp.element.createElement(MediaUpload, {
+						onSelect: this.onSelectImages,
+						type: 'image',
+						multiple: true,
+						gallery: true,
+						value: images.map(function (img) {
+							return img.id;
+						}),
+						render: function render(_ref) {
+							var open = _ref.open;
+							return wp.element.createElement(IconButton, {
+								className: 'components-toolbar__control',
+								label: __('Edit Slider', 'gutenberg-slider'),
+								icon: 'edit',
+								onClick: open
+							});
+						}
+					})
+				)
+			);
+
+			if (images.length === 0) {
+				return wp.element.createElement(
+					Fragment,
+					null,
+					controls,
+					wp.element.createElement(ImagePlaceholder, {
+						className: className,
+						icon: 'format-gallery',
+						label: __('Slider', 'gutenberg-slider'),
+						onSelectImage: this.onSelectImages,
+						multiple: true
+					})
+				);
+			}
+
+			return wp.element.createElement(
+				Fragment,
+				null,
+				controls,
+				wp.element.createElement(
+					InspectorControls,
+					null,
+					wp.element.createElement(
+						PanelBody,
+						{ title: __('Slider Settings', 'gutenberg-slider') },
+						wp.element.createElement(ToggleControl, {
+							label: __('Crop Images'),
+							checked: !!imageCrop,
+							onChange: this.toggleImageCrop,
+							help: this.getImageCropHelp
+						}),
+						wp.element.createElement(SelectControl, {
+							label: __('Link to'),
+							value: linkTo,
+							onChange: this.setLinkTo,
+							options: linkOptions
+						})
+					)
+				),
+				wp.element.createElement(
+					'ul',
+					{ className: className + ' ' + (imageCrop ? 'is-cropped' : '') },
+					dropZone,
+					images.map(function (img, index) {
+						return wp.element.createElement(
+							'li',
+							{ className: 'blocks-gallery-item', key: img.id || img.url },
+							wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__slider_image__["a" /* default */], {
+								url: img.url,
+								alt: img.alt,
+								id: img.id,
+								isSelected: isSelected && _this4.state.selectedImage === index,
+								onRemove: _this4.onRemoveImage(index),
+								onSelect: _this4.onSelectImage(index),
+								setAttributes: function setAttributes(attrs) {
+									return _this4.setImageAttributes(index, attrs);
+								},
+								caption: img.caption
+							})
+						);
+					}),
+					isSelected && wp.element.createElement(
+						'li',
+						{ className: 'blocks-gallery-item' },
+						wp.element.createElement(
+							FormFileUpload,
+							{
+								multiple: true,
+								isLarge: true,
+								className: 'blocks-gallery-add-item-button',
+								onChange: this.uploadFromFiles,
+								accept: 'image/*',
+								icon: 'insert'
+							},
+							__('Upload an image')
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return SliderBlock;
+}(Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (SliderBlock);
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_classnames__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_classnames__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * External Dependencies
+ */
+
+
+/**
+ * WordPress Dependencies
+ */
+var Component = wp.element.Component;
+var _wp$components = wp.components,
+    IconButton = _wp$components.IconButton,
+    Spinner = _wp$components.Spinner;
+var __ = wp.i18n.__;
+var keycodes = wp.utils.keycodes;
+var withSelect = wp.data.withSelect;
+
+/**
+ * Internal dependencies
+ */
+
+var RichText = wp.blocks.RichText;
+
+/**
+ * Module constants
+ */
+
+var BACKSPACE = keycodes.BACKSPACE,
+    DELETE = keycodes.DELETE;
+
+var SliderImage = function (_Component) {
+	_inherits(SliderImage, _Component);
+
+	function SliderImage() {
+		_classCallCheck(this, SliderImage);
+
+		var _this = _possibleConstructorReturn(this, (SliderImage.__proto__ || Object.getPrototypeOf(SliderImage)).apply(this, arguments));
+
+		_this.onImageClick = _this.onImageClick.bind(_this);
+		_this.onSelectCaption = _this.onSelectCaption.bind(_this);
+		_this.onKeyDown = _this.onKeyDown.bind(_this);
+		_this.bindContainer = _this.bindContainer.bind(_this);
+
+		_this.state = {
+			captionSelected: false
+		};
+		return _this;
+	}
+
+	_createClass(SliderImage, [{
+		key: 'bindContainer',
+		value: function bindContainer(ref) {
+			this.container = ref;
+		}
+	}, {
+		key: 'onSelectCaption',
+		value: function onSelectCaption() {
+			if (!this.state.captionSelected) {
+				this.setState({
+					captionSelected: true
+				});
+			}
+
+			if (!this.props.isSelected) {
+				this.props.onSelect();
+			}
+		}
+	}, {
+		key: 'onImageClick',
+		value: function onImageClick() {
+			if (!this.props.isSelected) {
+				this.props.onSelect();
+			}
+
+			if (this.state.captionSelected) {
+				this.setState({
+					captionSelected: false
+				});
+			}
+		}
+	}, {
+		key: 'onKeyDown',
+		value: function onKeyDown(event) {
+			if (this.container === document.activeElement && this.props.isSelected && [BACKSPACE, DELETE].indexOf(event.keyCode) !== -1) {
+				event.stopPropagation();
+				event.preventDefault();
+				this.props.onRemove();
+			}
+		}
+	}, {
+		key: 'componentWillReceiveProps',
+		value: function componentWillReceiveProps(_ref) {
+			var isSelected = _ref.isSelected,
+			    image = _ref.image,
+			    url = _ref.url;
+
+			if (image && !url) {
+				this.props.setAttributes({
+					url: image.source_url,
+					alt: image.alt_text
+				});
+			}
+
+			// unselect the caption so when the user selects other image and comeback
+			// the caption is not immediately selected
+			if (this.state.captionSelected && !isSelected && this.props.isSelected) {
+				this.setState({
+					captionSelected: false
+				});
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var _props = this.props,
+			    url = _props.url,
+			    alt = _props.alt,
+			    id = _props.id,
+			    linkTo = _props.linkTo,
+			    link = _props.link,
+			    isSelected = _props.isSelected,
+			    caption = _props.caption,
+			    onRemove = _props.onRemove,
+			    setAttributes = _props.setAttributes;
+
+
+			var href = void 0;
+
+			switch (linkTo) {
+				case 'media':
+					href = url;
+					break;
+				case 'attachment':
+					href = link;
+					break;
+			}
+
+			// Disable reason: Image itself is not meant to be
+			// interactive, but should direct image selection and unfocus caption fields
+			// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
+			var img = url ? wp.element.createElement('img', { src: url, alt: alt, 'data-id': id, onClick: this.onImageClick }) : wp.element.createElement(Spinner, null);
+
+			var className = __WEBPACK_IMPORTED_MODULE_0_classnames___default()({
+				'is-selected': isSelected,
+				'is-transient': url && 0 === url.indexOf('blob:')
+			});
+
+			// Disable reason: Each block can be selected by clicking on it and we should keep the same saved markup
+			/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/onclick-has-role, jsx-a11y/click-events-have-key-events */
+			return wp.element.createElement(
+				'figure',
+				{ className: className, tabIndex: '-1', onKeyDown: this.onKeyDown, ref: this.bindContainer },
+				isSelected && wp.element.createElement(
+					'div',
+					{ className: 'blocks-gallery-item__inline-menu' },
+					wp.element.createElement(IconButton, {
+						icon: 'no-alt',
+						onClick: onRemove,
+						className: 'blocks-gallery-item__remove',
+						label: __('Remove Image')
+					})
+				),
+				href ? wp.element.createElement(
+					'a',
+					{ href: href },
+					img
+				) : img,
+				caption && caption.length > 0 || isSelected ? wp.element.createElement(RichText, {
+					tagName: 'figcaption',
+					placeholder: __('Write caption…'),
+					value: caption,
+					isSelected: this.state.captionSelected,
+					onChange: function onChange(newCaption) {
+						return setAttributes({ caption: newCaption });
+					},
+					onFocus: this.onSelectCaption,
+					inlineToolbar: true
+				}) : null
+			);
+			/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/onclick-has-role, jsx-a11y/click-events-have-key-events */
+		}
+	}]);
+
+	return SliderImage;
+}(Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (withSelect(function (select, ownProps) {
+	var _select = select('core'),
+	    getMedia = _select.getMedia;
+
+	var id = ownProps.id;
+
+
+	return {
+		image: id ? getMedia(id) : null
+	};
+})(SliderImage));
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
   Copyright (c) 2016 Jed Watson.
   Licensed under the MIT License (MIT), see
   http://jedwatson.github.io/classnames
 */
-!function(){"use strict";function n(){for(var e=[],t=0;t<arguments.length;t++){var r=arguments[t];if(r){var a=typeof r;if("string"===a||"number"===a)e.push(r);else if(Array.isArray(r))e.push(n.apply(null,r));else if("object"===a)for(var o in r)i.call(r,o)&&r[o]&&e.push(o)}}return e.join(" ")}var i={}.hasOwnProperty;void 0!==e&&e.exports?e.exports=n:(r=[],void 0!==(a=function(){return n}.apply(t,r))&&(e.exports=a))}()}]);
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames () {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				classes.push(classNames.apply(null, arg));
+			} else if (argType === 'object') {
+				for (var key in arg) {
+					if (hasOwn.call(arg, key) && arg[key]) {
+						classes.push(key);
+					}
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+
+/***/ })
+/******/ ]);
