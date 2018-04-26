@@ -110,25 +110,29 @@ class Gutenberg_Slider {
             array( 'wp-edit-blocks' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'css/editor.css' )
         );
-        wp_register_style(
-            'slick',
-            plugins_url( 'css/slick.css', __FILE__ ),
-            array(),
-            filemtime( plugin_dir_path( __FILE__ ) . 'css/slick.css' )
-        );
+        if ( !is_admin() ) {
+            wp_register_style(
+                'slick',
+                plugins_url( 'css/slick.css', __FILE__ ),
+                array(),
+                filemtime( plugin_dir_path( __FILE__ ) . 'css/slick.css' )
+            );
+        }
         wp_register_style(
             'gutenberg-slider-frontend',
             plugins_url( 'css/style.css', __FILE__ ),
             array( 'wp-blocks', 'slick' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'css/style.css' )
         );
-        wp_register_script(
-            'slick',
-            plugins_url( 'js/slick.min.js', __FILE__ ),
-            array(),
-            filemtime( plugin_dir_path( __FILE__ ) . 'js/slick.js' ),
-            true
-        );
+        if ( !is_admin() ) {
+            wp_register_script(
+                'slick',
+                plugins_url( 'js/slick.min.js', __FILE__ ),
+                array(),
+                filemtime( plugin_dir_path( __FILE__ ) . 'js/slick.js' ),
+                true
+            );
+        }
         wp_register_script(
             'gutenberg-slider-frontend',
             plugins_url( 'js/frontend.js', __FILE__ ),
