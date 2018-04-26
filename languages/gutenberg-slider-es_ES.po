@@ -1,0 +1,96 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2018-04-26 20:28+0200\n"
+"PO-Revision-Date: 2018-04-26 20:30+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: .babelrc\n"
+"X-Poedit-SearchPathExcluded-1: .gitattributes\n"
+"X-Poedit-SearchPathExcluded-2: .gitignore\n"
+"X-Poedit-SearchPathExcluded-3: block.build.js\n"
+"X-Poedit-SearchPathExcluded-4: editor.scss\n"
+"X-Poedit-SearchPathExcluded-5: package.json\n"
+"X-Poedit-SearchPathExcluded-6: package-lock.json\n"
+"X-Poedit-SearchPathExcluded-7: style.scss\n"
+"X-Poedit-SearchPathExcluded-8: webpack.config.js\n"
+"X-Poedit-SearchPathExcluded-9: node_modules\n"
+"X-Poedit-SearchPathExcluded-10: .git\n"
+
+#: block.js:45
+msgid "Attachment Page"
+msgstr ""
+
+#: block.js:46
+msgid "Media File"
+msgstr ""
+
+#: block.js:47
+msgid "None"
+msgstr ""
+
+#: block.js:103
+msgid "Thumbnails are cropped to align."
+msgstr ""
+
+#: block.js:103
+msgid "Thumbnails are not cropped."
+msgstr ""
+
+#: block.js:174
+msgid "Edit Slider"
+msgstr "Editar slider"
+
+#: block.js:192 index.js:82
+msgid "Slider"
+msgstr "Slider"
+
+#: block.js:204
+msgid "Slider Settings"
+msgstr "Configuración del slider"
+
+#: block.js:206
+msgid "Crop Images"
+msgstr ""
+
+#: block.js:212
+msgid "Link to"
+msgstr ""
+
+#: block.js:245
+msgid "Upload an image"
+msgstr ""
+
+#: index.js:83
+msgid "Image silders are a great way to share groups of pictures on your site."
+msgstr ""
+"Los sliders son un modo fantástico de compartir grupos de imágenes en tu "
+"sitio."
+
+#: index.js:86
+msgid "images"
+msgstr ""
+
+#: index.js:86
+msgid "photos"
+msgstr ""
+
+#: slider-image.js:132
+msgid "Remove Image"
+msgstr ""
+
+#: slider-image.js:140
+msgid "Write caption…"
+msgstr ""
