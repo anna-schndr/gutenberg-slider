@@ -266,7 +266,7 @@ var settings = {
 
 		return wp.element.createElement(
 			'ul',
-			{ className: '' + (imageCrop ? 'is-cropped' : '') },
+			{ className: '' + (imageCrop ? 'is-cropped' : ''), 'data-speed': '100' },
 			images.map(function (image) {
 				var href = void 0;
 

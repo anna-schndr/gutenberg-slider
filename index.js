@@ -168,7 +168,7 @@ export const settings = {
 	save( { attributes } ) {
 		const { images, imageCrop, linkTo } = attributes;
 		return (
-			<ul className={ `${ imageCrop ? 'is-cropped' : '' }` } >
+			<ul className={ `${ imageCrop ? 'is-cropped' : '' }` } data-speed="100">
 				{ images.map( ( image ) => {
 					let href;
 
