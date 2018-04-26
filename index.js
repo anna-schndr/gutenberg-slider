@@ -70,6 +70,10 @@ const blockAttributes = {
 		type: 'boolean',
 		default: true,
 	},
+	speed: {
+		type: 'string',
+		default: '300',
+	},
 	linkTo: {
 		type: 'string',
 		default: 'none',
@@ -156,19 +160,12 @@ export const settings = {
 		],
 	},
 
-	/*getEditWrapperProps( attributes ) {
-		const { align } = attributes;
-		if ( 'left' === align || 'right' === align || 'wide' === align || 'full' === align ) {
-			return { 'data-align': align };
-		}
-	},*/
-
 	edit: SliderBlock,
 
 	save( { attributes } ) {
-		const { images, imageCrop, linkTo } = attributes;
+		const { images, imageCrop, speed, linkTo } = attributes;
 		return (
-			<ul className={ `${ imageCrop ? 'is-cropped' : '' }` } data-speed="100">
+			<ul className={ `${ imageCrop ? 'is-cropped' : '' }` } data-speed={ speed }>
 				{ images.map( ( image ) => {
 					let href;
 

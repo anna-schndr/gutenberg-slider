@@ -144,6 +144,10 @@ var blockAttributes = {
 		type: 'boolean',
 		default: true
 	},
+	speed: {
+		type: 'string',
+		default: '300'
+	},
 	linkTo: {
 		type: 'string',
 		default: 'none'
@@ -249,24 +253,18 @@ var settings = {
 		}]
 	},
 
-	/*getEditWrapperProps( attributes ) {
- 	const { align } = attributes;
- 	if ( 'left' === align || 'right' === align || 'wide' === align || 'full' === align ) {
- 		return { 'data-align': align };
- 	}
- },*/
-
 	edit: __WEBPACK_IMPORTED_MODULE_0__block__["a" /* default */],
 
 	save: function save(_ref7) {
 		var attributes = _ref7.attributes;
 		var images = attributes.images,
 		    imageCrop = attributes.imageCrop,
+		    speed = attributes.speed,
 		    linkTo = attributes.linkTo;
 
 		return wp.element.createElement(
 			'ul',
-			{ className: '' + (imageCrop ? 'is-cropped' : ''), 'data-speed': '100' },
+			{ className: '' + (imageCrop ? 'is-cropped' : ''), 'data-speed': speed },
 			images.map(function (image) {
 				var href = void 0;
 
@@ -349,6 +347,7 @@ var _wp$components = wp.components,
     FormFileUpload = _wp$components.FormFileUpload,
     PanelBody = _wp$components.PanelBody,
     RangeControl = _wp$components.RangeControl,
+    TextControl = _wp$components.TextControl,
     SelectControl = _wp$components.SelectControl,
     ToggleControl = _wp$components.ToggleControl,
     Toolbar = _wp$components.Toolbar;
@@ -379,6 +378,7 @@ var SliderBlock = function (_Component) {
 		_this.onSelectImage = _this.onSelectImage.bind(_this);
 		_this.onSelectImages = _this.onSelectImages.bind(_this);
 		_this.setLinkTo = _this.setLinkTo.bind(_this);
+		_this.setSpeed = _this.setSpeed.bind(_this);
 		_this.toggleImageCrop = _this.toggleImageCrop.bind(_this);
 		_this.onRemoveImage = _this.onRemoveImage.bind(_this);
 		_this.setImageAttributes = _this.setImageAttributes.bind(_this);
@@ -432,6 +432,11 @@ var SliderBlock = function (_Component) {
 		key: 'setLinkTo',
 		value: function setLinkTo(value) {
 			this.props.setAttributes({ linkTo: value });
+		}
+	}, {
+		key: 'setSpeed',
+		value: function setSpeed(value) {
+			this.props.setAttributes({ speed: value });
 		}
 	}, {
 		key: 'toggleImageCrop',
@@ -496,6 +501,7 @@ var SliderBlock = function (_Component) {
 			    className = _props2.className;
 			var images = attributes.images,
 			    imageCrop = attributes.imageCrop,
+			    speed = attributes.speed,
 			    linkTo = attributes.linkTo;
 
 
@@ -560,6 +566,14 @@ var SliderBlock = function (_Component) {
 							checked: !!imageCrop,
 							onChange: this.toggleImageCrop,
 							help: this.getImageCropHelp
+						}),
+						wp.element.createElement(TextControl, {
+							label: __('Speed', 'gutenberg-slider'),
+							type: 'number',
+							min: '100',
+							max: '500',
+							value: speed,
+							onChange: this.setSpeed
 						}),
 						wp.element.createElement(SelectControl, {
 							label: __('Link to'),

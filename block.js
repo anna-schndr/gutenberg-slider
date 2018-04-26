@@ -24,6 +24,7 @@ const {
     FormFileUpload,
     PanelBody,
     RangeControl,
+    TextControl,
     SelectControl,
     ToggleControl,
     Toolbar
@@ -54,6 +55,7 @@ class SliderBlock extends Component {
 		this.onSelectImage = this.onSelectImage.bind( this );
 		this.onSelectImages = this.onSelectImages.bind( this );
 		this.setLinkTo = this.setLinkTo.bind( this );
+        this.setSpeed = this.setSpeed.bind( this );
 		this.toggleImageCrop = this.toggleImageCrop.bind( this );
 		this.onRemoveImage = this.onRemoveImage.bind( this );
 		this.setImageAttributes = this.setImageAttributes.bind( this );
@@ -94,6 +96,10 @@ class SliderBlock extends Component {
 	setLinkTo( value ) {
 		this.props.setAttributes( { linkTo: value } );
 	}
+
+    setSpeed( value ) {
+        this.props.setAttributes( { speed: value } );
+    }
 
 	toggleImageCrop() {
 		this.props.setAttributes( { imageCrop: ! this.props.attributes.imageCrop } );
@@ -150,7 +156,7 @@ class SliderBlock extends Component {
 
 	render() {
 		const { attributes, isSelected, className } = this.props;
-		const { images, imageCrop, linkTo } = attributes;
+		const { images, imageCrop, speed, linkTo } = attributes;
 
 		const dropZone = (
 			<DropZone
@@ -208,6 +214,14 @@ class SliderBlock extends Component {
 							onChange={ this.toggleImageCrop }
 							help={ this.getImageCropHelp }
 						/>
+                        <TextControl
+                            label={ __( 'Speed', 'gutenberg-slider' ) }
+                            type='number'
+                            min='100'
+                            max='500'
+                            value={ speed }
+                            onChange={ this.setSpeed }
+                        />
 						<SelectControl
 							label={ __( 'Link to' ) }
 							value={ linkTo }
