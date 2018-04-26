@@ -109,6 +109,12 @@ class Gutenberg_Slider {
             plugins_url( 'editor.css', __FILE__ ),
             array( 'wp-edit-blocks' )
         );
+        wp_register_style(
+            'gutenberg-slider-frontend',
+            plugins_url( 'style.css', __FILE__ ),
+            array( 'wp-blocks' ),
+            filemtime( plugin_dir_path( __FILE__ ) . 'style.css' )
+        );
         wp_register_script(
             'gutenberg-slider',
             plugins_url( 'block.build.js', __FILE__ ),
@@ -120,15 +126,8 @@ class Gutenberg_Slider {
         register_block_type( 'occ/slider', array(
             'editor_style'  => 'gutenberg-slider',
             'editor_script' => 'gutenberg-slider',
+            'style' => 'gutenberg-slider-frontend',
         ) );
-
-
-
-    register_block_type( 'gutenberg-boilerplate-esnext/hello-world-step-02', array(
-        'editor_script' => 'gutenberg-boilerplate-es5-step02-editor',
-        'editor_style'  => 'gutenberg-boilerplate-es5-step02-editor',
-    ) );
-
 
     }
 

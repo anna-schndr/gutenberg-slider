@@ -76,8 +76,8 @@ const blockAttributes = {
 export const name = 'occ/slider';
 
 export const settings = {
-	title: __( 'Slider' ),
-	description: __( 'Image silders are a great way to share groups of pictures on your site.' ),
+	title: __( 'Slider', 'gutenberg-slider' ),
+	description: __( 'Image silders are a great way to share groups of pictures on your site.', 'gutenberg-slider' ),
 	icon: 'format-gallery',
 	category: 'common',
 	keywords: [ __( 'images' ), __( 'photos' ) ],

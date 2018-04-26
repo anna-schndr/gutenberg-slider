@@ -172,7 +172,7 @@ class GalleryBlock extends Component {
 							render={ ( { open } ) => (
 								<IconButton
 									className="components-toolbar__control"
-									label={ __( 'Edit Slider' ) }
+									label={ __( 'Edit Slider', 'gutenberg-slider' ) }
 									icon="edit"
 									onClick={ open }
 								/>
@@ -190,7 +190,7 @@ class GalleryBlock extends Component {
 					<ImagePlaceholder
 						className={ className }
 						icon="format-gallery"
-						label={ __( 'Slider' ) }
+						label={ __( 'Slider', 'gutenberg-slider' ) }
 						onSelectImage={ this.onSelectImages }
 						multiple
 					/>
@@ -202,7 +202,7 @@ class GalleryBlock extends Component {
 			<Fragment>
 				{ controls }
 				<InspectorControls>
-					<PanelBody title={ __( 'Slider Settings' ) }>
+					<PanelBody title={ __( 'Slider Settings', 'gutenberg-slider' ) }>
 						<ToggleControl
 							label={ __( 'Crop Images' ) }
 							checked={ !! imageCrop }
