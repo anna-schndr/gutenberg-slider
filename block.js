@@ -42,6 +42,11 @@ const {
 
 import SliderImage from './slider-image';
 
+const effectOptions = [
+	{ value: 'fade', label: __( 'Fade', 'gutenberg-slider' ) },
+	{ value: 'scroll', label: __( 'Scroll', 'gutenberg-slider' ) },
+];
+
 const linkOptions = [
 	{ value: 'attachment', label: __( 'Attachment Page' ) },
 	{ value: 'media', label: __( 'Media File' ) },
@@ -56,6 +61,8 @@ class SliderBlock extends Component {
 		this.onSelectImages = this.onSelectImages.bind( this );
 		this.setLinkTo = this.setLinkTo.bind( this );
         this.setSpeed = this.setSpeed.bind( this );
+        this.setEffect = this.setEffect.bind( this );
+        this.toggleAutoplay = this.toggleAutoplay.bind( this );
 		this.toggleImageCrop = this.toggleImageCrop.bind( this );
 		this.onRemoveImage = this.onRemoveImage.bind( this );
 		this.setImageAttributes = this.setImageAttributes.bind( this );
@@ -100,6 +107,14 @@ class SliderBlock extends Component {
     setSpeed( value ) {
         this.props.setAttributes( { speed: value } );
     }
+
+    setEffect( value ) {
+        this.props.setAttributes( { effect: value } );
+    }
+
+	toggleAutoplay() {
+		this.props.setAttributes( { autoplay: ! this.props.attributes.autoplay } );
+	}
 
 	toggleImageCrop() {
 		this.props.setAttributes( { imageCrop: ! this.props.attributes.imageCrop } );
@@ -156,7 +171,7 @@ class SliderBlock extends Component {
 
 	render() {
 		const { attributes, isSelected, className } = this.props;
-		const { images, imageCrop, speed, linkTo } = attributes;
+		const { images, imageCrop, autoplay, speed, effect, linkTo } = attributes;
 
 		const dropZone = (
 			<DropZone
@@ -214,6 +229,11 @@ class SliderBlock extends Component {
 							onChange={ this.toggleImageCrop }
 							help={ this.getImageCropHelp }
 						/>
+						<ToggleControl
+							label={ __( 'Autoplay', 'gutenberg-slider' ) }
+							checked={ !! autoplay }
+							onChange={ this.toggleAutoplay }
+						/>
                         <TextControl
                             label={ __( 'Speed', 'gutenberg-slider' ) }
                             type='number'
@@ -222,6 +242,12 @@ class SliderBlock extends Component {
                             value={ speed }
                             onChange={ this.setSpeed }
                         />
+						<SelectControl
+							label={ __( 'Effect', 'gutenberg-slider' ) }
+							value={ effect }
+							onChange={ this.setEffect }
+							options={ effectOptions }
+						/>
 						<SelectControl
 							label={ __( 'Link to' ) }
 							value={ linkTo }

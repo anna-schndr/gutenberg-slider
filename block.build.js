@@ -75,8 +75,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /**
  * External dependencies
  */
-/*import filter from 'lodash/filter';
-import every from 'lodash/every';*/
 
 var _lodash = lodash,
     filter = _lodash.filter,
@@ -94,7 +92,6 @@ var mediaUpload = wp.utils.mediaUpload;
  */
 /*import './editor.scss';
 import './style.scss';*/
-/*import { createBlock } from '../../api';*/
 
 var _wp$blocks = wp.blocks,
     registerBlockType = _wp$blocks.registerBlockType,
@@ -144,9 +141,17 @@ var blockAttributes = {
 		type: 'boolean',
 		default: true
 	},
+	autoplay: {
+		type: 'boolean',
+		default: true
+	},
 	speed: {
 		type: 'string',
 		default: '300'
+	},
+	effect: {
+		type: 'string',
+		default: 'fade'
 	},
 	linkTo: {
 		type: 'string',
@@ -259,12 +264,14 @@ var settings = {
 		var attributes = _ref7.attributes;
 		var images = attributes.images,
 		    imageCrop = attributes.imageCrop,
+		    autoplay = attributes.autoplay,
 		    speed = attributes.speed,
+		    effect = attributes.effect,
 		    linkTo = attributes.linkTo;
 
 		return wp.element.createElement(
 			'ul',
-			{ className: '' + (imageCrop ? 'is-cropped' : ''), 'data-speed': speed },
+			{ className: '' + (imageCrop ? 'is-cropped' : ''), 'data-autoplay': autoplay, 'data-speed': speed, 'data-effect': effect },
 			images.map(function (image) {
 				var href = void 0;
 
@@ -365,6 +372,8 @@ var _wp$blocks = wp.blocks,
 
 
 
+var effectOptions = [{ value: 'fade', label: __('Fade', 'gutenberg-slider') }, { value: 'scroll', label: __('Scroll', 'gutenberg-slider') }];
+
 var linkOptions = [{ value: 'attachment', label: __('Attachment Page') }, { value: 'media', label: __('Media File') }, { value: 'none', label: __('None') }];
 
 var SliderBlock = function (_Component) {
@@ -379,6 +388,8 @@ var SliderBlock = function (_Component) {
 		_this.onSelectImages = _this.onSelectImages.bind(_this);
 		_this.setLinkTo = _this.setLinkTo.bind(_this);
 		_this.setSpeed = _this.setSpeed.bind(_this);
+		_this.setEffect = _this.setEffect.bind(_this);
+		_this.toggleAutoplay = _this.toggleAutoplay.bind(_this);
 		_this.toggleImageCrop = _this.toggleImageCrop.bind(_this);
 		_this.onRemoveImage = _this.onRemoveImage.bind(_this);
 		_this.setImageAttributes = _this.setImageAttributes.bind(_this);
@@ -437,6 +448,16 @@ var SliderBlock = function (_Component) {
 		key: 'setSpeed',
 		value: function setSpeed(value) {
 			this.props.setAttributes({ speed: value });
+		}
+	}, {
+		key: 'setEffect',
+		value: function setEffect(value) {
+			this.props.setAttributes({ effect: value });
+		}
+	}, {
+		key: 'toggleAutoplay',
+		value: function toggleAutoplay() {
+			this.props.setAttributes({ autoplay: !this.props.attributes.autoplay });
 		}
 	}, {
 		key: 'toggleImageCrop',
@@ -501,7 +522,9 @@ var SliderBlock = function (_Component) {
 			    className = _props2.className;
 			var images = attributes.images,
 			    imageCrop = attributes.imageCrop,
+			    autoplay = attributes.autoplay,
 			    speed = attributes.speed,
+			    effect = attributes.effect,
 			    linkTo = attributes.linkTo;
 
 
@@ -567,6 +590,11 @@ var SliderBlock = function (_Component) {
 							onChange: this.toggleImageCrop,
 							help: this.getImageCropHelp
 						}),
+						wp.element.createElement(ToggleControl, {
+							label: __('Autoplay', 'gutenberg-slider'),
+							checked: !!autoplay,
+							onChange: this.toggleAutoplay
+						}),
 						wp.element.createElement(TextControl, {
 							label: __('Speed', 'gutenberg-slider'),
 							type: 'number',
@@ -574,6 +602,12 @@ var SliderBlock = function (_Component) {
 							max: '500',
 							value: speed,
 							onChange: this.setSpeed
+						}),
+						wp.element.createElement(SelectControl, {
+							label: __('Effect', 'gutenberg-slider'),
+							value: effect,
+							onChange: this.setEffect,
+							options: effectOptions
 						}),
 						wp.element.createElement(SelectControl, {
 							label: __('Link to'),

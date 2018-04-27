@@ -1,8 +1,6 @@
 /**
  * External dependencies
  */
-/*import filter from 'lodash/filter';
-import every from 'lodash/every';*/
 
 const {
     filter,
@@ -20,7 +18,6 @@ const { mediaUpload } = wp.utils;
  */
 /*import './editor.scss';
 import './style.scss';*/
-/*import { createBlock } from '../../api';*/
 
 const {
 	registerBlockType,
@@ -70,9 +67,17 @@ const blockAttributes = {
 		type: 'boolean',
 		default: true,
 	},
+	autoplay: {
+		type: 'boolean',
+		default: true,
+	},
 	speed: {
 		type: 'string',
 		default: '300',
+	},
+	effect: {
+		type: 'string',
+		default: 'fade',
 	},
 	linkTo: {
 		type: 'string',
@@ -163,9 +168,9 @@ export const settings = {
 	edit: SliderBlock,
 
 	save( { attributes } ) {
-		const { images, imageCrop, speed, linkTo } = attributes;
+		const { images, imageCrop, autoplay, speed, effect, linkTo } = attributes;
 		return (
-			<ul className={ `${ imageCrop ? 'is-cropped' : '' }` } data-speed={ speed }>
+			<ul className={ `${ imageCrop ? 'is-cropped' : '' }` } data-autoplay={ autoplay } data-speed={ speed } data-effect={ effect }>
 				{ images.map( ( image ) => {
 					let href;
 

@@ -12,9 +12,9 @@ jQuery( document ).ready(function( $ ) {
         });
                 
         $gallery.slick({
-            fade: true,
-            autoplay: true,
-            speed: $( '.wp-block-occ-slider' ).data( 'speed' ),
+            fade: ( $gallery.data( 'effect' ) == 'fade' ),
+            autoplay: $gallery.data( 'autoplay' ),
+            speed: $gallery.data( 'speed' ),
             adaptiveHeight: true,
             appendArrows: false,
             pauseOnFocus: false,
