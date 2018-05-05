@@ -4,9 +4,7 @@
 const {
     filter,
     pick,
-    map,
     get,
-    assign
 } = lodash;
 
 /**
@@ -101,6 +99,7 @@ class SliderBlock extends Component {
 	}
 
 	onSelectImages( images ) {
+        console.log(JSON.stringify(images));
 		this.props.setAttributes( {
 			/*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'url' ] ) ),*/
             images: images.map( ( image ) => ( { ...pick( image, [ 'alt', 'caption', 'id', 'url' ] ), thumb: get( image, 'sizes.thumbnail.url' ) } ) )
@@ -177,8 +176,6 @@ class SliderBlock extends Component {
 	}
 
 	render() {
-        const availableSizes = this.getAvailableSizes;
-
         const { attributes, isSelected, className } = this.props;
 		const { images, imageCrop, autoplay, speed, effect, linkTo } = attributes;
 
@@ -270,7 +267,7 @@ class SliderBlock extends Component {
 					{ images.map( ( img, index ) => (
 						<li className="blocks-gallery-item" key={ img.id || img.url }>
 							<SliderImage
-								url={ img.thumb }
+								url={ img.url }
 								alt={ img.alt }
 								id={ img.id }
 								isSelected={ isSelected && this.state.selectedImage === index }

@@ -328,9 +328,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var _lodash = lodash,
     filter = _lodash.filter,
     pick = _lodash.pick,
-    map = _lodash.map,
-    get = _lodash.get,
-    assign = _lodash.assign;
+    get = _lodash.get;
 
 /**
  * WordPress dependencies
@@ -433,6 +431,7 @@ var SliderBlock = function (_Component) {
 	}, {
 		key: 'onSelectImages',
 		value: function onSelectImages(images) {
+			console.log(JSON.stringify(images));
 			this.props.setAttributes({
 				/*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'url' ] ) ),*/
 				images: images.map(function (image) {
@@ -516,8 +515,6 @@ var SliderBlock = function (_Component) {
 		key: 'render',
 		value: function render() {
 			var _this4 = this;
-
-			var availableSizes = this.getAvailableSizes;
 
 			var _props2 = this.props,
 			    attributes = _props2.attributes,
@@ -629,7 +626,7 @@ var SliderBlock = function (_Component) {
 							'li',
 							{ className: 'blocks-gallery-item', key: img.id || img.url },
 							wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__slider_image__["a" /* default */], {
-								url: img.thumb,
+								url: img.url,
 								alt: img.alt,
 								id: img.id,
 								isSelected: isSelected && _this4.state.selectedImage === index,
