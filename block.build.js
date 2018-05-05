@@ -85,7 +85,6 @@ var _lodash = lodash,
  */
 
 var __ = wp.i18n.__;
-var mediaUpload = wp.utils.mediaUpload;
 
 /**
  * Internal dependencies
@@ -94,8 +93,8 @@ var mediaUpload = wp.utils.mediaUpload;
 var _wp$blocks = wp.blocks,
     registerBlockType = _wp$blocks.registerBlockType,
     createBlock = _wp$blocks.createBlock,
-    getBlockType = _wp$blocks.getBlockType,
-    getBlockTypes = _wp$blocks.getBlockTypes;
+    editorMediaUpload = _wp$blocks.editorMediaUpload,
+    RichText = _wp$blocks.RichText;
 
 
 
@@ -230,7 +229,7 @@ var settings = {
 			},
 			transform: function transform(files, onChange) {
 				var block = createBlock('occ/slider');
-				mediaUpload(files, function (images) {
+				editorMediaUpload(files, function (images) {
 					return onChange(block.uid, { images: images });
 				}, 'image');
 				return block;
@@ -295,11 +294,7 @@ var settings = {
 							{ href: href },
 							img
 						) : img,
-						image.caption && image.caption.length > 0 && wp.element.createElement(
-							'figcaption',
-							null,
-							image.caption
-						)
+						image.caption && image.caption.length > 0 && wp.element.createElement(RichText.Content, { tagName: 'figcaption', value: image.caption })
 					)
 				);
 			})
@@ -345,7 +340,6 @@ var _wp$element = wp.element,
     Component = _wp$element.Component,
     Fragment = _wp$element.Fragment;
 var __ = wp.i18n.__;
-var mediaUpload = wp.utils.mediaUpload;
 var _wp$components = wp.components,
     IconButton = _wp$components.IconButton,
     DropZone = _wp$components.DropZone,
@@ -362,10 +356,11 @@ var _wp$components = wp.components,
  */
 
 var _wp$blocks = wp.blocks,
+    editorMediaUpload = _wp$blocks.editorMediaUpload,
+    BlockControls = _wp$blocks.BlockControls,
     MediaUpload = _wp$blocks.MediaUpload,
     ImagePlaceholder = _wp$blocks.ImagePlaceholder,
-    InspectorControls = _wp$blocks.InspectorControls,
-    BlockControls = _wp$blocks.BlockControls;
+    InspectorControls = _wp$blocks.InspectorControls;
 
 
 
@@ -500,7 +495,7 @@ var SliderBlock = function (_Component) {
 			var currentImages = this.props.attributes.images || [];
 			var setAttributes = this.props.setAttributes;
 
-			mediaUpload(files, function (images) {
+			editorMediaUpload(files, function (images) {
 				setAttributes({
 					images: currentImages.concat(images)
 				});
@@ -689,13 +684,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * External Dependencies
+ * External Depenedencies
  */
 
 
 /**
  * WordPress Dependencies
  */
+
 var Component = wp.element.Component;
 var _wp$components = wp.components,
     IconButton = _wp$components.IconButton,
@@ -703,11 +699,6 @@ var _wp$components = wp.components,
 var __ = wp.i18n.__;
 var keycodes = wp.utils.keycodes;
 var withSelect = wp.data.withSelect;
-
-/**
- * Internal dependencies
- */
-
 var RichText = wp.blocks.RichText;
 
 /**

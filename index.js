@@ -11,7 +11,6 @@ const {
  * WordPress dependencies
  */
 const { __ } = wp.i18n;
-const { mediaUpload } = wp.utils;
 
 /**
  * Internal dependencies
@@ -19,8 +18,8 @@ const { mediaUpload } = wp.utils;
 const {
 	registerBlockType,
 	createBlock,
-    getBlockType,
-    getBlockTypes
+	editorMediaUpload,
+	RichText
 } = wp.blocks;
 
 import { default as SliderBlock } from './block';
@@ -139,7 +138,7 @@ export const settings = {
 				},
 				transform( files, onChange ) {
 					const block = createBlock( 'occ/slider' );
-					mediaUpload(
+					editorMediaUpload(
 						files,
 						( images ) => onChange( block.uid, { images } ),
 						'image'
@@ -186,7 +185,9 @@ export const settings = {
 						<li key={ image.id || image.url } className="blocks-gallery-item">
 							<figure>
 								{ href ? <a href={ href }>{ img }</a> : img }
-								{ image.caption && image.caption.length > 0 && <figcaption>{ image.caption }</figcaption> }
+                                { image.caption && image.caption.length > 0 && (
+                                    <RichText.Content tagName="figcaption" value={ image.caption } />
+                                ) }
 							</figure>
 						</li>
 					);

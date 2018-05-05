@@ -17,7 +17,6 @@ const {
     Fragment
 } = wp.element;
 const { __ } = wp.i18n;
-const { mediaUpload } = wp.utils;
 const {
     IconButton,
     DropZone,
@@ -34,10 +33,11 @@ const {
  * Internal dependencies
  */
 const {
+	editorMediaUpload,
+    BlockControls,
     MediaUpload,
     ImagePlaceholder,
     InspectorControls,
-    BlockControls
 } = wp.blocks;
 
 import SliderImage from './slider-image';
@@ -155,7 +155,7 @@ class SliderBlock extends Component {
 	addFiles( files ) {
 		const currentImages = this.props.attributes.images || [];
 		const { setAttributes } = this.props;
-		mediaUpload(
+		editorMediaUpload(
 			files,
 			( images ) => {
 				setAttributes( {

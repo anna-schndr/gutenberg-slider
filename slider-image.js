@@ -1,11 +1,12 @@
 /**
- * External Dependencies
+ * External Depenedencies
  */
 import classnames from 'classnames';
 
 /**
  * WordPress Dependencies
  */
+
 const { Component } = wp.element;
 const {
     IconButton,
@@ -14,10 +15,6 @@ const {
 const { __ } = wp.i18n;
 const { keycodes } = wp.utils;
 const { withSelect } = wp.data;
-
-/**
- * Internal dependencies
- */
 const { RichText } = wp.blocks;
 
 /**
@@ -140,7 +137,7 @@ class SliderImage extends Component {
 						placeholder={ __( 'Write caption…' ) }
 						value={ caption }
 						isSelected={ this.state.captionSelected }
-						onChange={ newCaption => setAttributes( { caption: newCaption } ) }
+						onChange={ ( newCaption ) => setAttributes( { caption: newCaption } ) }
 						onFocus={ this.onSelectCaption }
 						inlineToolbar
 					/>
