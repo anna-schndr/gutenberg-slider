@@ -16,9 +16,6 @@ const { mediaUpload } = wp.utils;
 /**
  * Internal dependencies
  */
-/*import './editor.scss';
-import './style.scss';*/
-
 const {
 	registerBlockType,
 	createBlock,

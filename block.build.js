@@ -90,8 +90,6 @@ var mediaUpload = wp.utils.mediaUpload;
 /**
  * Internal dependencies
  */
-/*import './editor.scss';
-import './style.scss';*/
 
 var _wp$blocks = wp.blocks,
     registerBlockType = _wp$blocks.registerBlockType,
@@ -332,12 +330,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * External Dependencies
  */
-/*import filter from 'lodash/filter';
-import pick from 'lodash/pick';*/
-
 var _lodash = lodash,
     filter = _lodash.filter,
-    pick = _lodash.pick;
+    pick = _lodash.pick,
+    map = _lodash.map,
+    get = _lodash.get,
+    assign = _lodash.assign;
 
 /**
  * WordPress dependencies
@@ -384,6 +382,8 @@ var SliderBlock = function (_Component) {
 
 		var _this = _possibleConstructorReturn(this, (SliderBlock.__proto__ || Object.getPrototypeOf(SliderBlock)).apply(this, arguments));
 
+		_this.getAvailableSizes = _this.getAvailableSizes.bind(_this);
+
 		_this.onSelectImage = _this.onSelectImage.bind(_this);
 		_this.onSelectImages = _this.onSelectImages.bind(_this);
 		_this.setLinkTo = _this.setLinkTo.bind(_this);
@@ -403,6 +403,11 @@ var SliderBlock = function (_Component) {
 	}
 
 	_createClass(SliderBlock, [{
+		key: 'getAvailableSizes',
+		value: function getAvailableSizes() {
+			return get(this.props.image, ['media_details', 'sizes'], {});
+		}
+	}, {
 		key: 'onSelectImage',
 		value: function onSelectImage(index) {
 			var _this2 = this;
@@ -434,8 +439,9 @@ var SliderBlock = function (_Component) {
 		key: 'onSelectImages',
 		value: function onSelectImages(images) {
 			this.props.setAttributes({
+				/*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'url' ] ) ),*/
 				images: images.map(function (image) {
-					return pick(image, ['alt', 'caption', 'id', 'url']);
+					return _extends({}, pick(image, ['alt', 'caption', 'id', 'url']), { thumb: get(image, 'sizes.thumbnail.url') });
 				})
 			});
 		}
@@ -515,6 +521,8 @@ var SliderBlock = function (_Component) {
 		key: 'render',
 		value: function render() {
 			var _this4 = this;
+
+			var availableSizes = this.getAvailableSizes;
 
 			var _props2 = this.props,
 			    attributes = _props2.attributes,
@@ -626,7 +634,7 @@ var SliderBlock = function (_Component) {
 							'li',
 							{ className: 'blocks-gallery-item', key: img.id || img.url },
 							wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__slider_image__["a" /* default */], {
-								url: img.url,
+								url: img.thumb,
 								alt: img.alt,
 								id: img.id,
 								isSelected: isSelected && _this4.state.selectedImage === index,

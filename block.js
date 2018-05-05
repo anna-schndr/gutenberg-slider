@@ -1,12 +1,12 @@
 /**
  * External Dependencies
  */
-/*import filter from 'lodash/filter';
-import pick from 'lodash/pick';*/
-
 const {
     filter,
-    pick
+    pick,
+    map,
+    get,
+    assign
 } = lodash;
 
 /**
@@ -57,6 +57,8 @@ class SliderBlock extends Component {
 	constructor() {
 		super( ...arguments );
 
+        this.getAvailableSizes = this.getAvailableSizes.bind( this );
+
 		this.onSelectImage = this.onSelectImage.bind( this );
 		this.onSelectImages = this.onSelectImages.bind( this );
 		this.setLinkTo = this.setLinkTo.bind( this );
@@ -73,6 +75,10 @@ class SliderBlock extends Component {
 			selectedImage: null,
 		};
 	}
+
+    getAvailableSizes() {
+        return get( this.props.image, [ 'media_details', 'sizes' ], {} );
+    }
 
 	onSelectImage( index ) {
 		return () => {
@@ -96,7 +102,8 @@ class SliderBlock extends Component {
 
 	onSelectImages( images ) {
 		this.props.setAttributes( {
-			images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'url' ] ) ),
+			/*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'url' ] ) ),*/
+            images: images.map( ( image ) => ( { ...pick( image, [ 'alt', 'caption', 'id', 'url' ] ), thumb: get( image, 'sizes.thumbnail.url' ) } ) )
 		} );
 	}
 
@@ -170,7 +177,9 @@ class SliderBlock extends Component {
 	}
 
 	render() {
-		const { attributes, isSelected, className } = this.props;
+        const availableSizes = this.getAvailableSizes;
+
+        const { attributes, isSelected, className } = this.props;
 		const { images, imageCrop, autoplay, speed, effect, linkTo } = attributes;
 
 		const dropZone = (
@@ -261,7 +270,7 @@ class SliderBlock extends Component {
 					{ images.map( ( img, index ) => (
 						<li className="blocks-gallery-item" key={ img.id || img.url }>
 							<SliderImage
-								url={ img.url }
+								url={ img.thumb }
 								alt={ img.alt }
 								id={ img.id }
 								isSelected={ isSelected && this.state.selectedImage === index }
