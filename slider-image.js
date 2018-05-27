@@ -1,5 +1,5 @@
 /**
- * External Depenedencies
+ * External Dependencies
  */
 import classnames from 'classnames';
 
@@ -15,7 +15,7 @@ const {
 const { __ } = wp.i18n;
 const { keycodes } = wp.utils;
 const { withSelect } = wp.data;
-const { RichText } = wp.blocks;
+const { RichText } = wp.editor;
 
 /**
  * Module constants

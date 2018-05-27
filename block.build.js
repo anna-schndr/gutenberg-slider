@@ -71,7 +71,7 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__block__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit__ = __webpack_require__(1);
 /**
  * External dependencies
  */
@@ -92,9 +92,10 @@ var __ = wp.i18n.__;
 
 var _wp$blocks = wp.blocks,
     registerBlockType = _wp$blocks.registerBlockType,
-    createBlock = _wp$blocks.createBlock,
-    editorMediaUpload = _wp$blocks.editorMediaUpload,
-    RichText = _wp$blocks.RichText;
+    createBlock = _wp$blocks.createBlock;
+var _wp$editor = wp.editor,
+    editorMediaUpload = _wp$editor.editorMediaUpload,
+    RichText = _wp$editor.RichText;
 
 
 
@@ -255,7 +256,7 @@ var settings = {
 		}]
 	},
 
-	edit: __WEBPACK_IMPORTED_MODULE_0__block__["a" /* default */],
+	edit: __WEBPACK_IMPORTED_MODULE_0__edit__["a" /* default */],
 
 	save: function save(_ref7) {
 		var attributes = _ref7.attributes;
@@ -353,12 +354,12 @@ var _wp$components = wp.components,
  * Internal dependencies
  */
 
-var _wp$blocks = wp.blocks,
-    editorMediaUpload = _wp$blocks.editorMediaUpload,
-    BlockControls = _wp$blocks.BlockControls,
-    MediaUpload = _wp$blocks.MediaUpload,
-    ImagePlaceholder = _wp$blocks.ImagePlaceholder,
-    InspectorControls = _wp$blocks.InspectorControls;
+var _wp$editor = wp.editor,
+    editorMediaUpload = _wp$editor.editorMediaUpload,
+    BlockControls = _wp$editor.BlockControls,
+    MediaUpload = _wp$editor.MediaUpload,
+    ImagePlaceholder = _wp$editor.ImagePlaceholder,
+    InspectorControls = _wp$editor.InspectorControls;
 
 
 
@@ -574,6 +575,8 @@ var SliderBlock = function (_Component) {
 				);
 			}
 
+			console.log(JSON.stringify(images));
+
 			return wp.element.createElement(
 				Fragment,
 				null,
@@ -681,7 +684,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * External Depenedencies
+ * External Dependencies
  */
 
 
@@ -696,7 +699,7 @@ var _wp$components = wp.components,
 var __ = wp.i18n.__;
 var keycodes = wp.utils.keycodes;
 var withSelect = wp.data.withSelect;
-var RichText = wp.blocks.RichText;
+var RichText = wp.editor.RichText;
 
 /**
  * Module constants

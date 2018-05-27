@@ -18,11 +18,14 @@ const { __ } = wp.i18n;
 const {
 	registerBlockType,
 	createBlock,
-	editorMediaUpload,
-	RichText
 } = wp.blocks;
 
-import { default as SliderBlock } from './block';
+const {
+    editorMediaUpload,
+    RichText
+} = wp.editor;
+
+import { default as edit } from './edit';
 
 const blockAttributes = {
 	images: {
@@ -161,7 +164,7 @@ export const settings = {
 		],
 	},
 
-	edit: SliderBlock,
+	edit: edit,
 
 	save( { attributes } ) {
 		const { images, imageCrop, autoplay, speed, effect, linkTo } = attributes;

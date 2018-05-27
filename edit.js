@@ -36,7 +36,7 @@ const {
     MediaUpload,
     ImagePlaceholder,
     InspectorControls,
-} = wp.blocks;
+} = wp.editor;
 
 import SliderImage from './slider-image';
 
@@ -51,7 +51,7 @@ const linkOptions = [
 	{ value: 'none', label: __( 'None' ) },
 ];
 
-class SliderBlock extends Component {
+export default class SliderBlock extends Component {
 	constructor() {
 		super( ...arguments );
 
@@ -224,6 +224,8 @@ class SliderBlock extends Component {
 			);
 		}
 
+        console.log(JSON.stringify(images));
+        
 		return (
 			<Fragment>
 				{ controls }
@@ -297,5 +299,3 @@ class SliderBlock extends Component {
 		);
 	}
 }
-
-export default SliderBlock;
