@@ -1,3 +1,4 @@
+this["pluginnamespace"] = this["pluginnamespace"] || {}; this["pluginnamespace"]["main"] =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -71,7 +72,9 @@
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__edit__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__style_scss__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__style_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__style_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__edit__ = __webpack_require__(2);
 /**
  * External dependencies
  */
@@ -96,6 +99,7 @@ var _wp$blocks = wp.blocks,
 var _wp$editor = wp.editor,
     editorMediaUpload = _wp$editor.editorMediaUpload,
     RichText = _wp$editor.RichText;
+
 
 
 
@@ -256,7 +260,7 @@ var settings = {
 		}]
 	},
 
-	edit: __WEBPACK_IMPORTED_MODULE_0__edit__["a" /* default */],
+	edit: __WEBPACK_IMPORTED_MODULE_1__edit__["a" /* default */],
 
 	save: function save(_ref7) {
 		var attributes = _ref7.attributes;
@@ -307,10 +311,18 @@ registerBlockType(name, settings);
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__slider_image__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_scss__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editor_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__editor_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__slider_image__ = __webpack_require__(4);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -360,6 +372,7 @@ var _wp$editor = wp.editor,
     MediaUpload = _wp$editor.MediaUpload,
     ImagePlaceholder = _wp$editor.ImagePlaceholder,
     InspectorControls = _wp$editor.InspectorControls;
+
 
 
 
@@ -628,7 +641,7 @@ var SliderBlock = function (_Component) {
 						return wp.element.createElement(
 							'li',
 							{ className: 'blocks-gallery-item', key: img.id || img.url },
-							wp.element.createElement(__WEBPACK_IMPORTED_MODULE_0__slider_image__["a" /* default */], {
+							wp.element.createElement(__WEBPACK_IMPORTED_MODULE_1__slider_image__["a" /* default */], {
 								url: img.url,
 								alt: img.alt,
 								id: img.id,
@@ -669,11 +682,17 @@ var SliderBlock = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (SliderBlock);
 
 /***/ }),
-/* 2 */
+/* 3 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_classnames__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_classnames__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_classnames___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_classnames__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -832,7 +851,7 @@ var SliderImage = function (_Component) {
 				{ className: className, tabIndex: '-1', onKeyDown: this.onKeyDown, ref: this.bindContainer },
 				isSelected && wp.element.createElement(
 					'div',
-					{ className: 'blocks-gallery-item__inline-menu' },
+					{ className: 'core-blocks-gallery-item__inline-menu' },
 					wp.element.createElement(IconButton, {
 						icon: 'no-alt',
 						onClick: onRemove,
@@ -877,7 +896,7 @@ var SliderImage = function (_Component) {
 })(SliderImage));
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -933,3 +952,4 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=block.build.js.map

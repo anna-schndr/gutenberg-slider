@@ -9,10 +9,10 @@ const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 
 // Set different CSS extraction for editor only and common block styles
 const blocksCSSPlugin = new ExtractTextPlugin( {
-  filename: './scripts/[name]/build/style.css'
+  filename: './css/style.css'
 } );
 const editBlocksCSSPlugin = new ExtractTextPlugin( {
-  filename: './scripts/[name]/build/editor.css'
+  filename: './css/editor.css'
 } );
 
 // Configuration for the ExtractTextPlugin.
@@ -67,7 +67,7 @@ const config = {
   // Set output
   output: {
     // Place all bundles JS into build folder in current directory
-    filename: 'scripts/[name]/build/block.build.js',
+    filename: 'block.build.js',
     path: __dirname,
     library: [ 'pluginnamespace', '[name]' ],
     libraryTarget: 'this'
