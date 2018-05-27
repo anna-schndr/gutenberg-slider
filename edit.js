@@ -38,6 +38,7 @@ const {
     InspectorControls,
 } = wp.editor;
 
+import './editor.scss';
 import SliderImage from './slider-image';
 
 const effectOptions = [

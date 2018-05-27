@@ -121,7 +121,7 @@ class SliderImage extends Component {
 		return (
 			<figure className={ className } tabIndex="-1" onKeyDown={ this.onKeyDown } ref={ this.bindContainer }>
 				{ isSelected &&
-					<div className="blocks-gallery-item__inline-menu">
+					<div className="core-blocks-gallery-item__inline-menu">
 						<IconButton
 							icon="no-alt"
 							onClick={ onRemove }

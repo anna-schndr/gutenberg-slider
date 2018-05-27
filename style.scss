@@ -1,18 +1,10 @@
-$break-small: 600px;
-$content-width: 636px;
-
-@mixin break-small() {
-	@media ( min-width: #{ ( $break-small ) } ) {
-		@content;
-	}
-}
-
-.wp-block-gallery {
+.wp-block-occ-slider {
 	display: flex;
 	flex-wrap: wrap;
 	list-style-type: none;
-	margin: 0px;
 	padding: 0px;
+	// allow gallery items to go edge to edge
+	margin: 0 -8px 0 -8px;
 
 	.blocks-gallery-image,
 	.blocks-gallery-item {
@@ -75,26 +67,12 @@ $content-width: 636px;
 		width: calc( 100% / 2 - 16px );
 	}
 
-	&.columns-1 .blocks-gallery-image,
-	&.columns-1 .blocks-gallery-item {
-		width: calc(100% / 1 - 16px);
-	}
-
-	@include break-small {
-		@for $i from 3 through 8 {
-			&.columns-#{ $i } .blocks-gallery-image,
-			&.columns-#{ $i } .blocks-gallery-item {
-				width: calc(100% / #{ $i } - 16px );
-			}
-		}
-	}
-
 	// Apply max-width to floated items that have no intrinsic width
 	[data-align="left"] &,
 	[data-align="right"] &,
 	&.alignleft,
 	&.alignright {
-		max-width: $content-width / 2;
+		max-width: 636px / 2;
 		width: 100%;
 	}
 }

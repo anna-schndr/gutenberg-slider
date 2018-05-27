@@ -25,6 +25,7 @@ const {
     RichText
 } = wp.editor;
 
+import './style.scss';
 import { default as edit } from './edit';
 
 const blockAttributes = {
