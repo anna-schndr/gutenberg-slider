@@ -6,6 +6,8 @@
 const webpack = require( 'webpack' );
 // For extracting CSS (and SASS) into separate files
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+// For compressing JS files
+const UglifyJSPlugin = require( 'uglifyjs-webpack-plugin' )
 
 // Set different CSS extraction for editor only and common block styles
 const blocksCSSPlugin = new ExtractTextPlugin( {
@@ -60,13 +62,15 @@ wpDependencies.forEach( wpDependency => {
 
 // Start of main webpack config
 const config = {
+  // Set mode
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   // Go through each entry point and prepare for use with externals
   entry: './index.js',
   // Include externals
   externals,
   // Set output
   output: {
-    // Place all bundles JS into build folder in current directory
+    // Place all bundles JS in current directory
     filename: 'block.build.js',
     path: __dirname,
     library: [ 'pluginnamespace', '[name]' ],
@@ -105,7 +109,7 @@ const config = {
     } ),
     // Pull in CSS plugins settings
     blocksCSSPlugin,
-	editBlocksCSSPlugin,
+	  editBlocksCSSPlugin,
     // For migrations from webpack 1 to webpack 2+
     new webpack.LoaderOptionsPlugin( {
       minimize: process.env.NODE_ENV === 'production',
@@ -119,14 +123,9 @@ const config = {
 };
 
 switch ( process.env.NODE_ENV ) {
-  case 'production':
-    // Minify JavaScript when in production
-    config.plugins.push( new webpack.optimize.UglifyJsPlugin() );
-    break;
-
   default:
     // Apply source mapping when not in production
-    config.devtool = 'source-map';
+    config.devtool = process.env.SOURCEMAP || 'source-map';
 }
 
 module.exports = config;
