@@ -1,3 +1,68 @@
-.wp-block-occ-slider{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;list-style-type:none;padding:0px;margin:0 -8px 0 -8px}.wp-block-occ-slider .blocks-gallery-image,.wp-block-occ-slider .blocks-gallery-item{margin:8px;display:-ms-flexbox;display:flex;-ms-flex-positive:1;flex-grow:1;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center;position:relative}.wp-block-occ-slider .blocks-gallery-image figure,.wp-block-occ-slider .blocks-gallery-item figure{margin:0;height:100%;display:-ms-flexbox;display:flex;-ms-flex-align:end;align-items:flex-end}.wp-block-occ-slider .blocks-gallery-image img,.wp-block-occ-slider .blocks-gallery-item img{display:block;max-width:100%;height:auto}.wp-block-occ-slider .blocks-gallery-image figcaption,.wp-block-occ-slider .blocks-gallery-item figcaption{padding:40px 10px 5px;color:#fff;text-align:center;font-size:13px;background:linear-gradient(0deg, rgba(0,0,0,0.7) 0, rgba(0,0,0,0.3) 60%, transparent);position:absolute;width:100%;max-height:100%;overflow:auto}.wp-block-occ-slider.is-cropped .blocks-gallery-image a,.wp-block-occ-slider.is-cropped .blocks-gallery-image img,.wp-block-occ-slider.is-cropped .blocks-gallery-item a,.wp-block-occ-slider.is-cropped .blocks-gallery-item img{-ms-flex:1;flex:1;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.wp-block-occ-slider.is-cropped .blocks-gallery-image _:-ms-lang(x),.wp-block-occ-slider.is-cropped .blocks-gallery-image figure,.wp-block-occ-slider.is-cropped .blocks-gallery-item _:-ms-lang(x),.wp-block-occ-slider.is-cropped .blocks-gallery-item figure{height:auto;width:auto}.wp-block-occ-slider .blocks-gallery-image,.wp-block-occ-slider .blocks-gallery-item{width:calc( 100% / 2 - 16px)}[data-align="left"] .wp-block-occ-slider,[data-align="right"] .wp-block-occ-slider,.wp-block-occ-slider.alignleft,.wp-block-occ-slider.alignright{max-width:636px / 2;width:100%}
+.wp-block-occ-slider {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0 -8px 0 -8px; }
+  .wp-block-occ-slider .blocks-gallery-image,
+  .wp-block-occ-slider .blocks-gallery-item {
+    margin: 8px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-positive: 1;
+        flex-grow: 1;
+    -ms-flex-direction: column;
+        flex-direction: column;
+    -ms-flex-pack: center;
+        justify-content: center;
+    position: relative; }
+    .wp-block-occ-slider .blocks-gallery-image figure,
+    .wp-block-occ-slider .blocks-gallery-item figure {
+      margin: 0;
+      height: 100%;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: end;
+          align-items: flex-end; }
+    .wp-block-occ-slider .blocks-gallery-image img,
+    .wp-block-occ-slider .blocks-gallery-item img {
+      display: block;
+      max-width: 100%;
+      height: auto; }
+    .wp-block-occ-slider .blocks-gallery-image figcaption,
+    .wp-block-occ-slider .blocks-gallery-item figcaption {
+      padding: 40px 10px 5px;
+      color: #fff;
+      text-align: center;
+      font-size: 13px;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0.3) 60%, transparent);
+      position: absolute;
+      width: 100%;
+      max-height: 100%;
+      overflow: auto; }
+  .wp-block-occ-slider.is-cropped .blocks-gallery-image a,
+  .wp-block-occ-slider.is-cropped .blocks-gallery-image img,
+  .wp-block-occ-slider.is-cropped .blocks-gallery-item a,
+  .wp-block-occ-slider.is-cropped .blocks-gallery-item img {
+    -ms-flex: 1;
+        flex: 1;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover; }
+  .wp-block-occ-slider.is-cropped .blocks-gallery-image _:-ms-lang(x), .wp-block-occ-slider.is-cropped .blocks-gallery-image figure,
+  .wp-block-occ-slider.is-cropped .blocks-gallery-item _:-ms-lang(x),
+  .wp-block-occ-slider.is-cropped .blocks-gallery-item figure {
+    height: auto;
+    width: auto; }
+  .wp-block-occ-slider .blocks-gallery-image,
+  .wp-block-occ-slider .blocks-gallery-item {
+    width: calc( 100% / 2 - 16px); }
+  [data-align="left"] .wp-block-occ-slider,
+  [data-align="right"] .wp-block-occ-slider, .wp-block-occ-slider.alignleft, .wp-block-occ-slider.alignright {
+    max-width: 636px / 2;
+    width: 100%; }
 
 /*# sourceMappingURL=style.css.map*/

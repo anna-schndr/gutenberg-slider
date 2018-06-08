@@ -142,11 +142,11 @@ export const settings = {
 				},
 				transform( files, onChange ) {
 					const block = createBlock( 'occ/slider' );
-					editorMediaUpload(
-						files,
-						( images ) => onChange( block.uid, { images } ),
-						'image'
-					);
+					editorMediaUpload( {
+                        filesList: files,
+                        onFileChange: ( images ) => onChange( block.uid, { images } ),
+                        allowedType: 'image',
+                    } );
 					return block;
 				},
 			},

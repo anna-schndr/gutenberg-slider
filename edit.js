@@ -24,7 +24,8 @@ const {
     TextControl,
     SelectControl,
     ToggleControl,
-    Toolbar
+    Toolbar,
+    withNotices
 } = wp.components;
 
 /**
@@ -34,7 +35,7 @@ const {
 	editorMediaUpload,
     BlockControls,
     MediaUpload,
-    ImagePlaceholder,
+    MediaPlaceholder,
     InspectorControls,
 } = wp.editor;
 
@@ -52,7 +53,7 @@ const linkOptions = [
 	{ value: 'none', label: __( 'None' ) },
 ];
 
-export default class SliderBlock extends Component {
+class SliderEdit extends Component {
 	constructor() {
 		super( ...arguments );
 
@@ -154,16 +155,17 @@ export default class SliderBlock extends Component {
 
 	addFiles( files ) {
 		const currentImages = this.props.attributes.images || [];
-		const { setAttributes } = this.props;
-		editorMediaUpload(
-			files,
-			( images ) => {
-				setAttributes( {
-					images: currentImages.concat( images ),
-				} );
-			},
-			'image',
-		);
+		const { noticeOperations, setAttributes } = this.props;
+		editorMediaUpload( {
+            allowedType: 'image',
+            filesList: files,
+            onFileChange: ( images ) => {
+                setAttributes( {
+                    images: currentImages.concat( images ),
+                } );
+            },
+            onError: noticeOperations.createErrorNotice,
+        } );
 	}
 
 	componentWillReceiveProps( nextProps ) {
@@ -177,7 +179,7 @@ export default class SliderBlock extends Component {
 	}
 
 	render() {
-        const { attributes, isSelected, className } = this.props;
+        const { attributes, isSelected, className, noticeOperations, noticeUI } = this.props;
 		const { images, imageCrop, autoplay, speed, effect, linkTo } = attributes;
 
 		const dropZone = (
@@ -214,13 +216,20 @@ export default class SliderBlock extends Component {
 			return (
 				<Fragment>
 					{ controls }
-					<ImagePlaceholder
-						className={ className }
-						icon="format-gallery"
-						label={ __( 'Slider', 'gutenberg-slider' ) }
-						onSelectImage={ this.onSelectImages }
-						multiple
-					/>
+                    <MediaPlaceholder
+                        icon="format-gallery"
+                        className={ className }
+                        labels={ {
+                            title: __( 'Slider', 'gutenberg-slider' ),
+                            name: __( 'images' ),
+                        } }
+                        onSelect={ this.onSelectImages }
+                        accept="image/*"
+                        type="image"
+                        multiple
+                        notices={ noticeUI }
+                        onError={ noticeOperations.createErrorNotice }
+                    />
 				</Fragment>
 			);
 		}
@@ -265,6 +274,7 @@ export default class SliderBlock extends Component {
 						/>
 					</PanelBody>
 				</InspectorControls>
+                { noticeUI }
 				<ul className={ `${ className } ${ imageCrop ? 'is-cropped' : '' }` }>
 					{ dropZone }
 					{ images.map( ( img, index ) => (
@@ -300,3 +310,5 @@ export default class SliderBlock extends Component {
 		);
 	}
 }
+
+export default withNotices( SliderEdit );
