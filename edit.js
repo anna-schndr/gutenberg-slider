@@ -32,11 +32,11 @@ const {
  * Internal dependencies
  */
 const {
-	editorMediaUpload,
     BlockControls,
     MediaUpload,
     MediaPlaceholder,
     InspectorControls,
+	editorMediaUpload,
 } = wp.editor;
 
 import './editor.scss';
@@ -103,8 +103,8 @@ class SliderEdit extends Component {
 	onSelectImages( images ) {
         console.log(JSON.stringify(images));
 		this.props.setAttributes( {
-			/*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'url' ] ) ),*/
-            images: images.map( ( image ) => ( { ...pick( image, [ 'alt', 'caption', 'id', 'url' ] ), thumb: get( image, 'sizes.thumbnail.url' ) } ) )
+			/*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'link', 'url' ] ) ),*/
+            images: images.map( ( image ) => ( { ...pick( image, [ 'alt', 'caption', 'id', 'link', 'url' ] ), thumb: get( image, 'sizes.thumbnail.url' ) } ) )
 		} );
 	}
 
@@ -168,9 +168,9 @@ class SliderEdit extends Component {
         } );
 	}
 
-	componentWillReceiveProps( nextProps ) {
+	componentDidUpdate( prevProps ) {
 		// Deselect images when deselecting the block
-		if ( ! nextProps.isSelected && this.props.isSelected ) {
+		if ( ! this.props.isSelected && prevProps.isSelected ) {
 			this.setState( {
 				selectedImage: null,
 				captionSelected: false,

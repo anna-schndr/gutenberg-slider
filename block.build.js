@@ -129,11 +129,11 @@ var _wp$components = wp.components,
  */
 
 var _wp$editor = wp.editor,
-    editorMediaUpload = _wp$editor.editorMediaUpload,
     BlockControls = _wp$editor.BlockControls,
     MediaUpload = _wp$editor.MediaUpload,
     MediaPlaceholder = _wp$editor.MediaPlaceholder,
-    InspectorControls = _wp$editor.InspectorControls;
+    InspectorControls = _wp$editor.InspectorControls,
+    editorMediaUpload = _wp$editor.editorMediaUpload;
 
 
 
@@ -209,9 +209,9 @@ var SliderEdit = function (_Component) {
 		value: function onSelectImages(images) {
 			console.log(JSON.stringify(images));
 			this.props.setAttributes({
-				/*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'url' ] ) ),*/
+				/*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'link', 'url' ] ) ),*/
 				images: images.map(function (image) {
-					return _extends({}, pick(image, ['alt', 'caption', 'id', 'url']), { thumb: get(image, 'sizes.thumbnail.url') });
+					return _extends({}, pick(image, ['alt', 'caption', 'id', 'link', 'url']), { thumb: get(image, 'sizes.thumbnail.url') });
 				})
 			});
 		}
@@ -284,10 +284,10 @@ var SliderEdit = function (_Component) {
 			});
 		}
 	}, {
-		key: 'componentWillReceiveProps',
-		value: function componentWillReceiveProps(nextProps) {
+		key: 'componentDidUpdate',
+		value: function componentDidUpdate(prevProps) {
 			// Deselect images when deselecting the block
-			if (!nextProps.isSelected && this.props.isSelected) {
+			if (!this.props.isSelected && prevProps.isSelected) {
 				this.setState({
 					selectedImage: null,
 					captionSelected: false
@@ -500,18 +500,16 @@ var _lodash = lodash,
  */
 
 var __ = wp.i18n.__;
+var _wp$blocks = wp.blocks,
+    createBlock = _wp$blocks.createBlock,
+    registerBlockType = _wp$blocks.registerBlockType;
+var _wp$editor = wp.editor,
+    RichText = _wp$editor.RichText,
+    editorMediaUpload = _wp$editor.editorMediaUpload;
 
 /**
  * Internal dependencies
  */
-
-var _wp$blocks = wp.blocks,
-    registerBlockType = _wp$blocks.registerBlockType,
-    createBlock = _wp$blocks.createBlock;
-var _wp$editor = wp.editor,
-    editorMediaUpload = _wp$editor.editorMediaUpload,
-    RichText = _wp$editor.RichText;
-
 
 
 
@@ -889,11 +887,12 @@ var SliderImage = function (_Component) {
 			}
 		}
 	}, {
-		key: 'componentWillReceiveProps',
-		value: function componentWillReceiveProps(_ref) {
-			var isSelected = _ref.isSelected,
-			    image = _ref.image,
-			    url = _ref.url;
+		key: 'componentDidUpdate',
+		value: function componentDidUpdate(prevProps) {
+			var _props = this.props,
+			    isSelected = _props.isSelected,
+			    image = _props.image,
+			    url = _props.url;
 
 			if (image && !url) {
 				this.props.setAttributes({
@@ -904,7 +903,7 @@ var SliderImage = function (_Component) {
 
 			// unselect the caption so when the user selects other image and comeback
 			// the caption is not immediately selected
-			if (this.state.captionSelected && !isSelected && this.props.isSelected) {
+			if (this.state.captionSelected && !isSelected && prevProps.isSelected) {
 				this.setState({
 					captionSelected: false
 				});
@@ -913,16 +912,16 @@ var SliderImage = function (_Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var _props = this.props,
-			    url = _props.url,
-			    alt = _props.alt,
-			    id = _props.id,
-			    linkTo = _props.linkTo,
-			    link = _props.link,
-			    isSelected = _props.isSelected,
-			    caption = _props.caption,
-			    onRemove = _props.onRemove,
-			    setAttributes = _props.setAttributes;
+			var _props2 = this.props,
+			    url = _props2.url,
+			    alt = _props2.alt,
+			    id = _props2.id,
+			    linkTo = _props2.linkTo,
+			    link = _props2.link,
+			    isSelected = _props2.isSelected,
+			    caption = _props2.caption,
+			    onRemove = _props2.onRemove,
+			    setAttributes = _props2.setAttributes;
 
 
 			var href = void 0;

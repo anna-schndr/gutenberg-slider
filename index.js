@@ -11,19 +11,19 @@ const {
  * WordPress dependencies
  */
 const { __ } = wp.i18n;
+const {
+	createBlock,
+	registerBlockType
+} = wp.blocks;
+const {
+    RichText,
+    editorMediaUpload
+} = wp.editor;
 
 /**
  * Internal dependencies
  */
-const {
-	registerBlockType,
-	createBlock,
-} = wp.blocks;
 
-const {
-    editorMediaUpload,
-    RichText
-} = wp.editor;
 
 import './style.scss';
 import { default as edit } from './edit';
