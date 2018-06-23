@@ -128,7 +128,7 @@ class Gutenberg_Slider {
                 'slick',
                 plugins_url( 'js/slick.min.js', __FILE__ ),
                 array(),
-                filemtime( plugin_dir_path( __FILE__ ) . 'js/slick.js' ),
+                filemtime( plugin_dir_path( __FILE__ ) . 'js/slick.min.js' ),
                 true
             );
         }
