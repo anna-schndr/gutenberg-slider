@@ -1,19 +1,12 @@
 /**
  * External Dependencies
  */
-const {
-    filter,
-    pick,
-    get,
-} = lodash;
+const { filter, pick, get } = lodash;
 
 /**
  * WordPress dependencies
  */
-const {
-    Component,
-    Fragment
-} = wp.element;
+const { Component, Fragment } = wp.element;
 const { __ } = wp.i18n;
 const {
     IconButton,
@@ -25,7 +18,7 @@ const {
     SelectControl,
     ToggleControl,
     Toolbar,
-    withNotices
+    withNotices,
 } = wp.components;
 
 /**
@@ -292,7 +285,7 @@ class SliderEdit extends Component {
 						</li>
 					) ) }
 					{ isSelected &&
-						<li className="blocks-gallery-item">
+						<li className="blocks-gallery-item has-add-item-button">
 							<FormFileUpload
 								multiple
 								isLarge

@@ -436,7 +436,7 @@ var SliderEdit = function (_Component) {
 					}),
 					isSelected && wp.element.createElement(
 						'li',
-						{ className: 'blocks-gallery-item' },
+						{ className: 'blocks-gallery-item has-add-item-button' },
 						wp.element.createElement(
 							FormFileUpload,
 							{
@@ -490,7 +490,6 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * External dependencies
  */
-
 var _lodash = lodash,
     filter = _lodash.filter,
     every = _lodash.every;
@@ -506,6 +505,7 @@ var _wp$blocks = wp.blocks,
 var _wp$editor = wp.editor,
     RichText = _wp$editor.RichText,
     editorMediaUpload = _wp$editor.editorMediaUpload;
+var createBlobURL = wp.blob.createBlobURL;
 
 /**
  * Internal dependencies
@@ -575,7 +575,7 @@ var name = 'occ/slider';
 
 var settings = {
 	title: __('Slider', 'gutenberg-slider'),
-	description: __('Image silders are a great way to share groups of pictures on your site.', 'gutenberg-slider'),
+	description: __('Display multiple images in an elegant slider.', 'gutenberg-slider'),
 	icon: 'format-gallery',
 	category: 'common',
 	keywords: [__('images'), __('photos')],
@@ -636,6 +636,7 @@ var settings = {
 				}
 			}
 		}, {
+			// When created by drag and dropping multiple files on an insertion point
 			type: 'files',
 			isMatch: function isMatch(files) {
 				return files.length !== 1 && every(files, function (file) {
@@ -643,7 +644,11 @@ var settings = {
 				});
 			},
 			transform: function transform(files, onChange) {
-				var block = createBlock('occ/slider');
+				var block = createBlock('occ/slider', {
+					images: files.map(function (file) {
+						return { url: createBlobURL(file) };
+					})
+				});
 				editorMediaUpload({
 					filesList: files,
 					onFileChange: function onFileChange(images) {
@@ -810,22 +815,16 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 /**
  * WordPress Dependencies
  */
-
 var Component = wp.element.Component;
 var _wp$components = wp.components,
     IconButton = _wp$components.IconButton,
     Spinner = _wp$components.Spinner;
 var __ = wp.i18n.__;
-var keycodes = wp.utils.keycodes;
+var _wp$keycodes = wp.keycodes,
+    BACKSPACE = _wp$keycodes.BACKSPACE,
+    DELETE = _wp$keycodes.DELETE;
 var withSelect = wp.data.withSelect;
 var RichText = wp.editor.RichText;
-
-/**
- * Module constants
- */
-
-var BACKSPACE = keycodes.BACKSPACE,
-    DELETE = keycodes.DELETE;
 
 var SliderImage = function (_Component) {
 	_inherits(SliderImage, _Component);

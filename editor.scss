@@ -1,89 +1,17 @@
-.wp-block-occ-slider {
-    display: flex;
-    flex-wrap: wrap;
-    list-style-type: none;
-    padding: 0px;
-    // allow gallery items to go edge to edge
-    margin: 0 -8px 0 -8px;
-
-    .blocks-gallery-image,
-    .blocks-gallery-item {
-        margin: 8px;
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-
-
-        figure {
-            margin: 0;
-            height: 100%;
-            display: flex;
-            align-items: flex-end;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-
-        figcaption {
-            padding: 40px 10px 5px;
-            color: #fff;
-            text-align: center;
-            font-size: 13px;
-            background: linear-gradient( 0deg, rgba( $color: #000, $alpha: 0.7 ) 0, rgba($color: #000, $alpha: 0.3) 60%, transparent );
-            position: absolute;
-            width: 100%;
-            max-height: 100%;
-            overflow: auto;
-        }
-    }
-
-    // Cropped
-    &.is-cropped .blocks-gallery-image,
-    &.is-cropped .blocks-gallery-item {
-      a,
-      img {
-            flex: 1;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-
-        }
-
-        // Alas, IE11+ doesn't support object-fit
-        _:-ms-lang(x), figure {
-            height: auto;
-            width: auto;
-        }
-    }
-
-    // Responsive fallback value, 2 columns
-    & .blocks-gallery-image,
-    & .blocks-gallery-item {
-        width: calc( 100% / 2 - 16px );
-    }
-
-    // Apply max-width to floated items that have no intrinsic width
-    [data-align="left"] &,
-    [data-align="right"] &,
-    &.alignleft,
-    &.alignright {
-        max-width: 636px / 2;
-        width: 100%;
-    }
-}
-
 .wp-block-occ-slider.components-placeholder {
 	margin: 0px;
 }
+
+// Allow gallery items to go edge to edge.
 .gutenberg .wp-block-occ-slider:not( .components-placeholder ) {
-	// allow gallery items to go edge to edge
 	margin-left: -8px;
 	margin-right: -8px;
+}
+
+// Don't use negative margins when full-wide.
+.gutenberg [data-align="full"] .wp-block-occ-slider:not( .components-placeholder ) {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .blocks-gallery-item {
@@ -94,7 +22,7 @@
 	}
 
 	&.is-transient img {
-		animation: loading_fade 1.6s ease-in-out infinite;
+		/*@include loading_fade;*/
 	}
 
 	.editor-rich-text {
@@ -113,15 +41,25 @@
 		width: calc( 100% - 8px );
 		left: 4px;
 		margin-top: -4px;
+
+		// Override negative margins so this toolbar isn't hidden by overflow. Overflow is needed for long captions.
+		.editor-rich-text__inline-toolbar {
+			top: 0;
+		}
+
+		// Make extra space for the inline toolbar.
+		.editor-rich-text__tinymce {
+			padding-top: 48px;
+		}
 	}
 
 	.components-form-file-upload,
-	.button.core-blocks-gallery-add-item-button {
+	.components-button.core-blocks-gallery-add-item-button {
 		width: 100%;
 		height: 100%;
 	}
 
-	.button.core-blocks-gallery-add-item-button {
+	.components-button.core-blocks-gallery-add-item-button {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -168,4 +106,15 @@
 	top: 50%;
 	left: 50%;
 	transform: translate( -50%, -50% );
+}
+
+// IE11 doesn't support object-fit or flex very well, so we inline-block.
+@media all and ( -ms-high-contrast: none ) {
+	*::-ms-backdrop, .blocks-gallery-item {
+		display: inline-block;
+	}
+
+	*::-ms-backdrop, .blocks-gallery-item img {
+		width: 100%;
+	}
 }

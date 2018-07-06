@@ -6,21 +6,12 @@ import classnames from 'classnames';
 /**
  * WordPress Dependencies
  */
-
 const { Component } = wp.element;
-const {
-    IconButton,
-    Spinner
-} = wp.components;
+const { IconButton, Spinner } = wp.components;
 const { __ } = wp.i18n;
-const { keycodes } = wp.utils;
+const { BACKSPACE, DELETE } = wp.keycodes;
 const { withSelect } = wp.data;
 const { RichText } = wp.editor;
-
-/**
- * Module constants
- */
-const { BACKSPACE, DELETE } = keycodes;
 
 class SliderImage extends Component {
 	constructor() {

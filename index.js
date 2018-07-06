@@ -1,24 +1,15 @@
 /**
  * External dependencies
  */
-
-const {
-    filter,
-    every
-} = lodash;
+const { filter, every} = lodash;
 
 /**
  * WordPress dependencies
  */
 const { __ } = wp.i18n;
-const {
-	createBlock,
-	registerBlockType
-} = wp.blocks;
-const {
-    RichText,
-    editorMediaUpload
-} = wp.editor;
+const {	createBlock, registerBlockType } = wp.blocks;
+const { RichText, editorMediaUpload } = wp.editor;
+const { createBlobURL } = wp.blob;
 
 /**
  * Internal dependencies
@@ -89,7 +80,7 @@ export const name = 'occ/slider';
 
 export const settings = {
 	title: __( 'Slider', 'gutenberg-slider' ),
-	description: __( 'Image silders are a great way to share groups of pictures on your site.', 'gutenberg-slider' ),
+	description: __( 'Display multiple images in an elegant slider.', 'gutenberg-slider' ),
 	icon: 'format-gallery',
 	category: 'common',
 	keywords: [ __( 'images' ), __( 'photos' ) ],
@@ -136,13 +127,16 @@ export const settings = {
 				},
 			},
 			{
-				type: 'files',
+                // When created by drag and dropping multiple files on an insertion point
+                type: 'files',
 				isMatch( files ) {
 					return files.length !== 1 && every( files, ( file ) => file.type.indexOf( 'image/' ) === 0 );
 				},
 				transform( files, onChange ) {
-					const block = createBlock( 'occ/slider' );
-					editorMediaUpload( {
+					const block = createBlock( 'occ/slider', {
+						images: files.map( ( file ) => ( { url: createBlobURL( file ) } ) ),
+                    } );
+                    editorMediaUpload( {
                         filesList: files,
                         onFileChange: ( images ) => onChange( block.uid, { images } ),
                         allowedType: 'image',
