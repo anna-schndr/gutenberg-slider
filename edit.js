@@ -29,7 +29,7 @@ const {
     MediaUpload,
     MediaPlaceholder,
     InspectorControls,
-	editorMediaUpload,
+	mediaUpload,
 } = wp.editor;
 
 import './editor.scss';
@@ -149,7 +149,7 @@ class SliderEdit extends Component {
 	addFiles( files ) {
 		const currentImages = this.props.attributes.images || [];
 		const { noticeOperations, setAttributes } = this.props;
-		editorMediaUpload( {
+		mediaUpload( {
             allowedType: 'image',
             filesList: files,
             onFileChange: ( images ) => {

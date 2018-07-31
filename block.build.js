@@ -652,7 +652,7 @@ var settings = {
 				editorMediaUpload({
 					filesList: files,
 					onFileChange: function onFileChange(images) {
-						return onChange(block.uid, { images: images });
+						return onChange(block.clientId, { images: images });
 					},
 					allowedType: 'image'
 				});

@@ -1,14 +1,14 @@
 /**
  * External dependencies
  */
-const { filter, every} = lodash;
+const { filter, every } = lodash;
 
 /**
  * WordPress dependencies
  */
 const { __ } = wp.i18n;
 const {	createBlock, registerBlockType } = wp.blocks;
-const { RichText, editorMediaUpload } = wp.editor;
+const { RichText, mediaUpload } = wp.editor;
 const { createBlobURL } = wp.blob;
 
 /**
@@ -136,9 +136,9 @@ export const settings = {
 					const block = createBlock( 'occ/slider', {
 						images: files.map( ( file ) => ( { url: createBlobURL( file ) } ) ),
                     } );
-                    editorMediaUpload( {
+                    mediaUpload( {
                         filesList: files,
-                        onFileChange: ( images ) => onChange( block.uid, { images } ),
+                        onFileChange: ( images ) => onChange( block.clientId, { images } ),
                         allowedType: 'image',
                     } );
 					return block;
