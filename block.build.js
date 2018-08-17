@@ -144,318 +144,318 @@ var effectOptions = [{ value: 'fade', label: __('Fade', 'gutenberg-slider') }, {
 var linkOptions = [{ value: 'attachment', label: __('Attachment Page') }, { value: 'media', label: __('Media File') }, { value: 'none', label: __('None') }];
 
 var SliderEdit = function (_Component) {
-	_inherits(SliderEdit, _Component);
+    _inherits(SliderEdit, _Component);
 
-	function SliderEdit() {
-		_classCallCheck(this, SliderEdit);
+    function SliderEdit() {
+        _classCallCheck(this, SliderEdit);
 
-		var _this = _possibleConstructorReturn(this, (SliderEdit.__proto__ || Object.getPrototypeOf(SliderEdit)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (SliderEdit.__proto__ || Object.getPrototypeOf(SliderEdit)).apply(this, arguments));
 
-		_this.getAvailableSizes = _this.getAvailableSizes.bind(_this);
+        _this.getAvailableSizes = _this.getAvailableSizes.bind(_this);
 
-		_this.onSelectImage = _this.onSelectImage.bind(_this);
-		_this.onSelectImages = _this.onSelectImages.bind(_this);
-		_this.setLinkTo = _this.setLinkTo.bind(_this);
-		_this.setSpeed = _this.setSpeed.bind(_this);
-		_this.setEffect = _this.setEffect.bind(_this);
-		_this.toggleAutoplay = _this.toggleAutoplay.bind(_this);
-		_this.toggleImageCrop = _this.toggleImageCrop.bind(_this);
-		_this.onRemoveImage = _this.onRemoveImage.bind(_this);
-		_this.setImageAttributes = _this.setImageAttributes.bind(_this);
-		_this.addFiles = _this.addFiles.bind(_this);
-		_this.uploadFromFiles = _this.uploadFromFiles.bind(_this);
+        _this.onSelectImage = _this.onSelectImage.bind(_this);
+        _this.onSelectImages = _this.onSelectImages.bind(_this);
+        _this.setLinkTo = _this.setLinkTo.bind(_this);
+        _this.setSpeed = _this.setSpeed.bind(_this);
+        _this.setEffect = _this.setEffect.bind(_this);
+        _this.toggleAutoplay = _this.toggleAutoplay.bind(_this);
+        _this.toggleImageCrop = _this.toggleImageCrop.bind(_this);
+        _this.onRemoveImage = _this.onRemoveImage.bind(_this);
+        _this.setImageAttributes = _this.setImageAttributes.bind(_this);
+        _this.addFiles = _this.addFiles.bind(_this);
+        _this.uploadFromFiles = _this.uploadFromFiles.bind(_this);
 
-		_this.state = {
-			selectedImage: null
-		};
-		return _this;
-	}
+        _this.state = {
+            selectedImage: null
+        };
+        return _this;
+    }
 
-	_createClass(SliderEdit, [{
-		key: 'getAvailableSizes',
-		value: function getAvailableSizes() {
-			return get(this.props.image, ['media_details', 'sizes'], {});
-		}
-	}, {
-		key: 'onSelectImage',
-		value: function onSelectImage(index) {
-			var _this2 = this;
+    _createClass(SliderEdit, [{
+        key: 'getAvailableSizes',
+        value: function getAvailableSizes() {
+            return get(this.props.image, ['media_details', 'sizes'], {});
+        }
+    }, {
+        key: 'onSelectImage',
+        value: function onSelectImage(index) {
+            var _this2 = this;
 
-			return function () {
-				if (_this2.state.selectedImage !== index) {
-					_this2.setState({
-						selectedImage: index
-					});
-				}
-			};
-		}
-	}, {
-		key: 'onRemoveImage',
-		value: function onRemoveImage(index) {
-			var _this3 = this;
+            return function () {
+                if (_this2.state.selectedImage !== index) {
+                    _this2.setState({
+                        selectedImage: index
+                    });
+                }
+            };
+        }
+    }, {
+        key: 'onRemoveImage',
+        value: function onRemoveImage(index) {
+            var _this3 = this;
 
-			return function () {
-				var images = filter(_this3.props.attributes.images, function (img, i) {
-					return index !== i;
-				});
-				_this3.setState({ selectedImage: null });
-				_this3.props.setAttributes({
-					images: images
-				});
-			};
-		}
-	}, {
-		key: 'onSelectImages',
-		value: function onSelectImages(images) {
-			console.log(JSON.stringify(images));
-			this.props.setAttributes({
-				/*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'link', 'url' ] ) ),*/
-				images: images.map(function (image) {
-					return _extends({}, pick(image, ['alt', 'caption', 'id', 'link', 'url']), { thumb: get(image, 'sizes.thumbnail.url') });
-				})
-			});
-		}
-	}, {
-		key: 'setLinkTo',
-		value: function setLinkTo(value) {
-			this.props.setAttributes({ linkTo: value });
-		}
-	}, {
-		key: 'setSpeed',
-		value: function setSpeed(value) {
-			this.props.setAttributes({ speed: value });
-		}
-	}, {
-		key: 'setEffect',
-		value: function setEffect(value) {
-			this.props.setAttributes({ effect: value });
-		}
-	}, {
-		key: 'toggleAutoplay',
-		value: function toggleAutoplay() {
-			this.props.setAttributes({ autoplay: !this.props.attributes.autoplay });
-		}
-	}, {
-		key: 'toggleImageCrop',
-		value: function toggleImageCrop() {
-			this.props.setAttributes({ imageCrop: !this.props.attributes.imageCrop });
-		}
-	}, {
-		key: 'getImageCropHelp',
-		value: function getImageCropHelp(checked) {
-			return checked ? __('Thumbnails are cropped to align.') : __('Thumbnails are not cropped.');
-		}
-	}, {
-		key: 'setImageAttributes',
-		value: function setImageAttributes(index, attributes) {
-			var _props = this.props,
-			    images = _props.attributes.images,
-			    setAttributes = _props.setAttributes;
+            return function () {
+                var images = filter(_this3.props.attributes.images, function (img, i) {
+                    return index !== i;
+                });
+                _this3.setState({ selectedImage: null });
+                _this3.props.setAttributes({
+                    images: images
+                });
+            };
+        }
+    }, {
+        key: 'onSelectImages',
+        value: function onSelectImages(images) {
+            console.log(JSON.stringify(images));
+            this.props.setAttributes({
+                /*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'link', 'url' ] ) ),*/
+                images: images.map(function (image) {
+                    return _extends({}, pick(image, ['alt', 'caption', 'id', 'link', 'url']), { thumb: get(image, 'sizes.thumbnail.url') });
+                })
+            });
+        }
+    }, {
+        key: 'setLinkTo',
+        value: function setLinkTo(value) {
+            this.props.setAttributes({ linkTo: value });
+        }
+    }, {
+        key: 'setSpeed',
+        value: function setSpeed(value) {
+            this.props.setAttributes({ speed: value });
+        }
+    }, {
+        key: 'setEffect',
+        value: function setEffect(value) {
+            this.props.setAttributes({ effect: value });
+        }
+    }, {
+        key: 'toggleAutoplay',
+        value: function toggleAutoplay() {
+            this.props.setAttributes({ autoplay: !this.props.attributes.autoplay });
+        }
+    }, {
+        key: 'toggleImageCrop',
+        value: function toggleImageCrop() {
+            this.props.setAttributes({ imageCrop: !this.props.attributes.imageCrop });
+        }
+    }, {
+        key: 'getImageCropHelp',
+        value: function getImageCropHelp(checked) {
+            return checked ? __('Thumbnails are cropped to align.') : __('Thumbnails are not cropped.');
+        }
+    }, {
+        key: 'setImageAttributes',
+        value: function setImageAttributes(index, attributes) {
+            var _props = this.props,
+                images = _props.attributes.images,
+                setAttributes = _props.setAttributes;
 
-			if (!images[index]) {
-				return;
-			}
-			setAttributes({
-				images: [].concat(_toConsumableArray(images.slice(0, index)), [_extends({}, images[index], attributes)], _toConsumableArray(images.slice(index + 1)))
-			});
-		}
-	}, {
-		key: 'uploadFromFiles',
-		value: function uploadFromFiles(event) {
-			this.addFiles(event.target.files);
-		}
-	}, {
-		key: 'addFiles',
-		value: function addFiles(files) {
-			var currentImages = this.props.attributes.images || [];
-			var _props2 = this.props,
-			    noticeOperations = _props2.noticeOperations,
-			    setAttributes = _props2.setAttributes;
+            if (!images[index]) {
+                return;
+            }
+            setAttributes({
+                images: [].concat(_toConsumableArray(images.slice(0, index)), [_extends({}, images[index], attributes)], _toConsumableArray(images.slice(index + 1)))
+            });
+        }
+    }, {
+        key: 'uploadFromFiles',
+        value: function uploadFromFiles(event) {
+            this.addFiles(event.target.files);
+        }
+    }, {
+        key: 'addFiles',
+        value: function addFiles(files) {
+            var currentImages = this.props.attributes.images || [];
+            var _props2 = this.props,
+                noticeOperations = _props2.noticeOperations,
+                setAttributes = _props2.setAttributes;
 
-			mediaUpload({
-				allowedType: 'image',
-				filesList: files,
-				onFileChange: function onFileChange(images) {
-					setAttributes({
-						images: currentImages.concat(images)
-					});
-				},
-				onError: noticeOperations.createErrorNotice
-			});
-		}
-	}, {
-		key: 'componentDidUpdate',
-		value: function componentDidUpdate(prevProps) {
-			// Deselect images when deselecting the block
-			if (!this.props.isSelected && prevProps.isSelected) {
-				this.setState({
-					selectedImage: null,
-					captionSelected: false
-				});
-			}
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var _this4 = this;
+            mediaUpload({
+                allowedType: 'image',
+                filesList: files,
+                onFileChange: function onFileChange(images) {
+                    setAttributes({
+                        images: currentImages.concat(images)
+                    });
+                },
+                onError: noticeOperations.createErrorNotice
+            });
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps) {
+            // Deselect images when deselecting the block
+            if (!this.props.isSelected && prevProps.isSelected) {
+                this.setState({
+                    selectedImage: null,
+                    captionSelected: false
+                });
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this4 = this;
 
-			var _props3 = this.props,
-			    attributes = _props3.attributes,
-			    isSelected = _props3.isSelected,
-			    className = _props3.className,
-			    noticeOperations = _props3.noticeOperations,
-			    noticeUI = _props3.noticeUI;
-			var images = attributes.images,
-			    imageCrop = attributes.imageCrop,
-			    autoplay = attributes.autoplay,
-			    speed = attributes.speed,
-			    effect = attributes.effect,
-			    linkTo = attributes.linkTo;
+            var _props3 = this.props,
+                attributes = _props3.attributes,
+                isSelected = _props3.isSelected,
+                className = _props3.className,
+                noticeOperations = _props3.noticeOperations,
+                noticeUI = _props3.noticeUI;
+            var images = attributes.images,
+                imageCrop = attributes.imageCrop,
+                autoplay = attributes.autoplay,
+                speed = attributes.speed,
+                effect = attributes.effect,
+                linkTo = attributes.linkTo;
 
 
-			var dropZone = wp.element.createElement(DropZone, {
-				onFilesDrop: this.addFiles
-			});
+            var dropZone = wp.element.createElement(DropZone, {
+                onFilesDrop: this.addFiles
+            });
 
-			var controls = wp.element.createElement(
-				BlockControls,
-				null,
-				!!images.length && wp.element.createElement(
-					Toolbar,
-					null,
-					wp.element.createElement(MediaUpload, {
-						onSelect: this.onSelectImages,
-						type: 'image',
-						multiple: true,
-						gallery: true,
-						value: images.map(function (img) {
-							return img.id;
-						}),
-						render: function render(_ref) {
-							var open = _ref.open;
-							return wp.element.createElement(IconButton, {
-								className: 'components-toolbar__control',
-								label: __('Edit Slider', 'gutenberg-slider'),
-								icon: 'edit',
-								onClick: open
-							});
-						}
-					})
-				)
-			);
+            var controls = wp.element.createElement(
+                BlockControls,
+                null,
+                !!images.length && wp.element.createElement(
+                    Toolbar,
+                    null,
+                    wp.element.createElement(MediaUpload, {
+                        onSelect: this.onSelectImages,
+                        type: 'image',
+                        multiple: true,
+                        gallery: true,
+                        value: images.map(function (img) {
+                            return img.id;
+                        }),
+                        render: function render(_ref) {
+                            var open = _ref.open;
+                            return wp.element.createElement(IconButton, {
+                                className: 'components-toolbar__control',
+                                label: __('Edit Slider', 'gutenberg-slider'),
+                                icon: 'edit',
+                                onClick: open
+                            });
+                        }
+                    })
+                )
+            );
 
-			if (images.length === 0) {
-				return wp.element.createElement(
-					Fragment,
-					null,
-					controls,
-					wp.element.createElement(MediaPlaceholder, {
-						icon: 'format-gallery',
-						className: className,
-						labels: {
-							title: __('Slider', 'gutenberg-slider'),
-							name: __('images')
-						},
-						onSelect: this.onSelectImages,
-						accept: 'image/*',
-						type: 'image',
-						multiple: true,
-						notices: noticeUI,
-						onError: noticeOperations.createErrorNotice
-					})
-				);
-			}
+            if (images.length === 0) {
+                return wp.element.createElement(
+                    Fragment,
+                    null,
+                    controls,
+                    wp.element.createElement(MediaPlaceholder, {
+                        icon: 'format-gallery',
+                        className: className,
+                        labels: {
+                            title: __('Slider', 'gutenberg-slider'),
+                            name: __('images')
+                        },
+                        onSelect: this.onSelectImages,
+                        accept: 'image/*',
+                        type: 'image',
+                        multiple: true,
+                        notices: noticeUI,
+                        onError: noticeOperations.createErrorNotice
+                    })
+                );
+            }
 
-			console.log(JSON.stringify(images));
+            console.log(JSON.stringify(images));
 
-			return wp.element.createElement(
-				Fragment,
-				null,
-				controls,
-				wp.element.createElement(
-					InspectorControls,
-					null,
-					wp.element.createElement(
-						PanelBody,
-						{ title: __('Slider Settings', 'gutenberg-slider') },
-						wp.element.createElement(ToggleControl, {
-							label: __('Crop Images'),
-							checked: !!imageCrop,
-							onChange: this.toggleImageCrop,
-							help: this.getImageCropHelp
-						}),
-						wp.element.createElement(ToggleControl, {
-							label: __('Autoplay', 'gutenberg-slider'),
-							checked: !!autoplay,
-							onChange: this.toggleAutoplay
-						}),
-						wp.element.createElement(TextControl, {
-							label: __('Speed', 'gutenberg-slider'),
-							type: 'number',
-							min: '100',
-							max: '500',
-							value: speed,
-							onChange: this.setSpeed
-						}),
-						wp.element.createElement(SelectControl, {
-							label: __('Effect', 'gutenberg-slider'),
-							value: effect,
-							onChange: this.setEffect,
-							options: effectOptions
-						}),
-						wp.element.createElement(SelectControl, {
-							label: __('Link To'),
-							value: linkTo,
-							onChange: this.setLinkTo,
-							options: linkOptions
-						})
-					)
-				),
-				noticeUI,
-				wp.element.createElement(
-					'ul',
-					{ className: className + ' ' + (imageCrop ? 'is-cropped' : '') },
-					dropZone,
-					images.map(function (img, index) {
-						return wp.element.createElement(
-							'li',
-							{ className: 'blocks-gallery-item', key: img.id || img.url },
-							wp.element.createElement(_slider_image__WEBPACK_IMPORTED_MODULE_0__["default"], {
-								url: img.url,
-								alt: img.alt,
-								id: img.id,
-								isSelected: isSelected && _this4.state.selectedImage === index,
-								onRemove: _this4.onRemoveImage(index),
-								onSelect: _this4.onSelectImage(index),
-								setAttributes: function setAttributes(attrs) {
-									return _this4.setImageAttributes(index, attrs);
-								},
-								caption: img.caption
-							})
-						);
-					}),
-					isSelected && wp.element.createElement(
-						'li',
-						{ className: 'blocks-gallery-item has-add-item-button' },
-						wp.element.createElement(
-							FormFileUpload,
-							{
-								multiple: true,
-								isLarge: true,
-								className: 'block-library-gallery-add-item-button',
-								onChange: this.uploadFromFiles,
-								accept: 'image/*',
-								icon: 'insert'
-							},
-							__('Upload an image')
-						)
-					)
-				)
-			);
-		}
-	}]);
+            return wp.element.createElement(
+                Fragment,
+                null,
+                controls,
+                wp.element.createElement(
+                    InspectorControls,
+                    null,
+                    wp.element.createElement(
+                        PanelBody,
+                        { title: __('Slider Settings', 'gutenberg-slider') },
+                        wp.element.createElement(ToggleControl, {
+                            label: __('Crop Images'),
+                            checked: !!imageCrop,
+                            onChange: this.toggleImageCrop,
+                            help: this.getImageCropHelp
+                        }),
+                        wp.element.createElement(ToggleControl, {
+                            label: __('Autoplay', 'gutenberg-slider'),
+                            checked: !!autoplay,
+                            onChange: this.toggleAutoplay
+                        }),
+                        wp.element.createElement(TextControl, {
+                            label: __('Speed', 'gutenberg-slider'),
+                            type: 'number',
+                            min: '100',
+                            max: '500',
+                            value: speed,
+                            onChange: this.setSpeed
+                        }),
+                        wp.element.createElement(SelectControl, {
+                            label: __('Effect', 'gutenberg-slider'),
+                            value: effect,
+                            onChange: this.setEffect,
+                            options: effectOptions
+                        }),
+                        wp.element.createElement(SelectControl, {
+                            label: __('Link To'),
+                            value: linkTo,
+                            onChange: this.setLinkTo,
+                            options: linkOptions
+                        })
+                    )
+                ),
+                noticeUI,
+                wp.element.createElement(
+                    'ul',
+                    { className: className + ' ' + (imageCrop ? 'is-cropped' : '') },
+                    dropZone,
+                    images.map(function (img, index) {
+                        return wp.element.createElement(
+                            'li',
+                            { className: 'blocks-gallery-item', key: img.id || img.url },
+                            wp.element.createElement(_slider_image__WEBPACK_IMPORTED_MODULE_0__["default"], {
+                                url: img.url,
+                                alt: img.alt,
+                                id: img.id,
+                                isSelected: isSelected && _this4.state.selectedImage === index,
+                                onRemove: _this4.onRemoveImage(index),
+                                onSelect: _this4.onSelectImage(index),
+                                setAttributes: function setAttributes(attrs) {
+                                    return _this4.setImageAttributes(index, attrs);
+                                },
+                                caption: img.caption
+                            })
+                        );
+                    }),
+                    isSelected && wp.element.createElement(
+                        'li',
+                        { className: 'blocks-gallery-item has-add-item-button' },
+                        wp.element.createElement(
+                            FormFileUpload,
+                            {
+                                multiple: true,
+                                isLarge: true,
+                                className: 'block-library-gallery-add-item-button',
+                                onChange: this.uploadFromFiles,
+                                accept: 'image/*',
+                                icon: 'insert'
+                            },
+                            __('Upload an image')
+                        )
+                    )
+                )
+            );
+        }
+    }]);
 
-	return SliderEdit;
+    return SliderEdit;
 }(Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (withNotices(SliderEdit));
@@ -506,226 +506,226 @@ var createBlobURL = wp.blob.createBlobURL;
 setLocaleData(window.gutenberg_slider.localeData, 'gutenberg-slider');
 
 var blockAttributes = {
-	images: {
-		type: 'array',
-		default: [],
-		source: 'query',
-		selector: 'ul.wp-block-occ-slider .blocks-gallery-item',
-		query: {
-			url: {
-				source: 'attribute',
-				selector: 'img',
-				attribute: 'src'
-			},
-			link: {
-				source: 'attribute',
-				selector: 'img',
-				attribute: 'data-link'
-			},
-			alt: {
-				source: 'attribute',
-				selector: 'img',
-				attribute: 'alt',
-				default: ''
-			},
-			id: {
-				source: 'attribute',
-				selector: 'img',
-				attribute: 'data-id'
-			},
-			caption: {
-				type: 'array',
-				source: 'children',
-				selector: 'figcaption'
-			}
-		}
-	},
-	imageCrop: {
-		type: 'boolean',
-		default: true
-	},
-	autoplay: {
-		type: 'boolean',
-		default: true
-	},
-	speed: {
-		type: 'string',
-		default: '300'
-	},
-	effect: {
-		type: 'string',
-		default: 'fade'
-	},
-	linkTo: {
-		type: 'string',
-		default: 'none'
-	}
+    images: {
+        type: 'array',
+        default: [],
+        source: 'query',
+        selector: 'ul.wp-block-occ-slider .blocks-gallery-item',
+        query: {
+            url: {
+                source: 'attribute',
+                selector: 'img',
+                attribute: 'src'
+            },
+            link: {
+                source: 'attribute',
+                selector: 'img',
+                attribute: 'data-link'
+            },
+            alt: {
+                source: 'attribute',
+                selector: 'img',
+                attribute: 'alt',
+                default: ''
+            },
+            id: {
+                source: 'attribute',
+                selector: 'img',
+                attribute: 'data-id'
+            },
+            caption: {
+                type: 'array',
+                source: 'children',
+                selector: 'figcaption'
+            }
+        }
+    },
+    imageCrop: {
+        type: 'boolean',
+        default: true
+    },
+    autoplay: {
+        type: 'boolean',
+        default: true
+    },
+    speed: {
+        type: 'string',
+        default: '300'
+    },
+    effect: {
+        type: 'string',
+        default: 'fade'
+    },
+    linkTo: {
+        type: 'string',
+        default: 'none'
+    }
 };
 
 var name = 'occ/slider';
 
 var settings = {
-	title: __('Slider', 'gutenberg-slider'),
-	description: __('Display multiple images in an elegant slider.', 'gutenberg-slider'),
-	icon: wp.element.createElement(
-		'svg',
-		{ viewBox: '0 0 24 24', xmlns: 'http://www.w3.org/2000/svg' },
-		wp.element.createElement('path', { fill: 'none', d: 'M0 0h24v24H0V0z' }),
-		wp.element.createElement(
-			'g',
-			null,
-			wp.element.createElement('path', { d: 'M20 4v12H8V4h12m0-2H8L6 4v12l2 2h12l2-2V4l-2-2z' }),
-			wp.element.createElement('path', { d: 'M12 12l1 2 3-3 3 4H9z' }),
-			wp.element.createElement('path', { d: 'M2 6v14l2 2h14v-2H4V6H2z' })
-		)
-	),
-	category: 'common',
-	keywords: [__('images'), __('photos')],
-	attributes: blockAttributes,
+    title: __('Slider', 'gutenberg-slider'),
+    description: __('Display multiple images in an elegant slider.', 'gutenberg-slider'),
+    icon: wp.element.createElement(
+        'svg',
+        { viewBox: '0 0 24 24', xmlns: 'http://www.w3.org/2000/svg' },
+        wp.element.createElement('path', { fill: 'none', d: 'M0 0h24v24H0V0z' }),
+        wp.element.createElement(
+            'g',
+            null,
+            wp.element.createElement('path', { d: 'M20 4v12H8V4h12m0-2H8L6 4v12l2 2h12l2-2V4l-2-2z' }),
+            wp.element.createElement('path', { d: 'M12 12l1 2 3-3 3 4H9z' }),
+            wp.element.createElement('path', { d: 'M2 6v14l2 2h14v-2H4V6H2z' })
+        )
+    ),
+    category: 'common',
+    keywords: [__('images'), __('photos')],
+    attributes: blockAttributes,
 
-	transforms: {
-		from: [{
-			type: 'block',
-			isMultiBlock: true,
-			blocks: ['occ/slider'],
-			transform: function transform(attributes) {
-				var validImages = filter(attributes, function (_ref) {
-					var id = _ref.id,
-					    url = _ref.url;
-					return id && url;
-				});
-				if (validImages.length > 0) {
-					return createBlock('occ/slider', {
-						images: validImages.map(function (_ref2) {
-							var id = _ref2.id,
-							    url = _ref2.url,
-							    alt = _ref2.alt,
-							    caption = _ref2.caption;
-							return { id: id, url: url, alt: alt, caption: caption };
-						})
-					});
-				}
-				return createBlock('occ/slider');
-			}
-		}, {
-			type: 'shortcode',
-			tag: 'gallery',
-			attributes: {
-				images: {
-					type: 'array',
-					shortcode: function shortcode(_ref3) {
-						var ids = _ref3.named.ids;
+    transforms: {
+        from: [{
+            type: 'block',
+            isMultiBlock: true,
+            blocks: ['occ/slider'],
+            transform: function transform(attributes) {
+                var validImages = filter(attributes, function (_ref) {
+                    var id = _ref.id,
+                        url = _ref.url;
+                    return id && url;
+                });
+                if (validImages.length > 0) {
+                    return createBlock('occ/slider', {
+                        images: validImages.map(function (_ref2) {
+                            var id = _ref2.id,
+                                url = _ref2.url,
+                                alt = _ref2.alt,
+                                caption = _ref2.caption;
+                            return { id: id, url: url, alt: alt, caption: caption };
+                        })
+                    });
+                }
+                return createBlock('occ/slider');
+            }
+        }, {
+            type: 'shortcode',
+            tag: 'gallery',
+            attributes: {
+                images: {
+                    type: 'array',
+                    shortcode: function shortcode(_ref3) {
+                        var ids = _ref3.named.ids;
 
-						if (!ids) {
-							return [];
-						}
+                        if (!ids) {
+                            return [];
+                        }
 
-						return ids.split(',').map(function (id) {
-							return {
-								id: parseInt(id, 10)
-							};
-						});
-					}
-				},
-				linkTo: {
-					type: 'string',
-					shortcode: function shortcode(_ref4) {
-						var _ref4$named$link = _ref4.named.link,
-						    link = _ref4$named$link === undefined ? 'attachment' : _ref4$named$link;
+                        return ids.split(',').map(function (id) {
+                            return {
+                                id: parseInt(id, 10)
+                            };
+                        });
+                    }
+                },
+                linkTo: {
+                    type: 'string',
+                    shortcode: function shortcode(_ref4) {
+                        var _ref4$named$link = _ref4.named.link,
+                            link = _ref4$named$link === undefined ? 'attachment' : _ref4$named$link;
 
-						return link === 'file' ? 'media' : link;
-					}
-				}
-			}
-		}, {
-			// When created by drag and dropping multiple files on an insertion point
-			type: 'files',
-			isMatch: function isMatch(files) {
-				return files.length !== 1 && every(files, function (file) {
-					return file.type.indexOf('image/') === 0;
-				});
-			},
-			transform: function transform(files, onChange) {
-				var block = createBlock('occ/slider', {
-					images: files.map(function (file) {
-						return { url: createBlobURL(file) };
-					})
-				});
-				mediaUpload({
-					filesList: files,
-					onFileChange: function onFileChange(images) {
-						return onChange(block.clientId, { images: images });
-					},
-					allowedType: 'image'
-				});
-				return block;
-			}
-		}],
-		to: [{
-			type: 'block',
-			blocks: ['core/image'],
-			transform: function transform(_ref5) {
-				var images = _ref5.images;
+                        return link === 'file' ? 'media' : link;
+                    }
+                }
+            }
+        }, {
+            // When created by drag and dropping multiple files on an insertion point
+            type: 'files',
+            isMatch: function isMatch(files) {
+                return files.length !== 1 && every(files, function (file) {
+                    return file.type.indexOf('image/') === 0;
+                });
+            },
+            transform: function transform(files, onChange) {
+                var block = createBlock('occ/slider', {
+                    images: files.map(function (file) {
+                        return { url: createBlobURL(file) };
+                    })
+                });
+                mediaUpload({
+                    filesList: files,
+                    onFileChange: function onFileChange(images) {
+                        return onChange(block.clientId, { images: images });
+                    },
+                    allowedType: 'image'
+                });
+                return block;
+            }
+        }],
+        to: [{
+            type: 'block',
+            blocks: ['core/image'],
+            transform: function transform(_ref5) {
+                var images = _ref5.images;
 
-				if (images.length > 0) {
-					return images.map(function (_ref6) {
-						var id = _ref6.id,
-						    url = _ref6.url,
-						    alt = _ref6.alt,
-						    caption = _ref6.caption;
-						return createBlock('core/image', { id: id, url: url, alt: alt, caption: caption });
-					});
-				}
-				return createBlock('core/image');
-			}
-		}]
-	},
+                if (images.length > 0) {
+                    return images.map(function (_ref6) {
+                        var id = _ref6.id,
+                            url = _ref6.url,
+                            alt = _ref6.alt,
+                            caption = _ref6.caption;
+                        return createBlock('core/image', { id: id, url: url, alt: alt, caption: caption });
+                    });
+                }
+                return createBlock('core/image');
+            }
+        }]
+    },
 
-	edit: _edit__WEBPACK_IMPORTED_MODULE_0__["default"],
+    edit: _edit__WEBPACK_IMPORTED_MODULE_0__["default"],
 
-	save: function save(_ref7) {
-		var attributes = _ref7.attributes;
-		var images = attributes.images,
-		    imageCrop = attributes.imageCrop,
-		    autoplay = attributes.autoplay,
-		    speed = attributes.speed,
-		    effect = attributes.effect,
-		    linkTo = attributes.linkTo;
+    save: function save(_ref7) {
+        var attributes = _ref7.attributes;
+        var images = attributes.images,
+            imageCrop = attributes.imageCrop,
+            autoplay = attributes.autoplay,
+            speed = attributes.speed,
+            effect = attributes.effect,
+            linkTo = attributes.linkTo;
 
-		return wp.element.createElement(
-			'ul',
-			{ className: '' + (imageCrop ? 'is-cropped' : ''), 'data-autoplay': autoplay, 'data-speed': speed, 'data-effect': effect },
-			images.map(function (image) {
-				var href = void 0;
+        return wp.element.createElement(
+            'ul',
+            { className: '' + (imageCrop ? 'is-cropped' : ''), 'data-autoplay': autoplay, 'data-speed': speed, 'data-effect': effect },
+            images.map(function (image) {
+                var href = void 0;
 
-				switch (linkTo) {
-					case 'media':
-						href = image.url;
-						break;
-					case 'attachment':
-						href = image.link;
-						break;
-				}
+                switch (linkTo) {
+                    case 'media':
+                        href = image.url;
+                        break;
+                    case 'attachment':
+                        href = image.link;
+                        break;
+                }
 
-				var img = wp.element.createElement('img', { src: image.url, alt: image.alt, 'data-id': image.id, 'data-link': image.link, className: image.id ? 'wp-image-' + image.id : null });
+                var img = wp.element.createElement('img', { src: image.url, alt: image.alt, 'data-id': image.id, 'data-link': image.link, className: image.id ? 'wp-image-' + image.id : null });
 
-				return wp.element.createElement(
-					'li',
-					{ key: image.id || image.url, className: 'blocks-gallery-item' },
-					wp.element.createElement(
-						'figure',
-						null,
-						href ? wp.element.createElement(
-							'a',
-							{ href: href },
-							img
-						) : img,
-						image.caption && image.caption.length > 0 && wp.element.createElement(RichText.Content, { tagName: 'figcaption', value: image.caption })
-					)
-				);
-			})
-		);
-	}
+                return wp.element.createElement(
+                    'li',
+                    { key: image.id || image.url, className: 'blocks-gallery-item' },
+                    wp.element.createElement(
+                        'figure',
+                        null,
+                        href ? wp.element.createElement(
+                            'a',
+                            { href: href },
+                            img
+                        ) : img,
+                        image.caption && image.caption.length > 0 && wp.element.createElement(RichText.Content, { tagName: 'figcaption', value: image.caption })
+                    )
+                );
+            })
+        );
+    }
 };
 
 registerBlockType(name, settings);
@@ -834,172 +834,172 @@ var RichText = wp.editor.RichText;
 setLocaleData(window.gutenberg_slider.localeData, 'gutenberg-slider');
 
 var SliderImage = function (_Component) {
-	_inherits(SliderImage, _Component);
+    _inherits(SliderImage, _Component);
 
-	function SliderImage() {
-		_classCallCheck(this, SliderImage);
+    function SliderImage() {
+        _classCallCheck(this, SliderImage);
 
-		var _this = _possibleConstructorReturn(this, (SliderImage.__proto__ || Object.getPrototypeOf(SliderImage)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (SliderImage.__proto__ || Object.getPrototypeOf(SliderImage)).apply(this, arguments));
 
-		_this.onImageClick = _this.onImageClick.bind(_this);
-		_this.onSelectCaption = _this.onSelectCaption.bind(_this);
-		_this.onKeyDown = _this.onKeyDown.bind(_this);
-		_this.bindContainer = _this.bindContainer.bind(_this);
+        _this.onImageClick = _this.onImageClick.bind(_this);
+        _this.onSelectCaption = _this.onSelectCaption.bind(_this);
+        _this.onKeyDown = _this.onKeyDown.bind(_this);
+        _this.bindContainer = _this.bindContainer.bind(_this);
 
-		_this.state = {
-			captionSelected: false
-		};
-		return _this;
-	}
+        _this.state = {
+            captionSelected: false
+        };
+        return _this;
+    }
 
-	_createClass(SliderImage, [{
-		key: 'bindContainer',
-		value: function bindContainer(ref) {
-			this.container = ref;
-		}
-	}, {
-		key: 'onSelectCaption',
-		value: function onSelectCaption() {
-			if (!this.state.captionSelected) {
-				this.setState({
-					captionSelected: true
-				});
-			}
+    _createClass(SliderImage, [{
+        key: 'bindContainer',
+        value: function bindContainer(ref) {
+            this.container = ref;
+        }
+    }, {
+        key: 'onSelectCaption',
+        value: function onSelectCaption() {
+            if (!this.state.captionSelected) {
+                this.setState({
+                    captionSelected: true
+                });
+            }
 
-			if (!this.props.isSelected) {
-				this.props.onSelect();
-			}
-		}
-	}, {
-		key: 'onImageClick',
-		value: function onImageClick() {
-			if (!this.props.isSelected) {
-				this.props.onSelect();
-			}
+            if (!this.props.isSelected) {
+                this.props.onSelect();
+            }
+        }
+    }, {
+        key: 'onImageClick',
+        value: function onImageClick() {
+            if (!this.props.isSelected) {
+                this.props.onSelect();
+            }
 
-			if (this.state.captionSelected) {
-				this.setState({
-					captionSelected: false
-				});
-			}
-		}
-	}, {
-		key: 'onKeyDown',
-		value: function onKeyDown(event) {
-			if (this.container === document.activeElement && this.props.isSelected && [BACKSPACE, DELETE].indexOf(event.keyCode) !== -1) {
-				event.stopPropagation();
-				event.preventDefault();
-				this.props.onRemove();
-			}
-		}
-	}, {
-		key: 'componentDidUpdate',
-		value: function componentDidUpdate(prevProps) {
-			var _props = this.props,
-			    isSelected = _props.isSelected,
-			    image = _props.image,
-			    url = _props.url;
+            if (this.state.captionSelected) {
+                this.setState({
+                    captionSelected: false
+                });
+            }
+        }
+    }, {
+        key: 'onKeyDown',
+        value: function onKeyDown(event) {
+            if (this.container === document.activeElement && this.props.isSelected && [BACKSPACE, DELETE].indexOf(event.keyCode) !== -1) {
+                event.stopPropagation();
+                event.preventDefault();
+                this.props.onRemove();
+            }
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps) {
+            var _props = this.props,
+                isSelected = _props.isSelected,
+                image = _props.image,
+                url = _props.url;
 
-			if (image && !url) {
-				this.props.setAttributes({
-					url: image.source_url,
-					alt: image.alt_text
-				});
-			}
+            if (image && !url) {
+                this.props.setAttributes({
+                    url: image.source_url,
+                    alt: image.alt_text
+                });
+            }
 
-			// unselect the caption so when the user selects other image and comeback
-			// the caption is not immediately selected
-			if (this.state.captionSelected && !isSelected && prevProps.isSelected) {
-				this.setState({
-					captionSelected: false
-				});
-			}
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-			var _props2 = this.props,
-			    url = _props2.url,
-			    alt = _props2.alt,
-			    id = _props2.id,
-			    linkTo = _props2.linkTo,
-			    link = _props2.link,
-			    isSelected = _props2.isSelected,
-			    caption = _props2.caption,
-			    onRemove = _props2.onRemove,
-			    setAttributes = _props2.setAttributes;
+            // unselect the caption so when the user selects other image and comeback
+            // the caption is not immediately selected
+            if (this.state.captionSelected && !isSelected && prevProps.isSelected) {
+                this.setState({
+                    captionSelected: false
+                });
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _props2 = this.props,
+                url = _props2.url,
+                alt = _props2.alt,
+                id = _props2.id,
+                linkTo = _props2.linkTo,
+                link = _props2.link,
+                isSelected = _props2.isSelected,
+                caption = _props2.caption,
+                onRemove = _props2.onRemove,
+                setAttributes = _props2.setAttributes;
 
 
-			var href = void 0;
+            var href = void 0;
 
-			switch (linkTo) {
-				case 'media':
-					href = url;
-					break;
-				case 'attachment':
-					href = link;
-					break;
-			}
+            switch (linkTo) {
+                case 'media':
+                    href = url;
+                    break;
+                case 'attachment':
+                    href = link;
+                    break;
+            }
 
-			// Disable reason: Image itself is not meant to be
-			// interactive, but should direct image selection and unfocus caption fields
-			// eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
-			var img = url ? wp.element.createElement('img', { src: url, alt: alt, 'data-id': id, onClick: this.onImageClick }) : wp.element.createElement(Spinner, null);
+            // Disable reason: Image itself is not meant to be
+            // interactive, but should direct image selection and unfocus caption fields
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events
+            var img = url ? wp.element.createElement('img', { src: url, alt: alt, 'data-id': id, onClick: this.onImageClick }) : wp.element.createElement(Spinner, null);
 
-			var className = classnames__WEBPACK_IMPORTED_MODULE_0___default()({
-				'is-selected': isSelected,
-				'is-transient': url && 0 === url.indexOf('blob:')
-			});
+            var className = classnames__WEBPACK_IMPORTED_MODULE_0___default()({
+                'is-selected': isSelected,
+                'is-transient': url && 0 === url.indexOf('blob:')
+            });
 
-			// Disable reason: Each block can be selected by clicking on it and we should keep the same saved markup
-			/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/onclick-has-role, jsx-a11y/click-events-have-key-events */
-			return wp.element.createElement(
-				'figure',
-				{ className: className, tabIndex: '-1', onKeyDown: this.onKeyDown, ref: this.bindContainer },
-				isSelected && wp.element.createElement(
-					'div',
-					{ className: 'block-library-gallery-item__inline-menu' },
-					wp.element.createElement(IconButton, {
-						icon: 'no-alt',
-						onClick: onRemove,
-						className: 'blocks-gallery-item__remove',
-						label: __('Remove Image')
-					})
-				),
-				href ? wp.element.createElement(
-					'a',
-					{ href: href },
-					img
-				) : img,
-				caption && caption.length > 0 || isSelected ? wp.element.createElement(RichText, {
-					tagName: 'figcaption',
-					placeholder: __('Write caption…'),
-					value: caption,
-					isSelected: this.state.captionSelected,
-					onChange: function onChange(newCaption) {
-						return setAttributes({ caption: newCaption });
-					},
-					unstableOnFocus: this.onSelectCaption,
-					inlineToolbar: true
-				}) : null
-			);
-			/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/onclick-has-role, jsx-a11y/click-events-have-key-events */
-		}
-	}]);
+            // Disable reason: Each block can be selected by clicking on it and we should keep the same saved markup
+            /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/onclick-has-role, jsx-a11y/click-events-have-key-events */
+            return wp.element.createElement(
+                'figure',
+                { className: className, tabIndex: '-1', onKeyDown: this.onKeyDown, ref: this.bindContainer },
+                isSelected && wp.element.createElement(
+                    'div',
+                    { className: 'block-library-gallery-item__inline-menu' },
+                    wp.element.createElement(IconButton, {
+                        icon: 'no-alt',
+                        onClick: onRemove,
+                        className: 'blocks-gallery-item__remove',
+                        label: __('Remove Image')
+                    })
+                ),
+                href ? wp.element.createElement(
+                    'a',
+                    { href: href },
+                    img
+                ) : img,
+                caption && caption.length > 0 || isSelected ? wp.element.createElement(RichText, {
+                    tagName: 'figcaption',
+                    placeholder: __('Write caption…'),
+                    value: caption,
+                    isSelected: this.state.captionSelected,
+                    onChange: function onChange(newCaption) {
+                        return setAttributes({ caption: newCaption });
+                    },
+                    unstableOnFocus: this.onSelectCaption,
+                    inlineToolbar: true
+                }) : null
+            );
+            /* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/onclick-has-role, jsx-a11y/click-events-have-key-events */
+        }
+    }]);
 
-	return SliderImage;
+    return SliderImage;
 }(Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (withSelect(function (select, ownProps) {
-	var _select = select('core'),
-	    getMedia = _select.getMedia;
+    var _select = select('core'),
+        getMedia = _select.getMedia;
 
-	var id = ownProps.id;
+    var id = ownProps.id;
 
 
-	return {
-		image: id ? getMedia(id) : null
-	};
+    return {
+        image: id ? getMedia(id) : null
+    };
 })(SliderImage));
 
 /***/ })

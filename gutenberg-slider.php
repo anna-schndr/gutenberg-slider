@@ -25,75 +25,75 @@
 
 class Gutenberg_Slider {
 
-	/**
-	 * Plugin instance.
-	 *
-	 * @since 1.0
-	 *
-	 */
-	protected static $instance = null;
+    /**
+     * Plugin instance.
+     *
+     * @since 1.0
+     *
+     */
+    protected static $instance = null;
 
 
-	/**
-	 * Access this plugin’s working instance
-	 *
-	 * @since 1.0
-	 *
-	 */
-	public static function get_instance() {
-		
-		if ( !self::$instance ) {
-			self::$instance = new self;
-		}
+    /**
+     * Access this plugin’s working instance
+     *
+     * @since 1.0
+     *
+     */
+    public static function get_instance() {
+        
+        if ( !self::$instance ) {
+            self::$instance = new self;
+        }
 
-		return self::$instance;
+        return self::$instance;
 
-	}
+    }
 
-	
-	/**
-	 * Used for regular plugin work.
-	 *
-	 * @since 1.0
-	 *
-	 */
-	public function plugin_setup() {
+    
+    /**
+     * Used for regular plugin work.
+     *
+     * @since 1.0
+     *
+     */
+    public function plugin_setup() {
 
-  		$this->includes();
+          $this->includes();
 
-		add_action( 'init', array( $this, 'load_language' ) );
-		add_action( 'init', array( $this, 'register_block' ) );
-	
-	}
+        add_action( 'init', array( $this, 'load_language' ) );
+        add_action( 'init', array( $this, 'register_block' ) );
+    
+    }
 
-	
-	/**
-	 * Constructor. Intentionally left empty and public.
-	 *
-	 * @since 1.0
-	 *
-	 */
-	public function __construct() {}
-	
-	
- 	/**
-	 * Includes required core files used in admin and on the frontend.
-	 *
-	 * @since 1.0
-	 *
-	 */
-	protected function includes() {}
+    
+    /**
+     * Constructor. Intentionally left empty and public.
+     *
+     * @since 1.0
+     *
+     */
+    public function __construct() {}
+    
+    
+     /**
+     * Includes required core files used in admin and on the frontend.
+     *
+     * @since 1.0
+     *
+     */
+    protected function includes() {}
 
 
-	/**
-	 * Loads language
-	 *
-	 * @since 1.0
-	 *
-	 */
-	function load_language() {
-		load_plugin_textdomain( 'gutenberg-slider', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-	}
+    /**
+     * Loads language
+     *
+     * @since 1.0
+     *
+     */
+    function load_language() {
+        load_plugin_textdomain( 'gutenberg-slider', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    }
 
 
     /**
