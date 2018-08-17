@@ -153,9 +153,8 @@ class Gutenberg_Slider {
         wp_register_script(
             'gutenberg-slider',
             plugins_url( 'block.build.js', __FILE__ ),
-            array( 'wp-blocks', 'wp-components', 'wp-element', 'wp-utils', 'wp-i18n', 'lodash' ),
-            filemtime( plugin_dir_path( __FILE__ ) . 'block.build.js' ),
-            false // can't be loaded on footer at the moment
+            array( 'lodash', 'wp-blob', 'wp-blocks', 'wp-components', 'wp-data', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-keycodes', 'wp-utils' ),
+            filemtime( plugin_dir_path( __FILE__ ) . 'block.build.js' )
         );
 
         register_block_type( 'occ/slider', array(
