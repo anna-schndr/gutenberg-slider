@@ -103,12 +103,19 @@ class Gutenberg_Slider {
      *
      */
     function register_block() {
+
+        if ( ! function_exists( 'register_block_type' ) ) {
+            // Gutenberg is not active.
+            return;
+        }
+
         wp_register_style(
             'gutenberg-slider',
             plugins_url( 'css/editor.css', __FILE__ ),
             array( 'wp-edit-blocks' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'css/editor.css' )
         );
+
         if ( !is_admin() ) {
             wp_register_style(
                 'slick',
@@ -117,12 +124,14 @@ class Gutenberg_Slider {
                 filemtime( plugin_dir_path( __FILE__ ) . 'css/slick.css' )
             );
         }
+        
         wp_register_style(
             'gutenberg-slider-frontend',
             plugins_url( 'css/style.css', __FILE__ ),
             array( 'wp-blocks', 'slick' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'css/style.css' )
         );
+        
         if ( !is_admin() ) {
             wp_register_script(
                 'slick',
@@ -132,6 +141,7 @@ class Gutenberg_Slider {
                 true
             );
         }
+        
         wp_register_script(
             'gutenberg-slider-frontend',
             plugins_url( 'js/frontend.js', __FILE__ ),
@@ -139,6 +149,7 @@ class Gutenberg_Slider {
             filemtime( plugin_dir_path( __FILE__ ) . 'js/frontend.js' ),
             true
         );
+        
         wp_register_script(
             'gutenberg-slider',
             plugins_url( 'block.build.js', __FILE__ ),
@@ -156,7 +167,10 @@ class Gutenberg_Slider {
 
         wp_add_inline_script(
             'gutenberg-slider',
-            'wp.i18n.setLocaleData( ' . json_encode( gutenberg_get_jed_locale_data( 'gutenberg-slider' ) ) . ', "gutenberg-slider" );',
+            sprintf( 
+                'var gutenberg_slider = { localeData: %s };', 
+                json_encode( gutenberg_get_jed_locale_data( 'gutenberg-slider' ) ) 
+            ),
             'before'
         );
 
@@ -164,6 +178,6 @@ class Gutenberg_Slider {
 
 }
 
-add_action( 'plugins_loaded', array ( Gutenberg_Slider::get_instance(), 'plugin_setup' ) );
+add_action( 'plugins_loaded', array( Gutenberg_Slider::get_instance(), 'plugin_setup' ) );
 
 ?>

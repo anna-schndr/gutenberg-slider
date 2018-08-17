@@ -8,10 +8,12 @@ import classnames from 'classnames';
  */
 const { Component } = wp.element;
 const { IconButton, Spinner } = wp.components;
-const { __ } = wp.i18n;
+const { __, setLocaleData } = wp.i18n;
 const { BACKSPACE, DELETE } = wp.keycodes;
 const { withSelect } = wp.data;
 const { RichText } = wp.editor;
+
+setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
 
 class SliderImage extends Component {
 	constructor() {
@@ -113,7 +115,7 @@ class SliderImage extends Component {
 		return (
 			<figure className={ className } tabIndex="-1" onKeyDown={ this.onKeyDown } ref={ this.bindContainer }>
 				{ isSelected &&
-					<div className="core-blocks-gallery-item__inline-menu">
+					<div className="block-library-gallery-item__inline-menu">
 						<IconButton
 							icon="no-alt"
 							onClick={ onRemove }

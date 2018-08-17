@@ -7,7 +7,7 @@ const { filter, pick, get } = lodash;
  * WordPress dependencies
  */
 const { Component, Fragment } = wp.element;
-const { __ } = wp.i18n;
+const { __, setLocaleData } = wp.i18n;
 const {
     IconButton,
     DropZone,
@@ -20,10 +20,6 @@ const {
     Toolbar,
     withNotices,
 } = wp.components;
-
-/**
- * Internal dependencies
- */
 const {
     BlockControls,
     MediaUpload,
@@ -32,8 +28,13 @@ const {
 	mediaUpload,
 } = wp.editor;
 
-import './editor.scss';
+/**
+ * Internal dependencies
+ */
 import SliderImage from './slider-image';
+//import './editor.scss';
+
+setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
 
 const effectOptions = [
 	{ value: 'fade', label: __( 'Fade', 'gutenberg-slider' ) },
@@ -260,7 +261,7 @@ class SliderEdit extends Component {
 							options={ effectOptions }
 						/>
 						<SelectControl
-							label={ __( 'Link to' ) }
+							label={ __( 'Link To' ) }
 							value={ linkTo }
 							onChange={ this.setLinkTo }
 							options={ linkOptions }
@@ -289,7 +290,7 @@ class SliderEdit extends Component {
 							<FormFileUpload
 								multiple
 								isLarge
-								className="core-blocks-gallery-add-item-button"
+								className="block-library-gallery-add-item-button"
 								onChange={ this.uploadFromFiles }
 								accept="image/*"
 								icon="insert"

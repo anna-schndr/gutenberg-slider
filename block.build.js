@@ -81,9 +81,7 @@ this["pluginnamespace"] = this["pluginnamespace"] || {}; this["pluginnamespace"]
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./editor.scss */ "./editor.scss");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_editor_scss__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _slider_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slider-image */ "./slider-image.js");
+/* harmony import */ var _slider_image__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider-image */ "./slider-image.js");
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -111,7 +109,9 @@ var _lodash = lodash,
 var _wp$element = wp.element,
     Component = _wp$element.Component,
     Fragment = _wp$element.Fragment;
-var __ = wp.i18n.__;
+var _wp$i18n = wp.i18n,
+    __ = _wp$i18n.__,
+    setLocaleData = _wp$i18n.setLocaleData;
 var _wp$components = wp.components,
     IconButton = _wp$components.IconButton,
     DropZone = _wp$components.DropZone,
@@ -123,21 +123,21 @@ var _wp$components = wp.components,
     ToggleControl = _wp$components.ToggleControl,
     Toolbar = _wp$components.Toolbar,
     withNotices = _wp$components.withNotices;
-
-/**
- * Internal dependencies
- */
-
 var _wp$editor = wp.editor,
     BlockControls = _wp$editor.BlockControls,
     MediaUpload = _wp$editor.MediaUpload,
     MediaPlaceholder = _wp$editor.MediaPlaceholder,
     InspectorControls = _wp$editor.InspectorControls,
-    editorMediaUpload = _wp$editor.editorMediaUpload;
+    mediaUpload = _wp$editor.mediaUpload;
+
+/**
+ * Internal dependencies
+ */
 
 
+//import './editor.scss';
 
-
+setLocaleData(window.gutenberg_slider.localeData, 'gutenberg-slider');
 
 var effectOptions = [{ value: 'fade', label: __('Fade', 'gutenberg-slider') }, { value: 'scroll', label: __('Scroll', 'gutenberg-slider') }];
 
@@ -272,7 +272,7 @@ var SliderEdit = function (_Component) {
 			    noticeOperations = _props2.noticeOperations,
 			    setAttributes = _props2.setAttributes;
 
-			editorMediaUpload({
+			mediaUpload({
 				allowedType: 'image',
 				filesList: files,
 				onFileChange: function onFileChange(images) {
@@ -404,7 +404,7 @@ var SliderEdit = function (_Component) {
 							options: effectOptions
 						}),
 						wp.element.createElement(SelectControl, {
-							label: __('Link to'),
+							label: __('Link To'),
 							value: linkTo,
 							onChange: this.setLinkTo,
 							options: linkOptions
@@ -420,7 +420,7 @@ var SliderEdit = function (_Component) {
 						return wp.element.createElement(
 							'li',
 							{ className: 'blocks-gallery-item', key: img.id || img.url },
-							wp.element.createElement(_slider_image__WEBPACK_IMPORTED_MODULE_1__["default"], {
+							wp.element.createElement(_slider_image__WEBPACK_IMPORTED_MODULE_0__["default"], {
 								url: img.url,
 								alt: img.alt,
 								id: img.id,
@@ -442,7 +442,7 @@ var SliderEdit = function (_Component) {
 							{
 								multiple: true,
 								isLarge: true,
-								className: 'core-blocks-gallery-add-item-button',
+								className: 'block-library-gallery-add-item-button',
 								onChange: this.uploadFromFiles,
 								accept: 'image/*',
 								icon: 'insert'
@@ -462,17 +462,6 @@ var SliderEdit = function (_Component) {
 
 /***/ }),
 
-/***/ "./editor.scss":
-/*!*********************!*\
-  !*** ./editor.scss ***!
-  \*********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "./index.js":
 /*!******************!*\
   !*** ./index.js ***!
@@ -484,9 +473,7 @@ var SliderEdit = function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "name", function() { return name; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ "./style.scss");
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./edit */ "./edit.js");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./edit */ "./edit.js");
 /**
  * External dependencies
  */
@@ -498,13 +485,15 @@ var _lodash = lodash,
  * WordPress dependencies
  */
 
-var __ = wp.i18n.__;
+var _wp$i18n = wp.i18n,
+    __ = _wp$i18n.__,
+    setLocaleData = _wp$i18n.setLocaleData;
 var _wp$blocks = wp.blocks,
     createBlock = _wp$blocks.createBlock,
     registerBlockType = _wp$blocks.registerBlockType;
 var _wp$editor = wp.editor,
     RichText = _wp$editor.RichText,
-    editorMediaUpload = _wp$editor.editorMediaUpload;
+    mediaUpload = _wp$editor.mediaUpload;
 var createBlobURL = wp.blob.createBlobURL;
 
 /**
@@ -512,7 +501,9 @@ var createBlobURL = wp.blob.createBlobURL;
  */
 
 
+//import './style.scss';
 
+setLocaleData(window.gutenberg_slider.localeData, 'gutenberg-slider');
 
 var blockAttributes = {
 	images: {
@@ -576,7 +567,18 @@ var name = 'occ/slider';
 var settings = {
 	title: __('Slider', 'gutenberg-slider'),
 	description: __('Display multiple images in an elegant slider.', 'gutenberg-slider'),
-	icon: 'format-gallery',
+	icon: wp.element.createElement(
+		'svg',
+		{ viewBox: '0 0 24 24', xmlns: 'http://www.w3.org/2000/svg' },
+		wp.element.createElement('path', { fill: 'none', d: 'M0 0h24v24H0V0z' }),
+		wp.element.createElement(
+			'g',
+			null,
+			wp.element.createElement('path', { d: 'M20 4v12H8V4h12m0-2H8L6 4v12l2 2h12l2-2V4l-2-2z' }),
+			wp.element.createElement('path', { d: 'M12 12l1 2 3-3 3 4H9z' }),
+			wp.element.createElement('path', { d: 'M2 6v14l2 2h14v-2H4V6H2z' })
+		)
+	),
 	category: 'common',
 	keywords: [__('images'), __('photos')],
 	attributes: blockAttributes,
@@ -649,7 +651,7 @@ var settings = {
 						return { url: createBlobURL(file) };
 					})
 				});
-				editorMediaUpload({
+				mediaUpload({
 					filesList: files,
 					onFileChange: function onFileChange(images) {
 						return onChange(block.clientId, { images: images });
@@ -679,7 +681,7 @@ var settings = {
 		}]
 	},
 
-	edit: _edit__WEBPACK_IMPORTED_MODULE_1__["default"],
+	edit: _edit__WEBPACK_IMPORTED_MODULE_0__["default"],
 
 	save: function save(_ref7) {
 		var attributes = _ref7.attributes;
@@ -705,7 +707,7 @@ var settings = {
 						break;
 				}
 
-				var img = wp.element.createElement('img', { src: image.url, alt: image.alt, 'data-id': image.id, 'data-link': image.link });
+				var img = wp.element.createElement('img', { src: image.url, alt: image.alt, 'data-id': image.id, 'data-link': image.link, className: image.id ? 'wp-image-' + image.id : null });
 
 				return wp.element.createElement(
 					'li',
@@ -819,12 +821,17 @@ var Component = wp.element.Component;
 var _wp$components = wp.components,
     IconButton = _wp$components.IconButton,
     Spinner = _wp$components.Spinner;
-var __ = wp.i18n.__;
+var _wp$i18n = wp.i18n,
+    __ = _wp$i18n.__,
+    setLocaleData = _wp$i18n.setLocaleData;
 var _wp$keycodes = wp.keycodes,
     BACKSPACE = _wp$keycodes.BACKSPACE,
     DELETE = _wp$keycodes.DELETE;
 var withSelect = wp.data.withSelect;
 var RichText = wp.editor.RichText;
+
+
+setLocaleData(window.gutenberg_slider.localeData, 'gutenberg-slider');
 
 var SliderImage = function (_Component) {
 	_inherits(SliderImage, _Component);
@@ -951,7 +958,7 @@ var SliderImage = function (_Component) {
 				{ className: className, tabIndex: '-1', onKeyDown: this.onKeyDown, ref: this.bindContainer },
 				isSelected && wp.element.createElement(
 					'div',
-					{ className: 'core-blocks-gallery-item__inline-menu' },
+					{ className: 'block-library-gallery-item__inline-menu' },
 					wp.element.createElement(IconButton, {
 						icon: 'no-alt',
 						onClick: onRemove,
@@ -994,17 +1001,6 @@ var SliderImage = function (_Component) {
 		image: id ? getMedia(id) : null
 	};
 })(SliderImage));
-
-/***/ }),
-
-/***/ "./style.scss":
-/*!********************!*\
-  !*** ./style.scss ***!
-  \********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 

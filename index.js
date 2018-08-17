@@ -6,7 +6,7 @@ const { filter, every } = lodash;
 /**
  * WordPress dependencies
  */
-const { __ } = wp.i18n;
+const { __, setLocaleData } = wp.i18n;
 const {	createBlock, registerBlockType } = wp.blocks;
 const { RichText, mediaUpload } = wp.editor;
 const { createBlobURL } = wp.blob;
@@ -14,10 +14,10 @@ const { createBlobURL } = wp.blob;
 /**
  * Internal dependencies
  */
-
-
-import './style.scss';
 import { default as edit } from './edit';
+//import './style.scss';
+
+setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
 
 const blockAttributes = {
 	images: {
@@ -81,7 +81,7 @@ export const name = 'occ/slider';
 export const settings = {
 	title: __( 'Slider', 'gutenberg-slider' ),
 	description: __( 'Display multiple images in an elegant slider.', 'gutenberg-slider' ),
-	icon: 'format-gallery',
+	icon: <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z" /><g><path d="M20 4v12H8V4h12m0-2H8L6 4v12l2 2h12l2-2V4l-2-2z" /><path d="M12 12l1 2 3-3 3 4H9z" /><path d="M2 6v14l2 2h14v-2H4V6H2z" /></g></svg>,
 	category: 'common',
 	keywords: [ __( 'images' ), __( 'photos' ) ],
 	attributes: blockAttributes,
@@ -159,12 +159,12 @@ export const settings = {
 		],
 	},
 
-	edit: edit,
+	edit,
 
 	save( { attributes } ) {
-		const { images, imageCrop, autoplay, speed, effect, linkTo } = attributes;
+        const { images, imageCrop, autoplay, speed, effect, linkTo } = attributes;
 		return (
-			<ul className={ `${ imageCrop ? 'is-cropped' : '' }` } data-autoplay={ autoplay } data-speed={ speed } data-effect={ effect }>
+            <ul className={ `${ imageCrop ? 'is-cropped' : '' }` } data-autoplay={ autoplay } data-speed={ speed } data-effect={ effect }>
 				{ images.map( ( image ) => {
 					let href;
 
@@ -177,15 +177,15 @@ export const settings = {
 							break;
 					}
 
-					const img = <img src={ image.url } alt={ image.alt } data-id={ image.id } data-link={ image.link } />;
+					const img = <img src={ image.url } alt={ image.alt } data-id={ image.id } data-link={ image.link } className={ image.id ? `wp-image-${ image.id }` : null } />;
 
 					return (
 						<li key={ image.id || image.url } className="blocks-gallery-item">
 							<figure>
 								{ href ? <a href={ href }>{ img }</a> : img }
-                                { image.caption && image.caption.length > 0 && (
-                                    <RichText.Content tagName="figcaption" value={ image.caption } />
-                                ) }
+								{ image.caption && image.caption.length > 0 && (
+									<RichText.Content tagName="figcaption" value={ image.caption } />
+								) }
 							</figure>
 						</li>
 					);
