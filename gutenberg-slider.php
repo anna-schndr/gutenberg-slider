@@ -153,7 +153,7 @@ class Gutenberg_Slider {
         wp_register_script(
             'gutenberg-slider',
             plugins_url( 'block.build.js', __FILE__ ),
-            array( 'lodash', 'wp-blob', 'wp-blocks', 'wp-components', 'wp-data', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-keycodes', 'wp-utils' ),
+            array( 'lodash', 'wp-blob', 'wp-blocks', 'wp-components', 'wp-data', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-keycodes' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'block.build.js' )
         );
 
