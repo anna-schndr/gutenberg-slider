@@ -32,7 +32,8 @@ const {
  * Internal dependencies
  */
 import SliderImage from './slider-image';
-//import './editor.scss';
+
+import './editor.scss';
 
 setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
 

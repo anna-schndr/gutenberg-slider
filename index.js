@@ -7,7 +7,7 @@ const { filter, every } = lodash;
  * WordPress dependencies
  */
 const { __, setLocaleData } = wp.i18n;
-const {    createBlock, registerBlockType } = wp.blocks;
+const { createBlock, registerBlockType } = wp.blocks;
 const { RichText, mediaUpload } = wp.editor;
 const { createBlobURL } = wp.blob;
 
@@ -15,7 +15,8 @@ const { createBlobURL } = wp.blob;
  * Internal dependencies
  */
 import { default as edit } from './edit';
-//import './style.scss';
+
+import './style.scss';
 
 setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
 
@@ -81,7 +82,7 @@ export const name = 'occ/slider';
 export const settings = {
     title: __( 'Slider', 'gutenberg-slider' ),
     description: __( 'Display multiple images in an elegant slider.', 'gutenberg-slider' ),
-    icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 8v8l5-4-5-4zm9-5H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>,
+    icon: <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z" /><path d="M10 8v8l5-4-5-4zm9-5H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>,
     category: 'common',
     keywords: [ __( 'images' ), __( 'photos' ) ],
     attributes: blockAttributes,
@@ -91,7 +92,7 @@ export const settings = {
             {
                 type: 'block',
                 isMultiBlock: true,
-                blocks: [ 'occ/slider' ],
+                blocks: [ 'core/image' ],
                 transform: ( attributes ) => {
                     const validImages = filter( attributes, ( { id, url } ) => id && url );
                     if ( validImages.length > 0 ) {
