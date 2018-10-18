@@ -47,6 +47,11 @@ const linkOptions = [
     { value: 'media', label: __( 'Media File' ) },
     { value: 'none', label: __( 'None' ) },
 ];
+const ALLOWED_MEDIA_TYPES = [ 'image' ];
+
+export const pickRelevantMediaFiles = ( image ) => {
+	return pick( image, [ 'alt', 'id', 'link', 'url', 'caption' ] );
+};
 
 class SliderEdit extends Component {
     constructor() {
@@ -98,8 +103,7 @@ class SliderEdit extends Component {
     onSelectImages( images ) {
         console.log(JSON.stringify(images));
         this.props.setAttributes( {
-            /*images: images.map( ( image ) => pick( image, [ 'alt', 'caption', 'id', 'link', 'url' ] ) ),*/
-            images: images.map( ( image ) => ( { ...pick( image, [ 'alt', 'caption', 'id', 'link', 'url' ] ), thumb: get( image, 'sizes.thumbnail.url' ) } ) )
+            images: images.map( ( image ) => pickRelevantMediaFiles( image ) ),
         } );
     }
 
@@ -152,11 +156,12 @@ class SliderEdit extends Component {
         const currentImages = this.props.attributes.images || [];
         const { noticeOperations, setAttributes } = this.props;
         mediaUpload( {
-            allowedType: 'image',
+            allowedTypes: ALLOWED_MEDIA_TYPES,
             filesList: files,
             onFileChange: ( images ) => {
+                const imagesNormalized = images.map( ( image ) => pickRelevantMediaFiles( image ) );
                 setAttributes( {
-                    images: currentImages.concat( images ),
+                    images: currentImages.concat( imagesNormalized ),
                 } );
             },
             onError: noticeOperations.createErrorNotice,
@@ -189,7 +194,7 @@ class SliderEdit extends Component {
                     <Toolbar>
                         <MediaUpload
                             onSelect={ this.onSelectImages }
-                            type="image"
+                            allowedTypes={ ALLOWED_MEDIA_TYPES }
                             multiple
                             gallery
                             value={ images.map( ( img ) => img.id ) }
@@ -220,7 +225,7 @@ class SliderEdit extends Component {
                         } }
                         onSelect={ this.onSelectImages }
                         accept="image/*"
-                        type="image"
+                        allowedTypes={ ALLOWED_MEDIA_TYPES }
                         multiple
                         notices={ noticeUI }
                         onError={ noticeOperations.createErrorNotice }
