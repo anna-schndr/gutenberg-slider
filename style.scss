@@ -81,7 +81,7 @@
 	// On mobile and responsive viewports, we allow only 1 or 2 columns at the most.
 	& .blocks-gallery-image,
 	& .blocks-gallery-item {
-        width: calc(100% / 2 - 16px);
+        width: calc(100% / 2 - 8px);
         
         &:nth-of-type(even) {
 			margin-right: 0;
@@ -95,11 +95,11 @@
 	}
 
 	// Beyond mobile viewports, we allow up to 8 columns.
-	@include break-small {
+	@media (min-width:600px) {
 		@for $i from 3 through 8 {
 			&.columns-#{ $i } .blocks-gallery-image,
 			&.columns-#{ $i } .blocks-gallery-item {
-				width: calc((100% - #{ $grid-size-large } * #{ $i - 1 }) / #{ $i });
+				width: calc((100% - 16px * #{ $i - 1 }) / #{ $i });
 				margin-right: 16px;
 			}
 		}
