@@ -8,7 +8,7 @@
     "hoek": "^5.0.4"
   },
   "devDependencies": {
-    "autoprefixer": "9.2.1",
+    "autoprefixer": "^9.2.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
