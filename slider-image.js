@@ -12,6 +12,7 @@ const { __, setLocaleData } = wp.i18n;
 const { BACKSPACE, DELETE } = wp.keycodes;
 const { withSelect } = wp.data;
 const { RichText } = wp.editor;
+const { isBlobURL } = wp.blob;
 
 setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
 
@@ -107,7 +108,7 @@ class SliderImage extends Component {
 
         const className = classnames( {
             'is-selected': isSelected,
-            'is-transient': url && 0 === url.indexOf( 'blob:' ),
+            'is-transient': isBlobURL( url ),
         } );
 
         // Disable reason: Each block can be selected by clicking on it and we should keep the same saved markup

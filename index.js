@@ -14,7 +14,7 @@ const { createBlobURL } = wp.blob;
 /**
  * Internal dependencies
  */
-import { default as edit } from './edit';
+import { default as edit, pickRelevantMediaFiles } from './edit';
 
 import './style.scss';
 
