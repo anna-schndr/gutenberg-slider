@@ -221,7 +221,7 @@ class SliderEdit extends Component {
                         className={ className }
                         labels={ {
                             title: __( 'Slider', 'gutenberg-slider' ),
-                            name: __( 'images' ),
+                            instructions: __( 'Drag images, upload new ones or select files from your library.', 'gutenberg-slider' ),
                         } }
                         onSelect={ this.onSelectImages }
                         accept="image/*"

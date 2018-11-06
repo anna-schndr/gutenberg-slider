@@ -10,6 +10,7 @@ const { __, setLocaleData } = wp.i18n;
 const { createBlock, registerBlockType } = wp.blocks;
 const { RichText, mediaUpload } = wp.editor;
 const { createBlobURL } = wp.blob;
+const { G, Path, SVG } = wp.components;
 
 /**
  * Internal dependencies
@@ -49,6 +50,7 @@ const blockAttributes = {
                 attribute: 'data-id',
             },
             caption: {
+                type: 'string',
                 source: 'html',
                 selector: 'figcaption',
             },
@@ -81,7 +83,7 @@ export const name = 'occ/slider';
 export const settings = {
     title: __( 'Slider', 'gutenberg-slider' ),
     description: __( 'Display multiple images in an elegant slider.', 'gutenberg-slider' ),
-    icon: <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z" /><path d="M10 8v8l5-4-5-4zm9-5H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></svg>,
+    icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="none" d="M0 0h24v24H0z" /><Path d="M10 8v8l5-4-5-4zm9-5H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></SVG>,
     category: 'common',
     keywords: [ __( 'images' ), __( 'photos' ) ],
     attributes: blockAttributes,
