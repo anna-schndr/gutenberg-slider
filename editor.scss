@@ -1,4 +1,4 @@
-// style
+/* style */
 
 .wp-block-occ-slider {
 	display: flex;
@@ -217,7 +217,11 @@ ul.wp-block-gallery li {
 }
 
 .blocks-gallery-item__remove {
-	padding: 0;
+    padding: 0;
+
+    &.components-button:focus {
+		color: inherit;
+	}
 }
 
 .blocks-gallery-item .components-spinner {
