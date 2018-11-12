@@ -7,7 +7,7 @@ const { filter, pick, get } = lodash;
  * WordPress dependencies
  */
 const { Component, Fragment } = wp.element;
-const { __, setLocaleData } = wp.i18n;
+const { __, sprintf, setLocaleData } = wp.i18n;
 const {
     IconButton,
     DropZone,
@@ -277,20 +277,26 @@ class SliderEdit extends Component {
                 { noticeUI }
                 <ul className={ `${ className } ${ imageCrop ? 'is-cropped' : '' }` }>
                     { dropZone }
-                    { images.map( ( img, index ) => (
-                        <li className="blocks-gallery-item" key={ img.id || img.url }>
-                            <SliderImage
-                                url={ img.url }
-                                alt={ img.alt }
-                                id={ img.id }
-                                isSelected={ isSelected && this.state.selectedImage === index }
-                                onRemove={ this.onRemoveImage( index ) }
-                                onSelect={ this.onSelectImage( index ) }
-                                setAttributes={ ( attrs ) => this.setImageAttributes( index, attrs ) }
-                                caption={ img.caption }
-                            />
-                        </li>
-                    ) ) }
+                    { images.map( ( img, index ) => {
+   						/* translators: %1$d is the order number of the image, %2$d is the total number of images. */
+						const ariaLabel = __( sprintf( 'image %1$d of %2$d in slider', ( index + 1 ), images.length ) );
+
+						return (
+                            <li className="blocks-gallery-item" key={ img.id || img.url }>
+                                <SliderImage
+                                    url={ img.url }
+                                    alt={ img.alt }
+                                    id={ img.id }
+                                    isSelected={ isSelected && this.state.selectedImage === index }
+                                    onRemove={ this.onRemoveImage( index ) }
+                                    onSelect={ this.onSelectImage( index ) }
+                                    setAttributes={ ( attrs ) => this.setImageAttributes( index, attrs ) }
+                                    caption={ img.caption }
+                                    aria-label={ ariaLabel }
+                                />
+                            </li>
+                        );
+                    } ) }
                     { isSelected &&
                         <li className="blocks-gallery-item has-add-item-button">
                             <FormFileUpload
