@@ -50,7 +50,9 @@ const linkOptions = [
 const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
 export const pickRelevantMediaFiles = ( image ) => {
-	return pick( image, [ 'alt', 'id', 'link', 'url', 'caption' ] );
+	const imageProps = pick( image, [ 'alt', 'id', 'link', 'caption' ] );
+	imageProps.url = get( image, [ 'sizes', 'large', 'url' ] ) || get( image, [ 'media_details', 'sizes', 'large', 'source_url' ] ) || image.url;
+	return imageProps;
 };
 
 class SliderEdit extends Component {
