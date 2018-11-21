@@ -72,6 +72,7 @@ class SliderEdit extends Component {
         this.setImageAttributes = this.setImageAttributes.bind( this );
         this.addFiles = this.addFiles.bind( this );
         this.uploadFromFiles = this.uploadFromFiles.bind( this );
+        this.setAttributes = this.setAttributes.bind( this );
 
         this.state = {
             selectedImage: null,
@@ -81,6 +82,21 @@ class SliderEdit extends Component {
     getAvailableSizes() {
         return get( this.props.image, [ 'media_details', 'sizes' ], {} );
     }
+
+    setAttributes( attributes ) {
+		if ( attributes.ids ) {
+			throw new Error( 'The "ids" attribute should not be changed directly. It is managed automatically when "images" attribute changes' );
+		}
+
+		if ( attributes.images ) {
+			attributes = {
+				...attributes,
+				ids: map( attributes.images, 'id' ),
+			};
+		}
+
+		this.props.setAttributes( attributes );
+	}
 
     onSelectImage( index ) {
         return () => {
@@ -96,7 +112,7 @@ class SliderEdit extends Component {
         return () => {
             const images = filter( this.props.attributes.images, ( img, i ) => index !== i );
             this.setState( { selectedImage: null } );
-            this.props.setAttributes( {
+            this.setAttributes( {
                 images,
             } );
         };
@@ -110,23 +126,23 @@ class SliderEdit extends Component {
     }
 
     setLinkTo( value ) {
-        this.props.setAttributes( { linkTo: value } );
+        this.setAttributes( { linkTo: value } );
     }
 
     setSpeed( value ) {
-        this.props.setAttributes( { speed: value } );
+        this.setAttributes( { speed: value } );
     }
 
     setEffect( value ) {
-        this.props.setAttributes( { effect: value } );
+        this.setAttributes( { effect: value } );
     }
 
     toggleAutoplay() {
-        this.props.setAttributes( { autoplay: ! this.props.attributes.autoplay } );
+        this.setAttributes( { autoplay: ! this.props.attributes.autoplay } );
     }
 
     toggleImageCrop() {
-        this.props.setAttributes( { imageCrop: ! this.props.attributes.imageCrop } );
+        this.setAttributes( { imageCrop: ! this.props.attributes.imageCrop } );
     }
 
     getImageCropHelp( checked ) {
@@ -134,7 +150,8 @@ class SliderEdit extends Component {
     }
 
     setImageAttributes( index, attributes ) {
-        const { attributes: { images }, setAttributes } = this.props;
+        const { attributes: { images } } = this.props;
+		const { setAttributes } = this;
         if ( ! images[ index ] ) {
             return;
         }
@@ -156,7 +173,8 @@ class SliderEdit extends Component {
 
     addFiles( files ) {
         const currentImages = this.props.attributes.images || [];
-        const { noticeOperations, setAttributes } = this.props;
+        const { noticeOperations } = this.props;
+		const { setAttributes } = this;
         mediaUpload( {
             allowedTypes: ALLOWED_MEDIA_TYPES,
             filesList: files,

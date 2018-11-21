@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-const { filter, every } = lodash;
+const { filter, every, map, some } = lodash;
 
 /**
  * WordPress dependencies
@@ -56,6 +56,11 @@ const blockAttributes = {
             },
         },
     },
+    ids: {
+		type: 'array',
+		default: [],
+	},
+
     imageCrop: {
         type: 'boolean',
         default: true,
@@ -80,6 +85,16 @@ const blockAttributes = {
 
 export const name = 'occ/slider';
 
+const parseShortcodeIds = ( ids ) => {
+	if ( ! ids ) {
+		return [];
+	}
+
+	return ids.split( ',' ).map( ( id ) => (
+		parseInt( id, 10 )
+	) );
+};
+
 export const settings = {
     title: __( 'Slider', 'gutenberg-slider' ),
     description: __( 'Display multiple images in an elegant slider.', 'gutenberg-slider' ),
@@ -99,6 +114,7 @@ export const settings = {
                     if ( validImages.length > 0 ) {
                         return createBlock( 'occ/slider', {
                             images: validImages.map( ( { id, url, alt, caption } ) => ( { id, url, alt, caption } ) ),
+							ids: validImages.map( ( { id } ) => id ),
                         } );
                     }
                     return createBlock( 'occ/slider' );
@@ -111,15 +127,17 @@ export const settings = {
                     images: {
                         type: 'array',
                         shortcode: ( { named: { ids } } ) => {
-                            if ( ! ids ) {
-                                return [];
-                            }
-
-                            return ids.split( ',' ).map( ( id ) => ( {
-                                id: parseInt( id, 10 ),
+							return parseShortcodeIds( ids ).map( ( id ) => ( {
+								id,
                             } ) );
                         },
                     },
+                    ids: {
+						type: 'array',
+						shortcode: ( { named: { ids } } ) => {
+							return parseShortcodeIds( ids );
+						},
+					},
                     linkTo: {
                         type: 'string',
                         shortcode: ( { named: { link = 'attachment' } } ) => {
@@ -143,8 +161,12 @@ export const settings = {
                     mediaUpload( {
                         filesList: files,
                         onFileChange: ( images ) => {
+                            const imagesAttr = images.map(
+								pickRelevantMediaFiles
+							);
 							onChange( block.clientId, {
-								images: images.map( ( image ) => pickRelevantMediaFiles( image ) ),
+                                ids: map( imagesAttr, 'id' ),
+								images: imagesAttr,
 							} );
 						},
 						allowedTypes: [ 'image' ],
