@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-04-26 20:28+0200\n"
-"PO-Revision-Date: 2018-04-26 20:30+0200\n"
+"POT-Creation-Date: 2018-12-04 13:00+0100\n"
+"PO-Revision-Date: 2018-12-04 13:02+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -13,8 +13,8 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: .babelrc\n"
@@ -29,68 +29,88 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-9: node_modules\n"
 "X-Poedit-SearchPathExcluded-10: .git\n"
 
-#: block.js:45
+#: edit.js:41
+msgid "Fade"
+msgstr "Fundido"
+
+#: edit.js:42
+msgid "Scroll"
+msgstr "Desplazamiento"
+
+#: edit.js:46
 msgid "Attachment Page"
 msgstr ""
 
-#: block.js:46
+#: edit.js:47
 msgid "Media File"
 msgstr ""
 
-#: block.js:47
+#: edit.js:48
 msgid "None"
 msgstr ""
 
-#: block.js:103
+#: edit.js:149
 msgid "Thumbnails are cropped to align."
 msgstr ""
 
-#: block.js:103
+#: edit.js:149
 msgid "Thumbnails are not cropped."
 msgstr ""
 
-#: block.js:174
+#: edit.js:224
 msgid "Edit Slider"
 msgstr "Editar slider"
 
-#: block.js:192 index.js:82
+#: edit.js:243 index.js:99
 msgid "Slider"
 msgstr "Slider"
 
-#: block.js:204
+#: edit.js:244
+msgid "Drag images, upload new ones or select files from your library."
+msgstr ""
+
+#: edit.js:263
 msgid "Slider Settings"
 msgstr "Configuración del slider"
 
-#: block.js:206
+#: edit.js:265
 msgid "Crop Images"
 msgstr ""
 
-#: block.js:212
-msgid "Link to"
+#: edit.js:271
+msgid "Autoplay"
+msgstr "Reproducción automática"
+
+#: edit.js:276
+msgid "Speed"
+msgstr "Velocidad"
+
+#: edit.js:284
+msgid "Effect"
+msgstr "Efecto"
+
+#: edit.js:290
+msgid "Link To"
 msgstr ""
 
-#: block.js:245
+#: edit.js:330
 msgid "Upload an image"
 msgstr ""
 
-#: index.js:83
-msgid "Image silders are a great way to share groups of pictures on your site."
-msgstr ""
-"Los sliders son un modo fantástico de compartir grupos de imágenes en tu "
-"sitio."
+#: index.js:100
+msgid "Display multiple images in an elegant slider."
+msgstr "Muestra varias imágenes en un slider elegante."
 
-#: index.js:86
-msgid "images"
-msgstr ""
-
-#: index.js:86
-msgid "photos"
-msgstr ""
-
-#: slider-image.js:132
+#: slider-image.js:138
 msgid "Remove Image"
 msgstr ""
 
-#: slider-image.js:140
+#: slider-image.js:146
 msgid "Write caption…"
 msgstr ""
+
+#~ msgid ""
+#~ "Image silders are a great way to share groups of pictures on your site."
+#~ msgstr ""
+#~ "Los sliders son un modo fantástico de compartir grupos de imágenes en tu "
+#~ "sitio."
