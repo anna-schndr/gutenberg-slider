@@ -5,7 +5,8 @@
   "main": "block.js",
   "dependencies": {
     "classnames": "2.2.6",
-    "hoek": "^5.0.4"
+    "hoek": "^5.0.4",
+    "po2json": "^1.0.0-alpha"
   },
   "devDependencies": {
     "autoprefixer": "^9.2.1",

@@ -173,7 +173,7 @@ class Gutenberg_Slider {
             'before'
         );*/
 
-        wp_set_script_translations( 'gutenberg-slider', 'gutenberg-slider' );
+        wp_set_script_translations( 'gutenberg-slider', 'gutenberg-slider', plugin_dir_path( __FILE__ ) . 'languages' );
 
     }
 
