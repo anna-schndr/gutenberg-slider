@@ -164,14 +164,16 @@ class Gutenberg_Slider {
             'script' => 'gutenberg-slider-frontend',
         ) );
 
-        wp_add_inline_script(
+        /*wp_add_inline_script(
             'gutenberg-slider',
             sprintf( 
                 'var gutenberg_slider = { localeData: %s };', 
-                json_encode( gutenberg_get_jed_locale_data( 'gutenberg-slider' ) ) 
+                json_encode( wp_get_jed_locale_data( 'gutenberg-slider' ) ) 
             ),
             'before'
-        );
+        );*/
+
+        wp_set_script_translations( 'gutenberg-slider', 'gutenberg-slider' );
 
     }
 

@@ -35,7 +35,7 @@ import SliderImage from './slider-image';
 
 import './editor.scss';
 
-setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
+//setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
 
 const effectOptions = [
     { value: 'fade', label: __( 'Fade', 'gutenberg-slider' ) },

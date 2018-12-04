@@ -19,7 +19,7 @@ import { default as edit, pickRelevantMediaFiles } from './edit';
 
 import './style.scss';
 
-setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
+//setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
 
 const blockAttributes = {
     images: {
