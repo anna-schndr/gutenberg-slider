@@ -142,15 +142,17 @@ class Gutenberg_Slider {
                 filemtime( plugin_dir_path( __FILE__ ) . 'js/slick.min.js' ),
                 true
             );
+            wp_enqueue_script('slick');
         }
         
         wp_register_script(
             'oacs-gutenberg-slider-frontend',
             plugins_url( 'js/frontend.js', __FILE__ ),
-            array( 'jquery', 'slick' ),
+            array(),
             filemtime( plugin_dir_path( __FILE__ ) . 'js/frontend.js' ),
             true
         );
+        wp_enqueue_script('oacs-gutenberg-slider-frontend');
         
         wp_register_script(
             'oacs-gutenberg-slider',
