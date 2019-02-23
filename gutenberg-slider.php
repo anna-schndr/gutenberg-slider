@@ -129,7 +129,7 @@ class Gutenberg_Slider {
         wp_register_style(
             'oacs-gutenberg-slider-frontend',
             plugins_url( 'css/style.css', __FILE__ ),
-            array( 'wp-blocks', 'slick' ),
+            array(),
             filemtime( plugin_dir_path( __FILE__ ) . 'css/style.css' )
         );
         wp_enqueue_style( 'oacs-gutenberg-slider-frontend');
