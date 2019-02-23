@@ -19,14 +19,14 @@ import { default as edit, pickRelevantMediaFiles } from './edit';
 
 import './style.scss';
 
-//setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
+//setLocaleData( window.gutenberg_slider.localeData, 'oacs-gutenberg-slider' );
 
 const blockAttributes = {
     images: {
         type: 'array',
         default: [],
         source: 'query',
-        selector: 'ul.wp-block-occ-slider .blocks-gallery-item',
+        selector: 'ul.wp-block-oacs-slider .blocks-gallery-item',
         query: {
             url: {
                 source: 'attribute',
@@ -69,6 +69,14 @@ const blockAttributes = {
         type: 'boolean',
         default: true,
     },
+    arrows: {
+        type: 'boolean',
+        default: false,
+    },
+    dots: {
+        type: 'boolean',
+        default: false,
+    },
     speed: {
         type: 'string',
         default: '300',
@@ -83,7 +91,7 @@ const blockAttributes = {
     },
 };
 
-export const name = 'occ/slider';
+export const name = 'oacs/slider';
 
 const parseShortcodeIds = ( ids ) => {
 	if ( ! ids ) {
@@ -96,11 +104,11 @@ const parseShortcodeIds = ( ids ) => {
 };
 
 export const settings = {
-    title: __( 'Slider', 'gutenberg-slider' ),
-    description: __( 'Display multiple images in an elegant slider.', 'gutenberg-slider' ),
-    icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><Path fill="none" d="M0 0h24v24H0z" /><Path d="M10 8v8l5-4-5-4zm9-5H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/></SVG>,
+    title: __( 'Slider', 'oacs-gutenberg-slider' ),
+    description: __( 'Display multiple images in an elegant slider.', 'oacs-gutenberg-slider' ),
+    icon: <SVG viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.5 20h-14c-0.827 0-1.5-0.673-1.5-1.5v-13c0-0.827 0.673-1.5 1.5-1.5h14c0.827 0 1.5 0.673 1.5 1.5v13c0 0.827-0.673 1.5-1.5 1.5zM2.5 5c-0.276 0-0.5 0.224-0.5 0.5v13c0 0.276 0.224 0.5 0.5 0.5h14c0.276 0 0.5-0.224 0.5-0.5v-13c0-0.276-0.224-0.5-0.5-0.5h-14z" fill="#000000"></path><path d="M16.5 3h-14c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h14c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5z" fill="#000000"></path><path d="M15.5 1h-12c-0.276 0-0.5-0.224-0.5-0.5s0.224-0.5 0.5-0.5h12c0.276 0 0.5 0.224 0.5 0.5s-0.224 0.5-0.5 0.5z" fill="#000000"></path><path d="M11.5 13c-0.827 0-1.5-0.673-1.5-1.5s0.673-1.5 1.5-1.5 1.5 0.673 1.5 1.5-0.673 1.5-1.5 1.5zM11.5 11c-0.276 0-0.5 0.224-0.5 0.5s0.224 0.5 0.5 0.5 0.5-0.224 0.5-0.5-0.224-0.5-0.5-0.5z" fill="#000000"></path><path d="M14.5 8h-10c-0.276 0-0.5 0.224-0.5 0.5v7c0 0.276 0.224 0.5 0.5 0.5h10c0.276 0 0.5-0.224 0.5-0.5v-7c0-0.276-0.224-0.5-0.5-0.5zM5 13.675l1.266-1.582c0.073-0.091 0.164-0.142 0.259-0.144s0.189 0.044 0.266 0.131l2.596 2.92h-4.387v-1.325zM14 15h-3.275l-3.187-3.585c-0.272-0.306-0.651-0.476-1.039-0.466s-0.758 0.199-1.014 0.519l-0.485 0.606v-3.075h9v6z" fill="#000000"></path></SVG>,
     category: 'common',
-    keywords: [ __( 'images' ), __( 'photos' ) ],
+    keywords: [ __( 'images' ), __( 'photos' ), __( 'slider' ) ],
     attributes: blockAttributes,
 
     transforms: {
@@ -112,12 +120,12 @@ export const settings = {
                 transform: ( attributes ) => {
                     const validImages = filter( attributes, ( { id, url } ) => id && url );
                     if ( validImages.length > 0 ) {
-                        return createBlock( 'occ/slider', {
+                        return createBlock( 'oacs/slider', {
                             images: validImages.map( ( { id, url, alt, caption } ) => ( { id, url, alt, caption } ) ),
 							ids: validImages.map( ( { id } ) => id ),
                         } );
                     }
-                    return createBlock( 'occ/slider' );
+                    return createBlock( 'oacs/slider' );
                 },
             },
             {
@@ -153,7 +161,7 @@ export const settings = {
                     return files.length !== 1 && every( files, ( file ) => file.type.indexOf( 'image/' ) === 0 );
                 },
                 transform( files, onChange ) {
-                    const block = createBlock( 'occ/slider', {
+                    const block = createBlock( 'oacs/slider', {
                         images: files.map( ( file ) => pickRelevantMediaFiles( {
 							url: createBlobURL( file ),
 						} ) ),
@@ -192,9 +200,9 @@ export const settings = {
     edit,
 
     save( { attributes } ) {
-        const { images, imageCrop, autoplay, speed, effect, linkTo } = attributes;
+        const { images, imageCrop, autoplay, arrows, dots, speed, effect, linkTo } = attributes;
         return (
-            <ul className={ `${ imageCrop ? 'is-cropped' : '' }` } data-autoplay={ autoplay } data-speed={ speed } data-effect={ effect }>
+            <ul className={ `${ imageCrop ? 'is-cropped' : '' }` } data-autoplay={ autoplay } data-speed={ speed } data-effect={ effect } data-arrows={ arrows } data-dots={ dots }>
                 { images.map( ( image ) => {
                     let href;
 

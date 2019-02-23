@@ -1,12 +1,11 @@
 <?php
 /*
   Plugin Name: Gutenberg Slider
-  Plugin URI: http://wordpress.org/plugins/exhibit-custom-post-type/
-  Description: A Gutenberg Slider
+  Description: A Gutenberg Image Slider
   Version: 1.0
-  Author: Oscar Ciutat
-  Author URI: http://oscarciutat.com/code
-  Text Domain: gutenberg-slider
+  Author: Anna Schneider
+  Author URI: https://annaschneider.me
+  Text Domain: oacs-oacs-gutenberg-slider
   License: GPLv2 or later
 
   This program is free software; you can redistribute it and/or modify
@@ -92,7 +91,7 @@ class Gutenberg_Slider {
      *
      */
     function load_language() {
-        load_plugin_textdomain( 'gutenberg-slider', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+        load_plugin_textdomain( 'oacs-gutenberg-slider', '', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
     }
 
 
@@ -110,12 +109,12 @@ class Gutenberg_Slider {
         }
 
         wp_register_style(
-            'gutenberg-slider',
+            'oacs-gutenberg-slider',
             plugins_url( 'css/editor.css', __FILE__ ),
             array( 'wp-edit-blocks' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'css/editor.css' )
         );
-        wp_enqueue_style( 'gutenberg-slider');
+        wp_enqueue_style( 'oacs-gutenberg-slider');
 
         if ( !is_admin() ) {
             wp_register_style(
@@ -128,12 +127,12 @@ class Gutenberg_Slider {
         }
 
         wp_register_style(
-            'gutenberg-slider-frontend',
+            'oacs-gutenberg-slider-frontend',
             plugins_url( 'css/style.css', __FILE__ ),
             array( 'wp-blocks', 'slick' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'css/style.css' )
         );
-        wp_enqueue_style( 'gutenberg-slider-frontend');
+        wp_enqueue_style( 'oacs-gutenberg-slider-frontend');
         
         if ( !is_admin() ) {
             wp_register_script(
@@ -146,7 +145,7 @@ class Gutenberg_Slider {
         }
         
         wp_register_script(
-            'gutenberg-slider-frontend',
+            'oacs-gutenberg-slider-frontend',
             plugins_url( 'js/frontend.js', __FILE__ ),
             array( 'jquery', 'slick' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'js/frontend.js' ),
@@ -154,29 +153,29 @@ class Gutenberg_Slider {
         );
         
         wp_register_script(
-            'gutenberg-slider',
+            'oacs-gutenberg-slider',
             plugins_url( 'block.build.js', __FILE__ ),
             array( 'lodash', 'wp-blob', 'wp-blocks', 'wp-components', 'wp-data', 'wp-editor', 'wp-element', 'wp-i18n', 'wp-keycodes' ),
             filemtime( plugin_dir_path( __FILE__ ) . 'block.build.js' )
         );
 
-        register_block_type( 'occ/slider', array(
-            'editor_style'  => 'gutenberg-slider',
-            'editor_script' => 'gutenberg-slider',
-            'style' => 'gutenberg-slider-frontend',
-            'script' => 'gutenberg-slider-frontend',
+        register_block_type( 'oacs/slider', array(
+            'editor_style'  => 'oacs-gutenberg-slider',
+            'editor_script' => 'oacs-gutenberg-slider',
+            'style' => 'oacs-gutenberg-slider-frontend',
+            'script' => 'oacs-gutenberg-slider-frontend',
         ) );
 
         /*wp_add_inline_script(
-            'gutenberg-slider',
+            'oacs-gutenberg-slider',
             sprintf( 
                 'var gutenberg_slider = { localeData: %s };', 
-                json_encode( wp_get_jed_locale_data( 'gutenberg-slider' ) ) 
+                json_encode( wp_get_jed_locale_data( 'oacs-gutenberg-slider' ) ) 
             ),
             'before'
         );*/
 
-        wp_set_script_translations( 'gutenberg-slider', 'gutenberg-slider', plugin_dir_path( __FILE__ ) . 'languages' );
+        wp_set_script_translations( 'oacs-gutenberg-slider', 'oacs-gutenberg-slider', plugin_dir_path( __FILE__ ) . 'languages' );
 
     }
 

@@ -1,6 +1,6 @@
 jQuery( document ).ready(function( $ ) {
 
-    $( '.wp-block-occ-slider' ).each( function() {
+    $( '.wp-block-oacs-slider' ).each( function() {
     
         var $gallery = $( this );
         var slideCount = null;
@@ -14,14 +14,13 @@ jQuery( document ).ready(function( $ ) {
         $gallery.slick({
             fade: ( $gallery.data( 'effect' ) == 'fade' ),
             autoplay: $gallery.data( 'autoplay' ),
+            dots: $gallery.data( 'dots' ),
+            arrows: $gallery.data( 'arrows' ),
             speed: $gallery.data( 'speed' ),
             adaptiveHeight: true,
-            appendArrows: false,
             pauseOnFocus: false,
             cssEase: 'linear',
             lazyLoad: 'anticipated',
-            prevArrow: '.exhibit-navigation .prev',
-            nextArrow: '.exhibit-navigation .next, .slick-slide img, .slick-slide div'
         });
 
         $gallery.on( 'beforeChange', function( event, slick, currentSlide, nextSlide ) {
@@ -29,15 +28,15 @@ jQuery( document ).ready(function( $ ) {
         });
 
         function setSlideCount() {
-            var $el = $( '.exhibit-navigation .counter' ).find( '.total' );
+            var $el = $( '.counter' ).find( '.total' );
             $el.text( slideCount );
         }
 
         function setCurrentSlideNumber( currentSlide ) {
-            var $el = $( '.exhibit-navigation .counter' ).find( '.current' );
+            var $el = $( '.counter' ).find( '.current' );
             $el.text( currentSlide + 1 );
         }
-
+        
     });
 
 

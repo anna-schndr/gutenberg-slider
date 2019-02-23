@@ -35,11 +35,11 @@ import SliderImage from './slider-image';
 
 import './editor.scss';
 
-//setLocaleData( window.gutenberg_slider.localeData, 'gutenberg-slider' );
+//setLocaleData( window.gutenberg_slider.localeData, 'oacs-gutenberg-slider' );
 
 const effectOptions = [
-    { value: 'fade', label: __( 'Fade', 'gutenberg-slider' ) },
-    { value: 'scroll', label: __( 'Scroll', 'gutenberg-slider' ) },
+    { value: 'fade', label: __( 'Fade', 'oacs-gutenberg-slider' ) },
+    { value: 'scroll', label: __( 'Scroll', 'oacs-gutenberg-slider' ) },
 ];
 
 const linkOptions = [
@@ -67,6 +67,8 @@ class SliderEdit extends Component {
         this.setSpeed = this.setSpeed.bind( this );
         this.setEffect = this.setEffect.bind( this );
         this.toggleAutoplay = this.toggleAutoplay.bind( this );
+        this.toggleArrows = this.toggleArrows.bind( this );
+        this.toggleDots = this.toggleDots.bind( this );
         this.toggleImageCrop = this.toggleImageCrop.bind( this );
         this.onRemoveImage = this.onRemoveImage.bind( this );
         this.setImageAttributes = this.setImageAttributes.bind( this );
@@ -119,7 +121,7 @@ class SliderEdit extends Component {
     }
 
     onSelectImages( images ) {
-        console.log(JSON.stringify(images));
+        //.log(JSON.stringify(images));
         this.props.setAttributes( {
             images: images.map( ( image ) => pickRelevantMediaFiles( image ) ),
         } );
@@ -139,6 +141,14 @@ class SliderEdit extends Component {
 
     toggleAutoplay() {
         this.setAttributes( { autoplay: ! this.props.attributes.autoplay } );
+    }
+
+    toggleArrows() {
+        this.setAttributes( { arrows: ! this.props.attributes.arrows } );
+    }
+
+    toggleDots() {
+        this.setAttributes( { dots: ! this.props.attributes.dots } );
     }
 
     toggleImageCrop() {
@@ -200,7 +210,7 @@ class SliderEdit extends Component {
 
     render() {
         const { attributes, isSelected, className, noticeOperations, noticeUI } = this.props;
-        const { images, imageCrop, autoplay, speed, effect, linkTo } = attributes;
+        const { images, imageCrop, autoplay, arrows, dots, speed, effect, linkTo } = attributes;
 
         const dropZone = (
             <DropZone
@@ -221,7 +231,7 @@ class SliderEdit extends Component {
                             render={ ( { open } ) => (
                                 <IconButton
                                     className="components-toolbar__control"
-                                    label={ __( 'Edit Slider', 'gutenberg-slider' ) }
+                                    label={ __( 'Edit Slider', 'oacs-gutenberg-slider' ) }
                                     icon="edit"
                                     onClick={ open }
                                 />
@@ -240,8 +250,8 @@ class SliderEdit extends Component {
                         icon="format-gallery"
                         className={ className }
                         labels={ {
-                            title: __( 'Slider', 'gutenberg-slider' ),
-                            instructions: __( 'Drag images, upload new ones or select files from your library.', 'gutenberg-slider' ),
+                            title: __( 'Slider', 'oacs-gutenberg-slider' ),
+                            instructions: __( 'Drag images, upload new ones or select files from your library.', 'oacs-gutenberg-slider' ),
                         } }
                         onSelect={ this.onSelectImages }
                         accept="image/*"
@@ -254,13 +264,13 @@ class SliderEdit extends Component {
             );
         }
 
-        console.log(JSON.stringify(images));
+        //console.log(JSON.stringify(images));
         
         return (
             <Fragment>
                 { controls }
                 <InspectorControls>
-                    <PanelBody title={ __( 'Slider Settings', 'gutenberg-slider' ) }>
+                    <PanelBody title={ __( 'Slider Settings', 'oacs-gutenberg-slider' ) }>
                         <ToggleControl
                             label={ __( 'Crop Images' ) }
                             checked={ !! imageCrop }
@@ -268,12 +278,22 @@ class SliderEdit extends Component {
                             help={ this.getImageCropHelp }
                         />
                         <ToggleControl
-                            label={ __( 'Autoplay', 'gutenberg-slider' ) }
+                            label={ __( 'Autoplay', 'oacs-gutenberg-slider' ) }
                             checked={ !! autoplay }
                             onChange={ this.toggleAutoplay }
                         />
+                        <ToggleControl
+                            label={ __( 'Show Arrows', 'oacs-gutenberg-slider' ) }
+                            checked={ !! arrows }
+                            onChange={ this.toggleArrows }
+                        />
+                        <ToggleControl
+                            label={ __( 'Show Dots', 'oacs-gutenberg-slider' ) }
+                            checked={ !! dots }
+                            onChange={ this.toggleDots }
+                        />
                         <TextControl
-                            label={ __( 'Speed', 'gutenberg-slider' ) }
+                            label={ __( 'Speed', 'oacs-gutenberg-slider' ) }
                             type='number'
                             min='100'
                             max='500'
@@ -281,7 +301,7 @@ class SliderEdit extends Component {
                             onChange={ this.setSpeed }
                         />
                         <SelectControl
-                            label={ __( 'Effect', 'gutenberg-slider' ) }
+                            label={ __( 'Effect', 'oacs-gutenberg-slider' ) }
                             value={ effect }
                             onChange={ this.setEffect }
                             options={ effectOptions }
