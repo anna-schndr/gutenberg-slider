@@ -14,7 +14,7 @@ const { withSelect } = wp.data;
 const { RichText } = wp.editor;
 const { isBlobURL } = wp.blob;
 
-//setLocaleData( window.gutenberg_slider.localeData, 'oacs-gutenberg-slider' );
+//setLocaleData( window.gutenberg_slider.localeData, 'oacs-image-slider-blocks' );
 
 class SliderImage extends Component {
     constructor() {

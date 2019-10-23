@@ -1,5 +1,5 @@
 {
-  "name": "oacs-gutenberg-slider",
+  "name": "oacs-image-slider-blocks",
   "version": "1.0.0",
   "license": "GPL-2.0-or-later",
   "main": "block.js",

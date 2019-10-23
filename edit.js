@@ -35,11 +35,11 @@ import SliderImage from './slider-image';
 
 import './editor.scss';
 
-//setLocaleData( window.gutenberg_slider.localeData, 'oacs-gutenberg-slider' );
+//setLocaleData( window.gutenberg_slider.localeData, 'oacs-image-slider-blocks' );
 
 const effectOptions = [
-    { value: 'fade', label: __( 'Fade', 'oacs-gutenberg-slider' ) },
-    { value: 'scroll', label: __( 'Scroll', 'oacs-gutenberg-slider' ) },
+    { value: 'fade', label: __( 'Fade', 'oacs-image-slider-blocks' ) },
+    { value: 'scroll', label: __( 'Scroll', 'oacs-image-slider-blocks' ) },
 ];
 
 const linkOptions = [
@@ -231,7 +231,7 @@ class SliderEdit extends Component {
                             render={ ( { open } ) => (
                                 <IconButton
                                     className="components-toolbar__control"
-                                    label={ __( 'Edit Slider', 'oacs-gutenberg-slider' ) }
+                                    label={ __( 'Edit Slider', 'oacs-image-slider-blocks' ) }
                                     icon="edit"
                                     onClick={ open }
                                 />
@@ -250,8 +250,8 @@ class SliderEdit extends Component {
                         icon="format-gallery"
                         className={ className }
                         labels={ {
-                            title: __( 'Slider', 'oacs-gutenberg-slider' ),
-                            instructions: __( 'Drag images, upload new ones or select files from your library.', 'oacs-gutenberg-slider' ),
+                            title: __( 'Slider', 'oacs-image-slider-blocks' ),
+                            instructions: __( 'Drag images, upload new ones or select files from your library.', 'oacs-image-slider-blocks' ),
                         } }
                         onSelect={ this.onSelectImages }
                         accept="image/*"
@@ -270,7 +270,7 @@ class SliderEdit extends Component {
             <Fragment>
                 { controls }
                 <InspectorControls>
-                    <PanelBody title={ __( 'Slider Settings', 'oacs-gutenberg-slider' ) }>
+                    <PanelBody title={ __( 'Slider Settings', 'oacs-image-slider-blocks' ) }>
                         <ToggleControl
                             label={ __( 'Crop Images' ) }
                             checked={ !! imageCrop }
@@ -278,22 +278,22 @@ class SliderEdit extends Component {
                             help={ this.getImageCropHelp }
                         />
                         <ToggleControl
-                            label={ __( 'Autoplay', 'oacs-gutenberg-slider' ) }
+                            label={ __( 'Autoplay', 'oacs-image-slider-blocks' ) }
                             checked={ !! autoplay }
                             onChange={ this.toggleAutoplay }
                         />
                         <ToggleControl
-                            label={ __( 'Show Arrows', 'oacs-gutenberg-slider' ) }
+                            label={ __( 'Show Arrows', 'oacs-image-slider-blocks' ) }
                             checked={ !! arrows }
                             onChange={ this.toggleArrows }
                         />
                         <ToggleControl
-                            label={ __( 'Show Dots', 'oacs-gutenberg-slider' ) }
+                            label={ __( 'Show Dots', 'oacs-image-slider-blocks' ) }
                             checked={ !! dots }
                             onChange={ this.toggleDots }
                         />
                         <TextControl
-                            label={ __( 'Speed', 'oacs-gutenberg-slider' ) }
+                            label={ __( 'Speed', 'oacs-image-slider-blocks' ) }
                             type='number'
                             min='100'
                             max='500'
@@ -301,7 +301,7 @@ class SliderEdit extends Component {
                             onChange={ this.setSpeed }
                         />
                         <SelectControl
-                            label={ __( 'Effect', 'oacs-gutenberg-slider' ) }
+                            label={ __( 'Effect', 'oacs-image-slider-blocks' ) }
                             value={ effect }
                             onChange={ this.setEffect }
                             options={ effectOptions }

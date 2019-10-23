@@ -1,19 +1,19 @@
-=== Gutenberg Slider ===
+=== Image Slider Blocks===
 Contributors: anna_werner
-Tags: slider, image, media, upload, gutenberg, block, imageblock
+Tags: slider, image, media, upload, gutenberg, block, imageblock, gallery
 Requires at least: 4.9.5
 Tested up to: 5.0.3
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-An image slider block plugin for Gutenberg
+An image slider block plugin for Gutenberg blocks
 
 == Description ==
 
-An image slider block plugin for Gutenberg
+An image slider block plugin for Gutenberg blocks
 
-Create a fully responsive image slider gallery with Gutenberg.
+Create a fully responsive image slider gallery as a Gutenberg block.
 
 Feature: 
 -   Simple Image Slider
