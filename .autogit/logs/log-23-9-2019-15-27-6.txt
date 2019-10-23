@@ -1,0 +1,24 @@
+-------------------- Auto-Git Log --------------------
+		Wed Oct 23 2019 15:27:06 GMT+0200 (Central European Summer Time)
+------------------------------------------------------
+
+Modified files:
+* block.build.js
+* block.build.js.map
+* edit.js
+* gutenberg-slider.php
+* index.js
+* package-lock.json
+* package.json
+* readme.txt
+* slider-image.js
+
+
+Created files:
+* .autogit/autogit.json
+
+
+Deleted files:
+
+
+Renamed files:
