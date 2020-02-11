@@ -1,7 +1,7 @@
 /**
  * External Dependencies
  */
-const { filter, pick, get } = lodash;
+const { filter, pick, get, map } = lodash;
 
 /**
  * WordPress dependencies
