@@ -133,7 +133,7 @@ var _wp$i18n = wp.i18n,
     sprintf = _wp$i18n.sprintf,
     setLocaleData = _wp$i18n.setLocaleData;
 var _wp$components = wp.components,
-    IconButton = _wp$components.IconButton,
+    Button = _wp$components.Button,
     DropZone = _wp$components.DropZone,
     FormFileUpload = _wp$components.FormFileUpload,
     PanelBody = _wp$components.PanelBody,
@@ -143,13 +143,12 @@ var _wp$components = wp.components,
     ToggleControl = _wp$components.ToggleControl,
     Toolbar = _wp$components.Toolbar,
     withNotices = _wp$components.withNotices;
-var _wp$editor = wp.editor,
-    MediaUpload = _wp$editor.MediaUpload,
-    MediaPlaceholder = _wp$editor.MediaPlaceholder,
-    mediaUpload = _wp$editor.mediaUpload;
+var mediaUpload = wp.editor.mediaUpload;
 var _wp$blockEditor = wp.blockEditor,
     BlockControls = _wp$blockEditor.BlockControls,
-    InspectorControls = _wp$blockEditor.InspectorControls;
+    InspectorControls = _wp$blockEditor.InspectorControls,
+    MediaPlaceholder = _wp$blockEditor.MediaPlaceholder,
+    MediaUpload = _wp$blockEditor.MediaUpload;
 
 /**
  * Internal dependencies
@@ -392,11 +391,12 @@ var SliderEdit = function (_Component) {
                         }),
                         render: function render(_ref) {
                             var open = _ref.open;
-                            return wp.element.createElement(IconButton, {
+                            return wp.element.createElement(Button, {
+                                onClick: open,
                                 className: 'components-toolbar__control',
                                 label: __('Edit Slider', 'oacs-image-slider-blocks'),
-                                icon: 'edit',
-                                onClick: open
+                                isSmall: true,
+                                icon: 'edit'
                             });
                         }
                     })

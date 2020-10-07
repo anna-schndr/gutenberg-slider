@@ -8,6 +8,10 @@
 		padding-left: 0;
 		padding-right: 0;
 		column-gap: 16px;
+		&.block-editor-media-placeholder {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
 		
 		// Allow gallery items to go edge to edge.
 		margin: 0;
