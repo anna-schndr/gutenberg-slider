@@ -7,7 +7,7 @@ import classnames from 'classnames';
  * WordPress Dependencies
  */
 const { Component, Fragment } = wp.element;
-const { IconButton, Spinner } = wp.components;
+const { Button, Spinner } = wp.components;
 const { __, setLocaleData } = wp.i18n;
 const { BACKSPACE, DELETE } = wp.keycodes;
 const { withSelect } = wp.data;
@@ -131,11 +131,13 @@ class SliderImage extends Component {
             <figure className={ className } tabIndex="-1" onKeyDown={ this.onKeyDown } ref={ this.bindContainer }>
                 { isSelected &&
                     <div className="block-library-gallery-item__inline-menu">
-                        <IconButton
-                            icon="no-alt"
+                        <Button
                             onClick={ onRemove }
                             className="blocks-gallery-item__remove"
-                            label={ __( 'Remove Image' ) }
+                            label={ __( 'Remove Imagez' ) }
+                            isSmall
+                            isDestructive
+                            icon="no-alt"
                         />
                     </div>
                 }
