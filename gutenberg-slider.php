@@ -148,7 +148,7 @@ class Gutenberg_Slider {
         wp_register_script(
             'oacs-image-slider-blocks-frontend',
             plugins_url( 'js/frontend.js', __FILE__ ),
-            array(),
+            array('jquery'),
             filemtime( plugin_dir_path( __FILE__ ) . 'js/frontend.js' ),
             true
         );
