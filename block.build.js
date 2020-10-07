@@ -144,11 +144,12 @@ var _wp$components = wp.components,
     Toolbar = _wp$components.Toolbar,
     withNotices = _wp$components.withNotices;
 var _wp$editor = wp.editor,
-    BlockControls = _wp$editor.BlockControls,
     MediaUpload = _wp$editor.MediaUpload,
     MediaPlaceholder = _wp$editor.MediaPlaceholder,
-    InspectorControls = _wp$editor.InspectorControls,
     mediaUpload = _wp$editor.mediaUpload;
+var _wp$blockEditor = wp.blockEditor,
+    BlockControls = _wp$blockEditor.BlockControls,
+    InspectorControls = _wp$blockEditor.InspectorControls;
 
 /**
  * Internal dependencies
@@ -578,9 +579,8 @@ var _wp$i18n = wp.i18n,
 var _wp$blocks = wp.blocks,
     createBlock = _wp$blocks.createBlock,
     registerBlockType = _wp$blocks.registerBlockType;
-var _wp$editor = wp.editor,
-    RichText = _wp$editor.RichText,
-    mediaUpload = _wp$editor.mediaUpload;
+var mediaUpload = wp.editor.mediaUpload;
+var RichText = wp.blockEditor.RichText;
 var createBlobURL = wp.blob.createBlobURL;
 var _wp$components = wp.components,
     G = _wp$components.G,
@@ -962,7 +962,7 @@ var _wp$keycodes = wp.keycodes,
     BACKSPACE = _wp$keycodes.BACKSPACE,
     DELETE = _wp$keycodes.DELETE;
 var withSelect = wp.data.withSelect;
-var RichText = wp.editor.RichText;
+var RichText = wp.blockEditor.RichText;
 var isBlobURL = wp.blob.isBlobURL;
 
 //setLocaleData( window.gutenberg_slider.localeData, 'oacs-image-slider-blocks' );

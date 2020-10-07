@@ -8,7 +8,8 @@ const { filter, every, map, some } = lodash;
  */
 const { __, setLocaleData } = wp.i18n;
 const { createBlock, registerBlockType } = wp.blocks;
-const { RichText, mediaUpload } = wp.editor;
+const { mediaUpload } = wp.editor;
+const { RichText } = wp.blockEditor;
 const { createBlobURL } = wp.blob;
 const { G, Path, SVG } = wp.components;
 

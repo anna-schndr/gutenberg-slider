@@ -11,7 +11,7 @@ const { Button, Spinner } = wp.components;
 const { __, setLocaleData } = wp.i18n;
 const { BACKSPACE, DELETE } = wp.keycodes;
 const { withSelect } = wp.data;
-const { RichText } = wp.editor;
+const { RichText } = wp.blockEditor;
 const { isBlobURL } = wp.blob;
 
 //setLocaleData( window.gutenberg_slider.localeData, 'oacs-image-slider-blocks' );

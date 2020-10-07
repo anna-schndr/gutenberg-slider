@@ -21,12 +21,14 @@ const {
     withNotices,
 } = wp.components;
 const {
-    BlockControls,
     MediaUpload,
     MediaPlaceholder,
-    InspectorControls,
     mediaUpload,
 } = wp.editor;
+const {
+    BlockControls,
+    InspectorControls,
+} = wp.blockEditor;
 
 /**
  * Internal dependencies
