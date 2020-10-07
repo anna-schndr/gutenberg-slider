@@ -138,7 +138,7 @@ class Gutenberg_Slider {
             wp_register_script(
                 'slick',
                 plugins_url( 'js/slick.min.js', __FILE__ ),
-                array(),
+                array('jquery'),
                 filemtime( plugin_dir_path( __FILE__ ) . 'js/slick.min.js' ),
                 true
             );
