@@ -6,10 +6,10 @@
   "dependencies": {
     "classnames": "2.2.6",
     "hoek": "^5.0.4",
-    "po2json": "^1.0.0-alpha"
+    "po2json": "^1.0.0-beta-3"
   },
   "devDependencies": {
-    "autoprefixer": "^9.7.3",
+    "autoprefixer": "^9.8.6",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -18,12 +18,13 @@
     "cross-env": "^5.2.1",
     "css-loader": "^1.0.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "postcss-loader": "^3.0.0",
     "raw-loader": "^0.5.1",
     "sass-loader": "^7.3.1",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
   },
   "scripts": {
     "build": "cross-env BABEL_ENV=default NODE_ENV=production webpack",

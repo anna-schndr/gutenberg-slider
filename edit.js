@@ -9,7 +9,7 @@ const { filter, pick, get, map } = lodash;
 const { Component, Fragment } = wp.element;
 const { __, sprintf, setLocaleData } = wp.i18n;
 const {
-    IconButton,
+    Button,
     DropZone,
     FormFileUpload,
     PanelBody,
@@ -21,12 +21,14 @@ const {
     withNotices,
 } = wp.components;
 const {
-    BlockControls,
-    MediaUpload,
-    MediaPlaceholder,
-    InspectorControls,
     mediaUpload,
 } = wp.editor;
+const {
+    BlockControls,
+    InspectorControls,
+    MediaPlaceholder,
+    MediaUpload,
+} = wp.blockEditor;
 
 /**
  * Internal dependencies
@@ -229,11 +231,12 @@ class SliderEdit extends Component {
                             gallery
                             value={ images.map( ( img ) => img.id ) }
                             render={ ( { open } ) => (
-                                <IconButton
+                                <Button
+                                    onClick={ open }
                                     className="components-toolbar__control"
                                     label={ __( 'Edit Slider', 'oacs-image-slider-blocks' ) }
+                                    isSmall
                                     icon="edit"
-                                    onClick={ open }
                                 />
                             ) }
                         />
