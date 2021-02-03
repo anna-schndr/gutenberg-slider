@@ -1,5 +1,5 @@
 === Image Slider Blocks===
-Contributors: anna_werner
+Contributors: anna_werner, morganleek-1
 Tags: slider, image, media, upload, gutenberg, block, imageblock, gallery
 Requires at least: 4.9.5
 Tested up to: 5.6
