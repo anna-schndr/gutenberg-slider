@@ -2,7 +2,7 @@
 /*
   Plugin Name: Image Slider Block
   Description: A Gutenberg Image Slider
-  Version: 1.0
+  Version: 1.1
   Author: Anna Schneider
   Author URI: https://annaschneider.me
   Text Domain: oacs-oacs-image-slider-blocks
