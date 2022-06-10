@@ -1,6 +1,10 @@
-/* style */
+/**
+ * The following styles get applied inside the editor only.
+ *
+ */
 
-.editor-styles-wrapper {
+
+ .editor-styles-wrapper {
 	.wp-block-oacs-slider {
 		display: flex;
 		flex-wrap: wrap;
@@ -56,7 +60,8 @@
 			figcaption {
 				position: absolute;
 				bottom: 0;
-				width: 100%;
+				right: 0;
+				left: 0;
 				max-height: 100%;
 				overflow: auto;
 				padding: 40px 10px 5px;
@@ -68,6 +73,19 @@
 				img {
 					display: inline;
 				}
+			}
+			div.rich-text {
+				position: absolute;
+				top: 0;
+				right: 0;
+				left: 0;
+				max-height: 100%;
+				overflow: auto;
+				padding: 5px 10px 20px;
+				color: #fff;
+				text-align: center;
+				font-size: 13px;
+				background: linear-gradient(180deg, rgba( $color: #000, $alpha: 0.7 ) 0, rgba($color: #000, $alpha: 0.3) 60%, transparent);
 			}
 		}
 

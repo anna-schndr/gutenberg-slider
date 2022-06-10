@@ -1,3 +1,8 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ */
+
 .wp-block-oacs-slider {
 	display: flex;
 	flex-wrap: wrap;
@@ -7,7 +12,7 @@
 	.blocks-gallery-image,
 	.blocks-gallery-item {
 		// Add space between thumbnails, and unset right most thumbnails later.
-		margin: 0 8px 8px 0;
+		margin: 0 0 8px 0;
 		display: flex;
 		flex-grow: 1;
 		flex-direction: column;
@@ -17,6 +22,8 @@
 		figure {
 			margin: 0;
             height: 100%;
+			margin: auto;
+			position: relative;
             
 			// IE doesn't support flex so omit that.
 			@supports (position: sticky) {
@@ -45,7 +52,8 @@
 		figcaption {
             position: absolute;
             bottom: 0;
-			width: 100%;
+			right: 0;
+			left: 0;
 			max-height: 100%;
             overflow: auto;
             padding: 40px 10px 5px;
@@ -81,7 +89,8 @@
 	// On mobile and responsive viewports, we allow only 1 or 2 columns at the most.
 	& .blocks-gallery-image,
 	& .blocks-gallery-item {
-		width: calc(100% / 2 - 8px);
+		width: calc(100% / 2);
+		// width: calc(100% / 2 - 8px);
         
 		&:nth-of-type(even) {
 			margin-right: 0;

@@ -5,6 +5,8 @@ jQuery( document ).ready(function( $ ) {
         var $gallery = $( this );
         var slideCount = null;
 
+        console.log($gallery)
+
         $gallery.on( 'init', function( event, slick ) {
             slideCount = slick.slideCount;
             setSlideCount();
@@ -17,7 +19,8 @@ jQuery( document ).ready(function( $ ) {
             dots: $gallery.data( 'dots' ),
             arrows: $gallery.data( 'arrows' ),
             speed: $gallery.data( 'speed' ),
-            adaptiveHeight: true,
+            adaptiveHeight: $gallery.data( 'adaptiveheight' ),
+            pauseOnHover: $gallery.data( 'pauseOnHover' ),
             pauseOnFocus: false,
             cssEase: 'linear',
             lazyLoad: 'anticipated',
