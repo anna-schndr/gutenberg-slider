@@ -42,7 +42,7 @@ import './editor.scss';
 /**
  * External Dependencies
  */
-const { filter, pick, get, map } = lodash;
+import { filter, pick, get, map } from 'lodash';
 
 /**
  * Internal dependencies

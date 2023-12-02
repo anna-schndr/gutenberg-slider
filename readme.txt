@@ -2,8 +2,8 @@
 Contributors: anna_werner, oacstudio, morganleek-1
 Tags: slider, image, media, upload, gutenberg, block, imageblock, gallery
 Requires at least: 5.0
-Tested up to: 6.0
-Stable tag: 2.0
+Tested up to: 6.4
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,3 +56,6 @@ There is no setting for this, but you can set your own icons with custom CSS.
 * Added feature for pause on hover
 * Added feature to use custom URL and open in a new tab
 * Updated to Blocks API version 2.0
+
+= 2.0.1 =
+* Bug fixes
